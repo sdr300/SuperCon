@@ -14,6 +14,8 @@ import android.widget.RadioGroup;
 
 import androidx.fragment.app.Fragment;
 
+import superconn.pds.sw.superconn.DataBase.Person;
+
 
 public class UpdateDataFragmentPia extends Fragment {
 

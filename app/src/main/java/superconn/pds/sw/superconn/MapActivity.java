@@ -2,15 +2,19 @@ package superconn.pds.sw.superconn;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -30,11 +34,16 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.room.Room;
 
 import org.osmdroid.config.Configuration;
+import org.osmdroid.events.DelayedMapListener;
 import org.osmdroid.events.MapEventsReceiver;
+import org.osmdroid.events.MapListener;
+import org.osmdroid.events.ScrollEvent;
+import org.osmdroid.events.ZoomEvent;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.CustomZoomButtonsController;
 import org.osmdroid.views.MapView;
+import org.osmdroid.views.Projection;
 import org.osmdroid.views.overlay.MapEventsOverlay;
 import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.Polygon;
@@ -42,14 +51,22 @@ import org.osmdroid.views.overlay.Polyline;
 import org.osmdroid.views.overlay.compass.CompassOverlay;
 
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.jar.JarFile;
 
+import icops.framework.common.BasicReturn;
 import icops.framework.common.CAppContext;
+import icops.framework.common.Geometry;
+import icops.framework.util.CGeometricUtil;
 import icops.warsym.inf.IWarSymFactory;
+import superconn.pds.sw.superconn.DataBase.Buho;
+import superconn.pds.sw.superconn.DataBase.Person;
+import superconn.pds.sw.superconn.DataBase.RoomDatabaseClass;
 import superconn.pds.sw.superconn.ICOPS.DemoMainView;
 import superconn.pds.sw.superconn.comm.LIFFReceiver;
 import superconn.pds.sw.superconn.coord.CoordDMS;
@@ -57,8 +74,12 @@ import superconn.pds.sw.superconn.coord.CoordUTM;
 import superconn.pds.sw.superconn.coord.CoordinateManager;
 import superconn.pds.sw.superconn.coord.coordMgrs;
 
+import static android.os.Environment.getExternalStorageDirectory;
+
 public class MapActivity extends AppCompatActivity {
 
+    List<Buho> buhoArrayList = new ArrayList<>();
+    int buhoSize = buhoArrayList.size();
     public static Context maincontext;
     public static MapActivity mainActivity;
     private GpsTracker gpsTracker;
@@ -78,7 +99,7 @@ public class MapActivity extends AppCompatActivity {
     private long backKeyPressedTime = 0; // 마지막으로 뒤로가기 버튼을 눌렀던 시간 저장
     private Integer dogu_int;
     private String dogu_string;
-    TextView distance1;
+    TextView distance1, clickLocation;
     int poweri = 0;
     public String dogu_addText;
     private SwitchCompat dogu_sw;
@@ -95,7 +116,7 @@ public class MapActivity extends AppCompatActivity {
         map = findViewById(R.id.mapView);
         map.setTileSource(TileSourceFactory.MAPNIK);
         //줌
-        map.getController().setZoom(18.0);
+        map.getController().setZoom(16.0);
         map.setBuiltInZoomControls(true);
         map.setMultiTouchControls(true);
 
@@ -109,11 +130,13 @@ public class MapActivity extends AppCompatActivity {
 
         double latitude = gpsTracker.getLatitude();
         double longitude = gpsTracker.getLongitude();
+        double maplatitude = Double.parseDouble(String.format("%.6f", gpsTracker.getLatitude()));
+        double maplongitude = Double.parseDouble(String.format("%.6f", gpsTracker.getLongitude()));
 
         //메인화면에 위치표시
         TextView addressText;
         addressText =  findViewById(R.id.addressText);
-        addressText.setText("현재위치 좌표계: 경위도(DMS)\n"+dms(latitude, longitude));
+        addressText.setText("현재위치 좌표계: 경위도(DMS)\n"+dms(maplatitude, maplongitude));
 
         CompassOverlay compassOverlay = new CompassOverlay(this, map);
         compassOverlay.enableCompass();
@@ -139,6 +162,25 @@ public class MapActivity extends AppCompatActivity {
 
         map.getController().setCenter(point);
 
+        //==========================부호 좌표를 가져온 마커들========================//
+
+        Log.d("길이", buhoSize+"");
+        for (int i=0; i< buhoSize; i++){
+            Marker buhoMarker = new Marker(map);
+            GeoPoint buhoPoint = new GeoPoint(Double.parseDouble(buhoArrayList.get(i).getBuhoLatitude()), (Double.parseDouble(buhoArrayList.get(i).getBuhoLongitude())));
+            Log.d("마커 좌표", Double.parseDouble(buhoArrayList.get(i).getBuhoLatitude())+","+ Double.parseDouble(buhoArrayList.get(i).getBuhoLongitude()));
+            buhoMarker.setIcon(this.getResources().getDrawable(R.drawable.map_marker2));
+            buhoMarker.setPosition(buhoPoint);
+            map.getOverlays().add(buhoMarker);
+            buhoMarker.setInfoWindow(null);
+            buhoMarker.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
+                @Override
+                public boolean onMarkerClick(Marker marker, MapView mapView) {
+                    return false;
+                }
+            });
+        }
+
         //거리환 테스트
         final List<GeoPoint> geoPoints = new ArrayList<>();
         //add your points here
@@ -150,9 +192,26 @@ public class MapActivity extends AppCompatActivity {
         dogu_addText = addText;
         //==================클릭시 좌표를 가져오는 리시버 + 거리환
         final MapEventsReceiver mReceive = new MapEventsReceiver(){
+
             @Override
             public boolean singleTapConfirmedHelper(GeoPoint p) {
-                Toast.makeText(getBaseContext(),"선택 좌표 위치:" +"\n"+p.getLatitude() + "\n"+p.getLongitude(), Toast.LENGTH_LONG).show();
+                double dlatitude = Double.parseDouble(String.format("%.6f",p.getLatitude()));
+                double dlongitude = Double.parseDouble(String.format("%.6f",p.getLongitude()));
+                Toast.makeText(getBaseContext(),"선택 좌표 위치:" +"\n"+dlatitude + "\n"+ dlongitude, Toast.LENGTH_LONG).show();
+
+                //부호 fragment에 클릭시 위치 전송(try catch 한곳에 add롸 update를 몰아넣었을때는 작동 안됨)
+                try { AddDataFragmentBuho addDataFragmentBuho = (AddDataFragmentBuho) getSupportFragmentManager().findFragmentById(R.id.fragment_frame);
+                    addDataFragmentBuho.addLatitude(dlatitude+"");
+                    addDataFragmentBuho.addLongitude(dlongitude+"");
+                } catch (Exception e){
+                }
+                try {
+                    UpdateDataFragmentBuho updateDataFragmentBuho = (UpdateDataFragmentBuho)  getSupportFragmentManager().findFragmentById(R.id.fragment_frame);
+                    updateDataFragmentBuho.addLatitude(dlatitude+"");
+                    updateDataFragmentBuho.addLongitude(dlongitude+"");
+                } catch (Exception e){
+                }
+
                 distance1 = (TextView) findViewById(R.id.distance1);
                 dogu_string = distance1.getText().toString();
                 dogu_int = (Integer.parseInt(dogu_string))/250;
@@ -205,7 +264,7 @@ public class MapActivity extends AppCompatActivity {
                                 return false;
                             }
                         });
-                    } else {
+                    }else {
                         dpolygons[i].setOnClickListener(new Polygon.OnClickListener() {
                             @Override
                             public boolean onClick(Polygon polygon, MapView mapView, GeoPoint eventPos) {
@@ -222,6 +281,7 @@ public class MapActivity extends AppCompatActivity {
                     }
                     map.getOverlays().add(dpolygons[i]);
                 }
+
                 //===========================거리환 숫자 표기(단위)
                 if(dogu_int>0) {
                     for (i = 0; i < 4; i++) {
@@ -238,9 +298,32 @@ public class MapActivity extends AppCompatActivity {
                         map.getOverlayManager().add(dmarkers[i]);
                     }
                 }
+                dpolygons[0].setOnClickListener(new Polygon.OnClickListener() {
+                    @Override
+                    public boolean onClick(Polygon polygon, MapView mapView, GeoPoint eventPos) {
+                        int i=0;
+                        for ( i=0; i<4; i++) {
+                            dpolygons[i].setOnClickListener(new Polygon.OnClickListener() {
+                                @Override
+                                public boolean onClick(Polygon polygon, MapView mapView, GeoPoint eventPos) {
+                                    int i = 0;
+                                    for (i = 0; i < 4; i++) {
+                                        dmarkers[i].remove(map);
+                                        mapView.getOverlays().remove(dpolygons[i]);
+                                    }
+                                    mapView.getOverlays().remove(line250lat);
+                                    mapView.getOverlays().remove(line250lon);
+                                    return false;
+                                }
+                            });
+                        }
+                        return false;
+                    }
+                });
                 map.invalidate();
                 return false;
             }
+
             @Override
             public boolean longPressHelper(GeoPoint p) {
                 return false;
@@ -279,27 +362,25 @@ public class MapActivity extends AppCompatActivity {
         fragmentTransaction.add(R.id.fragment_frame, new FragmentZ());
         fragmentTransaction.commit();
 
-//        String sdPath = getExternalStorageDirectory().getAbsolutePath();
-//        String wsDataPath = sdPath + "/ICOPS/ICOPSaWarsymData.jar";
-//        Log.d(this.getClass().getName(), "@@@@@ 주소 :" + wsDataPath);
-//        // ICOPS 컴포넌트 초기화
-//        new IcopsInitTask().execute(getString(R.string.config_icopsAppContext));
-//
-//        mMainView = findViewById(R.id.DemoMainView);
-//        mMainView.mMain = this;
-//
-//        // 화면 해상도에 따른 계산을 위해 필요한 환경설정 값을 초기화한다.
-//        CGeometricUtil.initContext(getApplicationContext());
-//        CGeometricUtil.mDPM *= 1.2f; // 밀리미터에 해당하는 화면 픽셀 개수를 임의로 조정하려면 mDPM 값을 변경한다.
-//        GeoPoint startPoint = new GeoPoint(36.63507, 126.41642); // 좌표설정
-//
-//        map = (MapView) findViewById(R.id.mapView);
-//        map.getController().setCenter(startPoint);
-//        map.setTileSource(TileSourceFactory.MAPNIK);
-//
-//        requestPermissionsIfNecessary(new String[]{
-//                Manifest.permission.WRITE_EXTERNAL_STORAGE
-//        });
+        String sdPath = getExternalStorageDirectory().getAbsolutePath();
+        String wsDataPath = sdPath + "/ICOPS/ICOPSaWarsymData.jar";
+        Log.d(this.getClass().getName(), "@@@@@ 주소 :" + wsDataPath);
+        // ICOPS 컴포넌트 초기화
+        new IcopsInitTask().execute(getString(R.string.config_icopsAppContext));
+
+        mMainView = findViewById(R.id.DemoMainView);
+        mMainView.mMain = this;
+
+        // 화면 해상도에 따른 계산을 위해 필요한 환경설정 값을 초기화한다.
+        CGeometricUtil.initContext(getApplicationContext());
+        CGeometricUtil.mDPM *= 1.2f; // 밀리미터에 해당하는 화면 픽셀 개수를 임의로 조정하려면 mDPM 값을 변경한다.
+
+        map = (MapView) findViewById(R.id.mapView);
+        map.setTileSource(TileSourceFactory.MAPNIK);
+
+        requestPermissionsIfNecessary(new String[]{
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+        });
 
         //======================gps 위치받아오기=========/
         if (!checkLocationServicesStatus()) {
@@ -307,11 +388,29 @@ public class MapActivity extends AppCompatActivity {
         }else {
             checkRunTimePermission();
         }
+
+        //icops overlay maplistener (맵 이동시 icops 아이콘 이동)
+        map.setMapListener(new DelayedMapListener(new MapListener() {
+            @Override
+            public boolean onScroll(ScrollEvent event) {
+                mMainView.clearSymbol();
+                icopsTest(map);
+                return false;
+            }
+
+            @Override
+            public boolean onZoom(ZoomEvent event) {
+                mMainView.clearSymbol();
+                icopsTest(map);
+                return false;
+            }
+        },100));
+
     }
 
     private final String LIFF_IDENTIFICATION_SEND = "LIFF.COMM.RS232.IDENTIFICATION.SEND";
     private final String LIFF_IDENTIFICATION_RECEIVER = "LIFF.COMM.RS232.IDENTIFICATION.RECEIVER";
-    superconn.pds.sw.superconn.comm.LIFFReceiver LIFFReceiver;
+    LIFFReceiver LIFFReceiver;
 
     @Override
     public void onResume() {
@@ -376,6 +475,7 @@ public class MapActivity extends AppCompatActivity {
     public void showPower(int battery){
         Toast toast = Toast.makeText(MapActivity.this, "배터리가 '"+battery+"%' 남아있습니다", Toast.LENGTH_SHORT);
         toast.show();
+
     }
 
     private void requestPermissionsIfNecessary(String[] permissions) {
@@ -394,106 +494,112 @@ public class MapActivity extends AppCompatActivity {
                     REQUEST_PERMISSIONS_REQUEST_CODE);
         }
     }
-//
-//    public void icopsTest(View view) {
-//        GeoPoint geoPoint = new GeoPoint(36.63507, 126.41642); // 좌표설정
-//        Projection pj = map.getProjection();
-//        Point point = pj.toPixels(geoPoint, null);
-//        Geometry.Point.Array gPoints = new Geometry.Point.Array();
-//        gPoints.add(point.x, point.y);
-//        mMainView.drawSingle("SFG*UCF---*****", 0, gPoints);
-//
-//        mMainView.invalidate();
-//    }
-//
-//    // ICOPS 초기화를 수행하는 Task
-//    private class IcopsInitTask extends AsyncTask<String, String, CAppContext> {
-//
-//        @Override
-//        protected CAppContext doInBackground(String... args) {
-//            boolean res;
-//            CAppContext appCxt = new CAppContext();
-//            Application app = getApplication();
-//            AssetManager amg = app.getAssets();
-//
-//            // open resource
-//            InputStream is;
-//            try {
-//                is = amg.open(args[0]);
-//            } catch (FileNotFoundException e) {
-//                e.printStackTrace();
-//                return null;
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//                return null;
-//            }
-//
-//            res = appCxt.initialize("icops.framework.common.CAppContextDataAgentXml", is, app, amg);
-//            if (!res) {
-//                publishProgress("ICOPS 초기화 실패");
-//                return null;
-//            }
-//
-//            // 군대부호 JAR 파일 열기
-//            String sdPath = getExternalStorageDirectory().getAbsolutePath();
-//            String wsDataPath = sdPath + "/ICOPS/ICOPSaWarsymData.jar";
-//            Log.d(this.getClass().getName(), "@@@@@ 주소 :" + wsDataPath);
-//
-//            try {
-//                mWarsymJar = new JarFile(wsDataPath);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//                publishProgress("군대부호자료 열기 실패 " + wsDataPath);
-//                mAppCxt = appCxt;
-//                return appCxt;
-//            }
-//
-//            BasicReturn.TypeObject retObj = new BasicReturn.TypeObject();
-//            res = appCxt.getStockObject("icops.warsym.inf.IWarSymFactory", retObj);
-//            if (!res || retObj.value == null) {
-//                publishProgress("군대부호 관리 객체 생성 실패");
-//                mAppCxt = appCxt;
-//                return appCxt;
-//            }
-//
-//            try {
-//                IWarSymFactory symFac = (IWarSymFactory) retObj.value;
-//                res = symFac.initialize(appCxt, mWarsymJar);
-//                if (res) {
-//                    mSymFac = symFac;
-//                } else {
-//                    publishProgress("군대부호 관리 객체 초기화 실패");
-//                }
-//            } catch (ClassCastException e) {
-//                publishProgress("군대부호 관리 객체 초기화 오류");
-//            }
-//
-//            // 군대부호 도시에 사용할 폰트를 설정한다.
-//            // 설정하지 않으면 기본으로 <Arial Unicode MS>를 사용한다.
-//            //WarSym.FontFamily = "궁서체";
-//
-//            mAppCxt = appCxt;
-//            return appCxt;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(CAppContext result) {
-//            mLoading = false;
-//            onPostInitICOPS(result);
-//        }
-//
-//        @Override
-//        protected void onProgressUpdate(String... prgs) {
-//        }
-//    }
-//
-//    public void onPostInitICOPS(CAppContext appCxt) {
-//        if (appCxt == null) {
-//            return;
-//        }
-//
-//        //mMainView.setVisibility(View.VISIBLE);
-//    }
+
+    public void icopsTest(View view) {
+
+        gpsTracker = new GpsTracker(MapActivity.this);
+        double latitude = gpsTracker.getLatitude();
+        double longitude = gpsTracker.getLongitude();
+        Marker dmarker = new Marker(map);
+
+        GeoPoint geoPoint = new GeoPoint(latitude, longitude); // 좌표설정
+        Projection pj = map.getProjection();
+        Point point = pj.toPixels(geoPoint, null);
+        Geometry.Point.Array gPoints = new Geometry.Point.Array();
+        gPoints.add(point.x, point.y);
+        mMainView.drawSingle("SUG*UCF---*****", 0, gPoints);
+        Log.d("icops", point.x+"/"+point.y);
+        mMainView.invalidate();
+    }
+
+    // ICOPS 초기화를 수행하는 Task
+    private class IcopsInitTask extends AsyncTask<String, String, CAppContext> {
+
+        @Override
+        protected CAppContext doInBackground(String... args) {
+            boolean res;
+            CAppContext appCxt = new CAppContext();
+            Application app = getApplication();
+            AssetManager amg = app.getAssets();
+
+            // open resource
+            InputStream is;
+            try {
+                is = amg.open(args[0]);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                return null;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+
+            res = appCxt.initialize("icops.framework.common.CAppContextDataAgentXml", is, app, amg);
+            if (!res) {
+                publishProgress("ICOPS 초기화 실패");
+                return null;
+            }
+
+            // 군대부호 JAR 파일 열기
+            String sdPath = getExternalStorageDirectory().getAbsolutePath();
+            String wsDataPath = sdPath + "/ICOPS/ICOPSaWarsymData.jar";
+            Log.d(this.getClass().getName(), "@@@@@ 주소 :" + wsDataPath);
+
+            try {
+                mWarsymJar = new JarFile(wsDataPath);
+            } catch (IOException e) {
+                e.printStackTrace();
+                publishProgress("군대부호자료 열기 실패 " + wsDataPath);
+                mAppCxt = appCxt;
+                return appCxt;
+            }
+
+            BasicReturn.TypeObject retObj = new BasicReturn.TypeObject();
+            res = appCxt.getStockObject("icops.warsym.inf.IWarSymFactory", retObj);
+            if (!res || retObj.value == null) {
+                publishProgress("군대부호 관리 객체 생성 실패");
+                mAppCxt = appCxt;
+                return appCxt;
+            }
+
+            try {
+                IWarSymFactory symFac = (IWarSymFactory) retObj.value;
+                res = symFac.initialize(appCxt, mWarsymJar);
+                if (res) {
+                    mSymFac = symFac;
+                } else {
+                    publishProgress("군대부호 관리 객체 초기화 실패");
+                }
+            } catch (ClassCastException e) {
+                publishProgress("군대부호 관리 객체 초기화 오류");
+            }
+
+            // 군대부호 도시에 사용할 폰트를 설정한다.
+            // 설정하지 않으면 기본으로 <Arial Unicode MS>를 사용한다.
+            //WarSym.FontFamily = "궁서체";
+
+            mAppCxt = appCxt;
+            return appCxt;
+        }
+
+        @Override
+        protected void onPostExecute(CAppContext result) {
+            mLoading = false;
+            onPostInitICOPS(result);
+        }
+
+        @Override
+        protected void onProgressUpdate(String... prgs) {
+        }
+    }
+
+    public void onPostInitICOPS(CAppContext appCxt) {
+        if (appCxt == null) {
+            return;
+        }
+
+        //mMainView.setVisibility(View.VISIBLE);
+    }
 
     // ===============================버튼 이벤트 관리
     public void onButtonClick(View view) {
@@ -520,12 +626,17 @@ public class MapActivity extends AppCompatActivity {
             DeleteAllBuho();
 
             //========================MapActivity=============
-        } else if (view.getId() == R.id.ibt_pia) {
-            switchAll(view);
-        } else if (view.getId() == R.id.ibt_buho) {
-            switchAll(view);
-        } else if (view.getId() == R.id.ibt_location) {
+//        } else if (view.getId() == R.id.ibt_pia) {
+//            switchAll(view);
+//        } else if (view.getId() == R.id.ibt_buho) {
+//            switchAll(view);
+//        } else if (view.getId() == R.id.ibt_location) {
             //====================내 위치===========================
+
+            if (fragmentBoolean == 1) {
+                fragmentBoolean = 0;
+            }
+
             //gps로 위치 잡아옴
 
             MapView mapview = (MapView) findViewById(R.id.mapView);
@@ -543,7 +654,7 @@ public class MapActivity extends AppCompatActivity {
 
             String address = getCurrentAddress(latitude, longitude);
 
-            map.getController().setZoom(18.0);
+            map.getController().setZoom(16.0);
             CompassOverlay compassOverlay = new CompassOverlay(MapActivity.this, map);
             compassOverlay.enableCompass();
             map.getOverlays().add(compassOverlay);
@@ -573,7 +684,7 @@ public class MapActivity extends AppCompatActivity {
 
 //                Toast.makeText(MapActivity.this, "현재위치 라디오 버튼,\n위도 " + latitude + "\n경도 " + longitude, Toast.LENGTH_SHORT).show();
             MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, fragmentLocation).commit();
-        } else if (view.getId() == R.id.ibt_situ ) {
+        } else if (view.getId() == R.id.ibt_junmun ) {
             //====================상황도=========================
 
             map.getController().setZoom(17.0);
@@ -623,7 +734,7 @@ public class MapActivity extends AppCompatActivity {
                     return false;
                 }
             });
-           enemyMarker.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
+            enemyMarker.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
                 @Override
                 public boolean onMarkerClick(Marker marker, MapView mapView) {
                     return false;
@@ -633,15 +744,17 @@ public class MapActivity extends AppCompatActivity {
             mapview.getController().setCenter(centerPoint1);
         } else if (view.getId() == R.id.ibt_junmun ) {
             switchAll(view);
-        } else if (view.getId() == R.id.ibt_check ) {
-            switchAll(view);
-        } else if (view.getId() == R.id.ibt_setting ) {
-            switchAll(view);
-        } else if (view.getId() == R.id.ibt_gps ) {
-            switchAll(view);
-        } else if (view.getId() == R.id.ibt_power ) {
-            //                sendTest();
-            switchFragmentPower();
+//        } else if (view.getId() == R.id.ibt_check ) {
+//            switchAll(view);
+//        } else if (view.getId() == R.id.ibt_setting ) {
+//            switchAll(view);
+//        } else if (view.getId() == R.id.ibt_gps ) {
+//            switchAll(view);
+//        } else if (view.getId() == R.id.ibt_power ) {
+//            //                sendTest();
+//            switchFragmentPower();
+            icopsTest(view);
+            Log.d("길이", buhoArrayList.size()+"");
         } else if (view.getId() == R.id.ibt_dogu ) {
             FragmentDogu fragmentDogu = new FragmentDogu();
             Bundle bundle = new Bundle();
@@ -658,25 +771,25 @@ public class MapActivity extends AppCompatActivity {
     //===================== 전체 삭제 =============
     void DeleteAllPia() { AlertDialog.Builder showDialogAll =
             new AlertDialog.Builder(MapActivity.this);
-            showDialogAll.setTitle("모든 피아식별 데이터를 삭제하시겠습니까?");
-            showDialogAll.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
-                @Override public void onClick(DialogInterface dialogInterface, int i) {
+        showDialogAll.setTitle("모든 피아식별 데이터를 삭제하시겠습니까?");
+        showDialogAll.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
+            @Override public void onClick(DialogInterface dialogInterface, int i) {
 
-                    List<Person> personList = new ArrayList<>();
-                    MapActivity.roomDatabaseClass.personDao().reset2();
-                    personList.clear();
-                    Toast.makeText(getApplicationContext(),"Pressed Reset",
-                            Toast.LENGTH_SHORT).show();
-                    MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new FragmentPia(), null).commit();
+                List<Person> personList = new ArrayList<>();
+                MapActivity.roomDatabaseClass.personDao().reset2();
+                personList.clear();
+                Toast.makeText(getApplicationContext(),"Pressed Reset",
+                        Toast.LENGTH_SHORT).show();
+                MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new FragmentPia(), null).commit();
 
-                }
-            }) .setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                @Override public void onClick(DialogInterface dialogInterface, int i) {
-                    Toast.makeText(getApplicationContext(),"Pressed Cancle",
-                            Toast.LENGTH_SHORT).show();
-                    MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new FragmentPia(), null).commit();
-                }
-            });
+            }
+        }) .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(getApplicationContext(),"Pressed Cancle",
+                        Toast.LENGTH_SHORT).show();
+                MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new FragmentPia(), null).commit();
+            }
+        });
         AlertDialog msgDlg = showDialogAll.create();
         msgDlg.show(); }
 
@@ -698,7 +811,7 @@ public class MapActivity extends AppCompatActivity {
             @Override public void onClick(DialogInterface dialogInterface, int i) {
                 Toast.makeText(getApplicationContext(),"Pressed Cancle",
                         Toast.LENGTH_SHORT).show();
-                MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new FragmentPia(), null).commit();
+                MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new FragmentBuho(), null).commit();
             }
         });
         AlertDialog msgDlg = showDialogAll.create();
@@ -711,7 +824,7 @@ public class MapActivity extends AppCompatActivity {
 
     public void switchFragmentPower() {
         if ( poweri%3 == 0) {
-          findViewById(R.id.buttonour).setVisibility(View.VISIBLE);
+            findViewById(R.id.buttonour).setVisibility(View.VISIBLE);
             poweri = poweri+1;
         } else  if ( poweri%3 == 1 ) {
             findViewById(R.id.buttonenemy).setVisibility(View.VISIBLE);
@@ -727,18 +840,18 @@ public class MapActivity extends AppCompatActivity {
 
     public void switchAll(View view) {
         if (fragmentBoolean == 0) {
-            if (view.getId() ==R.id.ibt_pia) {
+            if (view.getId() ==R.id.ibt_junmun) {
                 fr = new FragmentPia();
-            } else if (view.getId() ==R.id.ibt_buho) {
-                fr = new FragmentBuho();
-            } else if (view.getId() ==R.id.ibt_junmun) {
-                fr = new FragmentJunmun();
-            } else if (view.getId() ==R.id.ibt_check) {
-                fr = new FragmentCheck();
-            } else if (view.getId() ==R.id.ibt_setting) {
-                fr = new FragmentSetting();
-            } else if (view.getId() ==R.id.ibt_gps) {
-                fr = new FragmentGPS();
+//            } else if (view.getId() ==R.id.ibt_buho) {
+//                fr = new FragmentBuho();
+//            } else if (view.getId() ==R.id.ibt_junmun) {
+//                fr = new FragmentJunmun();
+//            } else if (view.getId() ==R.id.ibt_check) {
+//                fr = new FragmentCheck();
+//            } else if (view.getId() ==R.id.ibt_setting) {
+//                fr = new FragmentSetting();
+//            } else if (view.getId() ==R.id.ibt_gps) {
+//                fr = new FragmentGPS();
             } else if (view.getId() ==R.id.ibt_dogu) {
                 fr = new FragmentDogu();
             } else if (view.getId() ==R.id.ibt_chook) {
@@ -752,7 +865,7 @@ public class MapActivity extends AppCompatActivity {
             fm.popBackStack();
             fragmentBoolean = 0;
         }
-         FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_frame, fr);
         fragmentTransaction.commit();
     }
@@ -962,24 +1075,24 @@ public class MapActivity extends AppCompatActivity {
         int latd, lond;
         double ladm, lads, lonm, lons;
 
-         latd = (int)lat;
-         lond = (int)lon;
+        latd = (int)lat;
+        lond = (int)lon;
 
-         ladm = (int)((lat-latd)*60);
-         lonm = (int)((lon-lond)*60);
+        ladm = (int)((lat-latd)*60);
+        lonm = (int)((lon-lond)*60);
 
-         String lado = String.format("%.0f", ladm);
-         String lono = String.format("%.0f", lonm);
+        String lado = String.format("%.0f", ladm);
+        String lono = String.format("%.0f", lonm);
 
-         lads = (lat - latd - ladm/60)*3600;
-         lons = (lon - lond - lonm/60)*3600;
+        lads = (lat - latd - ladm/60)*3600;
+        lons = (lon - lond - lonm/60)*3600;
 
-         String ladf = String.format("%.1f", lads);
-         String lonf = String.format("%.1f", lons);
+        String ladf = String.format("%.1f", lads);
+        String lonf = String.format("%.1f", lons);
 
-         String dmsstr = "N"+latd+"° "+lado+"' "+ladf+"\" "+"E"+lond+"° "+lono+"' "+lonf+"\"";
+        String dmsstr = "N"+latd+"° "+lado+"' "+ladf+"\" "+"E"+lond+"° "+lono+"' "+lonf+"\"";
 
-         return dmsstr;
+        return dmsstr;
     }
 
     //================================거리환 ==============================/

@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("liff.pds.sw.liff", appContext.getPackageName());
+        assertEquals("supercon.pds.sw.supercon", appContext.getPackageName());
     }
 }

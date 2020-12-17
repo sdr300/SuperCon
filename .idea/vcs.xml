@@ -2,7 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/LIFFcon" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/SuperConn" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/LIFFcon" vcs="" />
+    <mapping directory="$PROJECT_DIR$/SuperConn" vcs="" />
   </component>
 </project>

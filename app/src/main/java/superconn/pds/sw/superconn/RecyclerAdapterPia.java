@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import superconn.pds.sw.superconn.DataBase.Person;
+
 /**
  * created 2020-11-02
  */

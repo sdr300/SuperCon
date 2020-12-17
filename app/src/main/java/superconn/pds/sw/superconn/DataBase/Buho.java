@@ -1,4 +1,4 @@
-package superconn.pds.sw.superconn;
+package superconn.pds.sw.superconn.DataBase;
 
 /**
  * created 2020-11-02
@@ -20,8 +20,10 @@ public class Buho {
     private  String buhoSender;
     @ColumnInfo(name="buhoIcon")
     private String buhoIcon;
-    @ColumnInfo(name="buhoLocation")
-    private String buhoLocation;
+    @ColumnInfo(name="buhoLatitude")
+    private String buhoLatitude;
+    @ColumnInfo(name="buhoLongitude")
+    private String buhoLongitude;
     @ColumnInfo(name="buhoCompany")
     private String buhoCompany;
 
@@ -57,12 +59,20 @@ public class Buho {
         this.buhoIcon = buhoIcon;
     }
 
-    public String getBuhoLocation() {
-        return buhoLocation;
+    public String getBuhoLatitude() {
+        return buhoLatitude;
     }
 
-    public void setBuhoLocation(String buhoLocation) {
-        this.buhoLocation = buhoLocation;
+    public void setBuhoLatitude(String buhoLatitude) {
+        this.buhoLatitude = buhoLatitude;
+    }
+
+    public String getBuhoLongitude() {
+        return buhoLongitude;
+    }
+
+    public void setBuhoLongitude(String buhoLongitude) {
+        this.buhoLongitude = buhoLongitude;
     }
 
     public String getBuhoCompany() {

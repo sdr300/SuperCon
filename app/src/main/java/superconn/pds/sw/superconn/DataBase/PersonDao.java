@@ -1,4 +1,4 @@
-package superconn.pds.sw.superconn;
+package superconn.pds.sw.superconn.DataBase;
 
 import androidx.room.Dao;
 import androidx.room.Delete;

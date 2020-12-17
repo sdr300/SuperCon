@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import superconn.pds.sw.superconn.DataBase.Buho;
+
 /**
  * created 2020-11-17
  */
@@ -38,13 +40,12 @@ public class RecyclerAdapterJunmun extends RecyclerView.Adapter <RecyclerAdapter
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
-
 //        holder.buhoID.setText(list.get(position).getBuhoID());
         holder.junmunSender.setText(list.get(position).getBuhoSender());
         holder.junmunDate.setText(list.get(position).getBuhoDate());
-        holder.junmunLocation.setText(list.get(position).getBuhoLocation());
+        holder.junmunLatitude.setText(list.get(position).getBuhoLatitude());
+        holder.junmunLongitude.setText(list.get(position).getBuhoLongitude());
         holder.junmunCompany.setText(list.get(position).getBuhoCompany());
-
     }
 
     @Override
@@ -54,14 +55,15 @@ public class RecyclerAdapterJunmun extends RecyclerView.Adapter <RecyclerAdapter
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView junmunID,junmunSender, junmunDate, junmunLocation, junmunCompany;
+        TextView junmunID,junmunSender, junmunDate, junmunCompany, junmunLatitude, junmunLongitude;
         ImageButton btnEditJunmun, btnDeleteJunmun;
         public  MyViewHolder(@NonNull View itemView) {
             super(itemView);
 //            buhoID = itemView.findViewById(R.id.junmunID);
             junmunSender = itemView.findViewById(R.id.junmunSender);
             junmunDate = itemView.findViewById(R.id.junmunDate);
-            junmunLocation = itemView.findViewById(R.id. junmunLocation);
+//            junmunLatitude = itemView.findViewById(R.id.junmunLatitude);
+//            junmunLongitude = itemView.findViewById(R.id.junmunLongitude);
             junmunCompany = itemView.findViewById(R.id.junmunCompany);
             btnDeleteJunmun = itemView.findViewById(R.id.btnDeleteJunmun);
             btnDeleteJunmun.setOnClickListener(this);
@@ -86,7 +88,8 @@ public class RecyclerAdapterJunmun extends RecyclerView.Adapter <RecyclerAdapter
                     args.putInt("ID", list.get(getAdapterPosition()).getBuhoID());
                     args.putString("buhoDate", list.get(getAdapterPosition()).getBuhoDate());
                     args.putString("buhoIcon", list.get(getAdapterPosition()).getBuhoIcon());
-                    args.putString("buhoLocation", list.get(getAdapterPosition()).getBuhoLocation());
+                    args.putString("buhoLatitude", list.get(getAdapterPosition()).getBuhoLatitude());
+                    args.putString("buhoLongitude", list.get(getAdapterPosition()).getBuhoLongitude());
                     args.putString("buhoCompany", list.get(getAdapterPosition()).getBuhoCompany());
                     args.putString("buhoSender", list.get(getAdapterPosition()).getBuhoSender());
 
@@ -102,11 +105,11 @@ public class RecyclerAdapterJunmun extends RecyclerView.Adapter <RecyclerAdapter
         void showDialogJunmun() { AlertDialog.Builder msgBuilder = new AlertDialog.Builder(itemView.getContext())
                 .setTitle("정말로 삭제하시겠습니까?")
                 .setMessage("id:"+ list.get(getAdapterPosition()).getBuhoID()+"\n"
-                                +"보낸이:"+list.get(getAdapterPosition()).getBuhoSender()+"\n"
-                                +"날짜:"+list.get(getAdapterPosition()).getBuhoDate().replace("\n", "")+"\n"
-                                +"좌표:"+list.get(getAdapterPosition()).getBuhoLocation()+"\n"
-                                +"소속:"+list.get(getAdapterPosition()).getBuhoCompany()+"\n"
-                        )
+                        +"보낸이:"+list.get(getAdapterPosition()).getBuhoSender()+"\n"
+                        +"날짜:"+list.get(getAdapterPosition()).getBuhoDate().replace("\n", "")+"\n"
+                        +"좌표:"+list.get(getAdapterPosition()).getBuhoLatitude()+","+list.get(getAdapterPosition()).getBuhoLongitude()+"\n"
+                        +"소속:"+list.get(getAdapterPosition()).getBuhoCompany()+"\n"
+                )
                 .setPositiveButton("삭제", new DialogInterface.OnClickListener() {
                     @Override public void onClick(DialogInterface dialogInterface, int i) {
                         Buho buho = new Buho();
@@ -126,4 +129,5 @@ public class RecyclerAdapterJunmun extends RecyclerView.Adapter <RecyclerAdapter
             msgDlg.show(); }
     }
 }
+
 

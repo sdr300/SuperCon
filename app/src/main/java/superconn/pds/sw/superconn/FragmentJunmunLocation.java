@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import superconn.pds.sw.superconn.DataBase.Buho;
+
 public class FragmentJunmunLocation extends Fragment implements View.OnClickListener{
 
 

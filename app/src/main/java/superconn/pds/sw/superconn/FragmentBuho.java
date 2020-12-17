@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import superconn.pds.sw.superconn.DataBase.Buho;
+
 public class FragmentBuho extends Fragment implements View.OnClickListener{
 
     private ImageButton btnAdd_view ;

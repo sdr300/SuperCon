@@ -1,8 +1,10 @@
-package superconn.pds.sw.superconn;
+package superconn.pds.sw.superconn.DataBase;
 
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
+
+import superconn.pds.sw.superconn.DateConverter;
 
 /**
  * created 2020-11-02

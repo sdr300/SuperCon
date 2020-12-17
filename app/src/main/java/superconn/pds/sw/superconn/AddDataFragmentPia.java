@@ -20,6 +20,8 @@ import androidx.fragment.app.Fragment;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import superconn.pds.sw.superconn.DataBase.Person;
+
 public class AddDataFragmentPia extends Fragment {
 
     private EditText inputID, inputName, inputEmail, inputPiaDate, inputPiaResult, inputPiaQna, inputPiaCompany;
