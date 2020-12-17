@@ -15,6 +15,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -104,6 +105,8 @@ public class MapActivity extends AppCompatActivity {
     public String dogu_addText;
     private SwitchCompat dogu_sw;
     private RadioButton globe_rb_dms;
+    private View 	decorView;
+    private int	uiOption;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -112,6 +115,17 @@ public class MapActivity extends AppCompatActivity {
 
         Context ctx = getApplicationContext();
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));
+
+        decorView = getWindow().getDecorView();
+        uiOption = getWindow().getDecorView().getSystemUiVisibility();
+        if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH )
+            uiOption |= View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+        if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN )
+            uiOption |= View.SYSTEM_UI_FLAG_FULLSCREEN;
+        if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT )
+            uiOption |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+
+        decorView.setSystemUiVisibility( uiOption );
 
         map = findViewById(R.id.mapView);
         map.setTileSource(TileSourceFactory.MAPNIK);
@@ -334,7 +348,7 @@ public class MapActivity extends AppCompatActivity {
 
         map.invalidate();
 
-        //아래 두줄은 풀스크린용(상단바 제거)
+        //아래 두줄은 풀스크린용(상단바 제거, 상단바가 필요하면 주석처리)
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 

@@ -2,6 +2,7 @@ package superconn.pds.sw.superconn;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,7 +33,8 @@ public class FragmentChook extends Fragment {
 
     Button chook_btn_save;
 
-
+    private View 	decorView;
+    private int	uiOption;
 
 
     @Override
@@ -41,6 +43,7 @@ public class FragmentChook extends Fragment {
 
         final View view = inflater.inflate(R.layout.fragment_chook, container, false);
         final MapView map = (MapView) getActivity().findViewById(R.id.mapView);
+
 
 //        view.setContentView(R.layout.activity_map);
 
@@ -98,7 +101,7 @@ public class FragmentChook extends Fragment {
                 } else if (i == R.id.chook_rb_35k){
                     ratio = 14.0;
                 } else if (i == R.id.chook_rb_150k){
-                    ratio = 12.0;
+                    ratio = 3.6438561897747253;
                 }
             }
         });
