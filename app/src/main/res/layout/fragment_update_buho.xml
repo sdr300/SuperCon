@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MapActivity"
+    android:background="#D6D6D6"
+    android:clickable="true">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="#2F5597"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btn_back_super"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:onClick="onButtonClick"
+                android:src="@drawable/back_white"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="군대 부호 모의 수정"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:layout_marginStart="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btn_back_super"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/buho_update_btn_save_up"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="16dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:scaleType="fitXY"
+                android:src="@drawable/plus3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/border"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+
+            <TextView
+                android:id="@+id/buho_update_tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="시간"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/buho_update_et_time"
+                app:layout_constraintEnd_toStartOf="@+id/buho_update_et_time"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/buho_update_et_time" />
+
+            <EditText
+                android:id="@+id/buho_update_et_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="10dp"
+                android:enabled="false"
+                android:hint="시간"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/divider1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/buho_update_tv_time"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/divider5"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:background="#000"
+                app:layout_constraintBottom_toTopOf="@+id/divider1"
+                app:layout_constraintEnd_toStartOf="@+id/buho_update_et_time"
+                app:layout_constraintStart_toEndOf="@+id/buho_update_tv_time"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/divider1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_centerInParent="true"
+                android:background="#000"
+                app:layout_constraintBottom_toTopOf="@id/buho_update_rg_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/buho_update_et_time" />
+
+
+            <TextView
+
+                android:id="@+id/buho_update_tv_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="군대\n부호"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@id/buho_update_rg_icon"
+                app:layout_constraintEnd_toEndOf="@+id/buho_update_tv_time"
+                app:layout_constraintStart_toStartOf="@+id/buho_update_tv_time"
+                app:layout_constraintTop_toTopOf="@id/buho_update_rg_icon" />
+
+            <RadioGroup
+                android:id="@+id/buho_update_rg_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                app:layout_constraintBottom_toTopOf="@+id/divider2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/buho_update_tv_icon"
+                app:layout_constraintTop_toBottomOf="@id/divider1"
+                android:checkedButton="@id/buho_update_rb_unknown">
+
+                <RadioButton
+                    android:id="@+id/buho_update_rb_unknown"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/custom_checkbox_unknown"
+                    android:button="@color/trans" />
+
+                <RadioButton
+                    android:id="@+id/buho_update_rb_our"
+                    android:layout_width="66dp"
+                    android:layout_height="44dp"
+                    android:layout_marginStart="30dp"
+                    android:background="@drawable/custom_checkbox_our"
+                    android:button="@color/trans" />
+
+                <RadioButton
+                    android:id="@+id/buho_update_rb_enemy"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="30dp"
+                    android:background="@drawable/custom_checkbox_enemy"
+                    android:button="@color/trans" />
+
+            </RadioGroup>
+
+            <View
+                android:id="@+id/divider6"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:background="#000"
+                app:layout_constraintBottom_toTopOf="@+id/divider2"
+                app:layout_constraintEnd_toEndOf="@+id/divider5"
+                app:layout_constraintStart_toStartOf="@+id/divider5"
+                app:layout_constraintTop_toBottomOf="@+id/divider1" />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_centerInParent="true"
+                android:background="#000"
+                app:layout_constraintBottom_toTopOf="@+id/buho_update_rg_location"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/buho_update_rg_icon" />
+
+            <TextView
+                android:id="@+id/buho_update_tv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="좌표"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/buho_update_et_location"
+                app:layout_constraintEnd_toStartOf="@id/buho_update_rg_location"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/buho_update_rg_location" />
+
+
+            <RadioGroup
+                android:id="@+id/buho_update_rg_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                app:layout_constraintBottom_toTopOf="@+id/buho_update_et_location"
+                app:layout_constraintStart_toEndOf="@id/buho_update_tv_location"
+                app:layout_constraintTop_toTopOf="@id/divider2"
+                android:checkedButton="@id/buho_update_rb_map">
+
+                <RadioButton
+                    android:id="@+id/buho_update_rb_map"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="상황도" />
+
+                <RadioButton
+                    android:id="@+id/buho_update_rb_self"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="직접 입력" />
+
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/buho_update_et_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="3dp"
+                android:hint="직접 입력 선택 후 미입력시 현좌표"
+                android:background="@drawable/edittext_shadow"
+                app:layout_constraintBottom_toTopOf="@id/divider3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/buho_update_rg_location"
+                app:layout_constraintTop_toBottomOf="@id/buho_update_rg_location" />
+
+
+            <View
+                android:id="@+id/divider7"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="#000"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                app:layout_constraintBottom_toTopOf="@+id/divider3"
+                app:layout_constraintEnd_toStartOf="@+id/buho_update_rg_location"
+                app:layout_constraintStart_toEndOf="@+id/buho_update_tv_location"
+                app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+
+            <TextView
+                android:id="@+id/buho_update_tv_company"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="소속"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/buho_update_et_company"
+                app:layout_constraintEnd_toStartOf="@+id/buho_update_et_company"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/buho_update_et_company" />
+
+            <EditText
+                android:id="@+id/buho_update_et_company"
+                android:layout_width="0dp"
+                android:layout_height="43dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/edittext_shadow"
+                android:cursorVisible="true"
+                android:hint="소속 미입력시 미식별로 취급"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_marginTop="3dp"
+                app:layout_constraintBottom_toTopOf="@+id/buho_update_btn_save"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/buho_update_tv_company"
+                app:layout_constraintTop_toBottomOf="@+id/divider3" />
+
+            <Button
+                android:id="@+id/buho_update_btn_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="확인"
+                android:layout_marginBottom="3dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/buho_update_btn_savecancel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buho_update_et_company" />
+
+            <Button
+                android:id="@+id/buho_update_btn_savecancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onButtonClick"
+                android:text="취소"
+                android:layout_marginBottom="3dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/buho_update_btn_save"
+                app:layout_constraintTop_toBottomOf="@+id/buho_update_et_company" />
+
+
+            <View
+                android:id="@+id/divider8"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="#000"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                app:layout_constraintBottom_toBottomOf="@+id/buho_update_et_company"
+                app:layout_constraintEnd_toStartOf="@+id/buho_update_et_company"
+                app:layout_constraintStart_toEndOf="@+id/buho_update_tv_company"
+                app:layout_constraintTop_toBottomOf="@+id/divider3" />
+
+
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_centerInParent="true"
+                android:background="#000"
+                app:layout_constraintBottom_toTopOf="@+id/buho_update_et_company"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/buho_update_et_location" />
+
+            <EditText
+                android:id="@+id/buho_update_et_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                app:layout_constraintBottom_toTopOf="@+id/buho_update_et_location"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider2"
+                android:visibility="invisible"/>
+            <EditText
+                android:id="@+id/buho_update_et_sender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                app:layout_constraintBottom_toTopOf="@+id/buho_update_et_location"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider2"
+                android:visibility="invisible"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

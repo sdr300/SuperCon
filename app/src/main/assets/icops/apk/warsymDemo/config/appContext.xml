@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="euc-kr"?>
+<app_cxt xmlns="urn:icops.cngsol.co.kr"
+				 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				 xsi:schemaLocation="urn:icops.cngsol.co.kr C:/ICOPS/schema/ICOPS_Framework2.0.xsd"
+				 com_base="C:/ICOPS/bin/">
+
+<customize_list>
+	<customize impl="IWarSymDataAgent" lib="ICOPS_WarSym" ext=".dll" cls="CwsSymDataAgentXml" jimpl="icops.warsym.inf.IWarSymDataAgent" jcls="icops.warsym.common.CwsSymDataAgentXml">
+		<prop name="warsym_base" value="C:/ICOPS/warsym/data/" jvalue="/icops/warsym/data/" />
+		<prop name="warsym_cache" value="true" jvalue="true" />
+		<prop name="delayload" value="false" jvalue="false" />
+		<prop name="template_data" value="C:/ICOPS/warsym/tmplmap/" jvalue="/icops/warsym/tmplmap/" />
+	</customize>
+	<customize impl="IWarSymFactory" lib="ICOPS_WarSym" ext=".dll" cls="CwsSymFactory" jimpl="icops.warsym.inf.IWarSymFactory" jcls="icops.warsym.common.CwsSymFactory" />
+	<customize impl="IWarSymbol" lib="ICOPS_WarSym" ext=".dll" cls="CwsSymbol" jimpl="icops.warsym.inf.IWarSymbol" jcls="icops.warsym.common.CwsSymbol" />
+	<customize impl="IWarSymRegAgentBasic" lib="ICOPS_WarSym_Basic" ext=".dll" cls="CwsSymRegAgentBasicXml" />
+	<customize impl="IWarSymPropertyEditor" lib="ICOPS_WarSymPropUI" ext=".dll" cls="CwsPropertyEditor" jimpl="icops.warsym.inf.IWarSymPropertyEditor" jcls="icops.warsym.prop.ui.CwsPropertyEditor" />
+	<customize impl="IWarSymPrpTacSymbol" lib="ICOPS_WarSymProp" ext=".dll" cls="CwsPrpTacSymbol" jimpl="icops.warsym.inf.IWarSymPrpTacSymbol" jcls="icops.warsym.prop.CwsPrpTacSymbol" />
+	<customize impl="IWarSymPrpTacPoint" lib="ICOPS_WarSymProp" ext=".dll" cls="CwsPrpTacPoint" jimpl="icops.warsym.inf.IWarSymPrpTacPoint" jcls="icops.warsym.prop.CwsPrpTacPoint" />
+	<customize impl="IWarSymPrpTacGraphic" lib="ICOPS_WarSymProp" ext=".dll" cls="CwsPrpTacGraphic" jimpl="icops.warsym.inf.IWarSymPrpTacGraphic" jcls="icops.warsym.prop.CwsPrpTacGraphic" />
+	<customize impl="IWarSymPrpAOUBearing" lib="ICOPS_WarSymProp" ext=".dll" cls="CwsPrpAOUBearing" jimpl="icops.warsym.inf.IWarSymPrpAOUBearing" jcls="icops.warsym.prop.CwsPrpAOUBearing" />
+	<customize impl="IWarSymPrpAOUEllipse" lib="ICOPS_WarSymProp" ext=".dll" cls="CwsPrpAOUEllipse" jimpl="icops.warsym.inf.IWarSymPrpAOUEllipse" jcls="icops.warsym.prop.CwsPrpAOUEllipse" />
+	<customize impl="IWarSymPrpAOURect" lib="ICOPS_WarSymProp" ext=".dll" cls="CwsPrpAOURect" jimpl="icops.warsym.inf.IWarSymPrpAOURect" jcls="icops.warsym.prop.CwsPrpAOURect" />
+	<customize impl="IWarSymPrpDRCircle" lib="ICOPS_WarSymProp" ext=".dll" cls="CwsPrpDRCircle" jimpl="icops.warsym.inf.IWarSymPrpDRCircle" jcls="icops.warsym.prop.CwsPrpDRCircle" />
+	<customize impl="IWarSymPrpDRLine" lib="ICOPS_WarSymProp" ext=".dll" cls="CwsPrpDRLine" jimpl="icops.warsym.inf.IWarSymPrpDRLine" jcls="icops.warsym.prop.CwsPrpDRLine" />
+	<customize impl="IWarSymPrpDynamicModifierUsage" lib="ICOPS_WarSymProp" ext=".dll" cls="CwsPrpDynamicModifierUsage" />
+	<customize impl="IWarSymPrpEngagement" lib="ICOPS_WarSymProp" ext=".dll" cls="CwsPrpEngagement" />
+	<customize impl="IWarSymPrpModifiers" lib="ICOPS_WarSymProp" ext=".dll" cls="CwsPrpModifiers" />
+	<customize impl="IWarSymPrpOperCondition" lib="ICOPS_WarSymProp" ext=".dll" cls="CwsPrpOperCondition" />
+	<customize impl="IWarSymPrpPairingLine" lib="ICOPS_WarSymProp" ext=".dll" cls="CwsPrpPairingLine" />
+	<customize impl="IWarSymPrpSpeedLeader" lib="ICOPS_WarSymProp" ext=".dll" cls="CwsPrpSpeedLeader" jimpl="icops.warsym.inf.IWarSymPrpSpeedLeader" jcls="icops.warsym.prop.CwsPrpSpeedLeader" />
+	<customize impl="IWarSymPrpTowedSensor" lib="ICOPS_WarSymProp" ext=".dll" cls="CwsPrpTowedSensor" />
+	<customize impl="IWarSymRegAgentPoint" lib="ICOPS_WarSym_Point" ext=".dll" cls="CwsSymRegAgentPointXml" jimpl="icops.warsym.inf.IWarSymRegAgentPoint" jcls="icops.warsym.CwsSymRegAgentPointXml" />
+	<customize impl="IWarSymRegAgentTG" lib="ICOPS_WarSym" ext=".dll" cls="CwsSymRegAgentTGXml" jimpl="icops.warsym.inf.IWarSymRegAgentTG" jcls="icops.warsym.CwsSymRegAgentTGXml" />
+	<customize impl="IWarSymEditTool" lib="ICOPS_WarSym" ext=".dll" cls="CwsSymEditTool" />
+	<customize jimpl="icops.overlay.inf.IOverlayEditTool" jcls="icops.overlay.editor.COverlayEditTool" />
+
+  <customize impl="IVisualContext2D" lib="ICOPS_Visual" ext=".dll" cls="CVisualContext2D" />
+  <customize impl="IVisualContext3D" lib="ICOPS_Visual" ext=".dll" cls="CVisualContext3DDX" />
+  <customize impl="ILayerControl" lib="ICOPS_LayerControl" ext=".dll" cls="CLayerControl" jimpl="icops.framework.layer.inf.ILayerControl" jcls="icops.framework.layer.CLayerControl">
+    <prop name="layer_manager_list" value="C:/ICOPS/config/ICOPS_LayerManagerList.xml" jvalue="/icops/app/icopsMain/config/layerManagerList.xml" />
+  </customize>
+  <customize impl="ILayerDataAgent" lib="ICOPS_LayerControl" ext=".dll" cls="CLayerDataAgentXML" />
+  <customize impl="ILayerListUI" lib="ICOPS_LayerUI" ext=".dll" cls="CLayerListUI" />
+  <customize impl="ILayerControlItemListUI" lib="ICOPS_LayerUI" ext=".dll" cls="CLayerControlItemListUI" />
+  <customize impl="IOverlayDataAgent" lib="ICOPS_Overlay" ext=".dll" cls="CovDataAgentXml" jimpl="icops.overlay.inf.IOverlayDataAgent" jcls="icops.overlay.loader.CovDataAgentXml" >
+    <prop name="symList" value="C:/ICOPS/overlay/sysdata/ICOPS_OverlaySymbolComponents.xml" desc="투명도 부호 컴포넌트 목록" jvalue="/icops/overlay/sysdata/OverlaySymbolComponents.xml"  />
+    <prop name="codeSet" value="C:/ICOPS/overlay/sysdata/OverlayCodeset.xml" desc="투명도 관련 코드목록" jvalue="/icops/overlay/sysdata/OverlayCodeset.xml" />
+    <prop name="lineCaps" value="C:/ICOPS/overlay/sysdata/OverlayLineCaps.xml" desc="선끝모양 자료" jvalue="/icops/overlay/sysdata/OverlayLineCaps.xml" />
+    <prop name="pointTypes" value="C:/ICOPS/overlay/sysdata/OverlayPointTypes.xml" desc="점부호 종류 자료" jvalue="/icops/overlay/sysdata/OverlayPointTypes.xml" />
+    <prop name="hatchPath" value="C:/ICOPS/overlay/sysdata/hatch/" desc="점부호 종류 자료" jvalue="/icops/overlay/sysdata/hatch/"/>
+  </customize>
+</customize_list>
+
+</app_cxt>

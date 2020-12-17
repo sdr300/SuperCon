@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">LIFF</string>
+    <string name="config_icopsAppContext">icops/apk/warsymDemo/config/appContext.xml</string>
+    <string name="msg_appNotInitialized">초기화중입니다.\n잠시 후에 다시 실행하십시오.</string>
+    <string name="msg_failToOpenSymbolData">군대부호자료 열기를 실패하였습니다.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

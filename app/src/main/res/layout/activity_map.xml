@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+    tools:context=".MapActivity">
+
+    <superconn.pds.sw.superconn.ICOPS.DemoMainView
+        android:id="@+id/DemoMainView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/menuback3" />
+
+    <org.osmdroid.views.MapView
+        android:id="@+id/mapView"
+        tilesource="Mapnik"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:screenOrientation="portrait"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_conversion_absoluteHeight="540dp"
+        tools:layout_conversion_absoluteWidth="960dp">
+
+
+
+    </org.osmdroid.views.MapView>
+
+
+    <TextView
+        android:id="@+id/buttonour"
+        android:layout_width="106dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_custom_button2"
+        android:padding="10dp"
+        android:text="  아군  "
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayoutSide"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <TextView
+        android:id="@+id/buttonenemy"
+        android:layout_width="106dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_custom_button"
+        android:padding="10dp"
+        android:text="  적군  "
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayoutSide"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <TextView
+        android:id="@+id/addressText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#B2FFFFFF"
+        android:text="좌표 미확인"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_frame"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/distance1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#B2FFFFFF"
+        android:clickable="false"
+        android:text="0"
+        android:textColor="@color/black"
+       app:layout_constraintStart_toEndOf="@id/distanceText"
+        app:layout_constraintBottom_toTopOf="@id/addressText" />
+
+    <TextView
+        android:id="@+id/distanceUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#B2FFFFFF"
+        android:clickable="false"
+        android:text="M"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@id/distance1"
+        app:layout_constraintBottom_toTopOf="@id/addressText" />
+
+    <TextView
+        android:id="@+id/distanceText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#B2FFFFFF"
+        android:clickable="false"
+        android:text="현재 거리환 단위: "
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/addressText"
+        app:layout_constraintEnd_toStartOf="@id/distance1"
+        app:layout_constraintStart_toStartOf="@+id/addressText" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#444444"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:clickable="true">
+
+
+        <ImageButton
+            android:id="@+id/ibt_pia"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:onClick="onButtonClick"
+            app:layout_constraintEnd_toStartOf="@+id/ibt_buho"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="fitXY"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:src= "@drawable/pia_white" />
+
+        <TextView
+            android:id="@+id/text_pia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="피아식별"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="@+id/ibt_pia"
+            app:layout_constraintStart_toStartOf="@+id/ibt_pia"
+            app:layout_constraintTop_toBottomOf="@+id/ibt_pia" />
+
+        <ImageButton
+            android:id="@+id/ibt_buho"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:onClick="onButtonClick"
+            app:layout_constraintEnd_toStartOf="@+id/ibt_location"
+            app:layout_constraintStart_toEndOf="@id/ibt_pia"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/exmark_white" />
+
+        <TextView
+            android:id="@+id/text_buho"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="군대부호 모의"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="@+id/ibt_buho"
+            app:layout_constraintStart_toStartOf="@+id/ibt_buho"
+            app:layout_constraintTop_toBottomOf="@+id/ibt_buho" />
+
+        <ImageButton
+            android:id="@+id/ibt_location"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:onClick="onButtonClick"
+            app:layout_constraintEnd_toStartOf="@+id/ibt_situ"
+            app:layout_constraintStart_toEndOf="@id/ibt_buho"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/marker_white" />
+
+        <TextView
+            android:id="@+id/text_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내 위치"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="@+id/ibt_location"
+            app:layout_constraintStart_toStartOf="@+id/ibt_location"
+            app:layout_constraintTop_toBottomOf="@+id/ibt_pia" />
+
+        <ImageButton
+            android:id="@+id/ibt_situ"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:onClick="onButtonClick"
+            app:layout_constraintEnd_toStartOf="@+id/ibt_junmun"
+            app:layout_constraintStart_toEndOf="@id/ibt_location"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/situ_white" />
+
+        <TextView
+            android:id="@+id/text_situ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="상황도"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="@+id/ibt_situ"
+            app:layout_constraintStart_toStartOf="@+id/ibt_situ"
+            app:layout_constraintTop_toBottomOf="@+id/ibt_situ" />
+
+        <ImageButton
+            android:id="@+id/ibt_junmun"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:onClick="onButtonClick"
+            app:layout_constraintEnd_toStartOf="@+id/ibt_check"
+            app:layout_constraintStart_toEndOf="@id/ibt_situ"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/mail_white" />
+
+        <TextView
+            android:id="@+id/text_junmun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="전문"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="@+id/ibt_junmun"
+            app:layout_constraintStart_toStartOf="@+id/ibt_junmun"
+            app:layout_constraintTop_toBottomOf="@+id/ibt_junmun" />
+
+        <ImageButton
+            android:id="@+id/ibt_check"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:onClick="onButtonClick"
+            app:layout_constraintEnd_toStartOf="@+id/ibt_setting"
+            app:layout_constraintStart_toEndOf="@id/ibt_junmun"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/check_white" />
+
+        <TextView
+            android:id="@+id/text_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="점검"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="@id/ibt_check"
+            app:layout_constraintStart_toStartOf="@id/ibt_check"
+            app:layout_constraintTop_toBottomOf="@id/ibt_check" />
+
+        <ImageButton
+            android:id="@+id/ibt_setting"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:onClick="onButtonClick"
+            app:layout_constraintEnd_toStartOf="@+id/ibt_gps"
+            app:layout_constraintStart_toEndOf="@id/ibt_check"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/gear_white" />
+
+        <TextView
+            android:id="@+id/text_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="설정"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="@id/ibt_setting"
+            app:layout_constraintStart_toStartOf="@id/ibt_setting"
+            app:layout_constraintTop_toBottomOf="@id/ibt_setting" />
+
+        <ImageButton
+            android:id="@+id/ibt_gps"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:onClick="onButtonClick"
+            app:layout_constraintEnd_toStartOf="@+id/ibt_power"
+            app:layout_constraintStart_toEndOf="@id/ibt_setting"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/gps_white" />
+
+        <TextView
+            android:id="@+id/text_gps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GPS"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="@id/ibt_gps"
+            app:layout_constraintStart_toStartOf="@id/ibt_gps"
+            app:layout_constraintTop_toBottomOf="@id/ibt_gps" />
+
+        <ImageButton
+            android:id="@+id/ibt_power"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:onClick="onButtonClick"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ibt_gps"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/power_white" />
+
+        <TextView
+            android:id="@+id/text_power"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="전원공급기"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="@id/ibt_power"
+            app:layout_constraintStart_toStartOf="@id/ibt_power"
+            app:layout_constraintTop_toBottomOf="@id/ibt_power" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutSide"
+        android:layout_width="wrap_content"
+        android:layout_height="240dp"
+        android:background="#444444"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:clickable="true">
+
+        <ImageButton
+            android:id="@+id/ibt_dogu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:onClick="onButtonClick"
+            app:layout_constraintBottom_toTopOf="@+id/text_dogu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/ruler_white" />
+
+        <TextView
+            android:id="@+id/text_dogu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="측정도구"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toTopOf="@+id/ibt_chook"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ibt_dogu" />
+
+        <ImageButton
+            android:id="@+id/ibt_chook"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:onClick="onButtonClick"
+            app:layout_constraintBottom_toTopOf="@+id/text_chook"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_dogu"
+            android:background="@drawable/chook_white" />
+
+        <TextView
+            android:id="@+id/text_chook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="축척 변경"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toTopOf="@+id/ibt_globe"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ibt_chook" />
+
+        <ImageButton
+            android:id="@+id/ibt_globe"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:onClick="onButtonClick"
+            app:layout_constraintBottom_toTopOf="@+id/text_globe"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_chook"
+            android:background="@drawable/globe_white" />
+
+        <TextView
+            android:id="@+id/text_globe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="좌표 변환"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.555"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ibt_globe" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/fragment_frame"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+    </FrameLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
