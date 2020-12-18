@@ -55,6 +55,7 @@ import org.osmdroid.views.overlay.compass.CompassOverlay;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -116,17 +117,20 @@ public class MapActivity extends AppCompatActivity {
         Context ctx = getApplicationContext();
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));
 
-        decorView = getWindow().getDecorView();
-        uiOption = getWindow().getDecorView().getSystemUiVisibility();
-        if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH )
-            uiOption |= View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
-        if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN )
-            uiOption |= View.SYSTEM_UI_FLAG_FULLSCREEN;
-        if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT )
-            uiOption |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        //풀화면
+//        View decorView = getWindow().getDecorView();
+//        decorView.setSystemUiVisibility(
+//                View.SYSTEM_UI_FLAG_IMMERSIVE|
+//                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE|
+//                        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION|
+//                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|
+//                        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|
+//                        View.SYSTEM_UI_FLAG_FULLSCREEN);
+//        int uiOptions = getWindow().getDecorView().getSystemUiVisibility();
+//        int newUiOptions = uiOptions;
+//        getWindow().getDecorView().setSystemUiVisibility(newUiOptions);
 
-        decorView.setSystemUiVisibility( uiOption );
-
+        //
         map = findViewById(R.id.mapView);
         map.setTileSource(TileSourceFactory.MAPNIK);
         //줌
@@ -420,6 +424,68 @@ public class MapActivity extends AppCompatActivity {
             }
         },100));
 
+        //내 위치
+        addressText = findViewById(R.id.addressText);
+        addressText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //====================내 위치===========================
+
+                if (fragmentBoolean == 1) {
+                    fragmentBoolean = 0;
+                }
+
+                //gps로 위치 잡아옴
+
+                MapView mapview = (MapView) findViewById(R.id.mapView);
+
+                Marker startMarker = new Marker(map);
+
+                map.getOverlays().remove(0);
+
+                startMarker.setIcon(getResources().getDrawable(R.drawable.map_marker2));
+
+                gpsTracker = new GpsTracker(MapActivity.this);
+
+                double latitude = gpsTracker.getLatitude();
+                double longitude = gpsTracker.getLongitude();
+
+                String address = getCurrentAddress(latitude, longitude);
+
+                map.getController().setZoom(16.0);
+                CompassOverlay compassOverlay = new CompassOverlay(MapActivity.this, map);
+                compassOverlay.enableCompass();
+                map.getOverlays().add(compassOverlay);
+
+                GeoPoint point = new GeoPoint(latitude, longitude);
+
+                mapview.invalidate();
+
+                startMarker.setPosition(point);
+                startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);
+                startMarker.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(Marker marker, MapView mapView) {
+                        return false;
+                    }
+                });
+
+                mapview.getOverlays().add(0, startMarker);
+
+                mapview.getController().setCenter(point);
+
+                FragmentLocation fragmentLocation = new FragmentLocation();
+                Bundle bundle = new Bundle();
+
+                bundle.putString("send", address );
+                fragmentLocation.setArguments(bundle);
+
+//                Toast.makeText(MapActivity.this, "현재위치 라디오 버튼,\n위도 " + latitude + "\n경도 " + longitude, Toast.LENGTH_SHORT).show();
+                MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, fragmentLocation).commit();
+
+            }
+        });
+
     }
 
     private final String LIFF_IDENTIFICATION_SEND = "LIFF.COMM.RS232.IDENTIFICATION.SEND";
@@ -644,60 +710,6 @@ public class MapActivity extends AppCompatActivity {
 //            switchAll(view);
 //        } else if (view.getId() == R.id.ibt_buho) {
 //            switchAll(view);
-//        } else if (view.getId() == R.id.ibt_location) {
-            //====================내 위치===========================
-
-            if (fragmentBoolean == 1) {
-                fragmentBoolean = 0;
-            }
-
-            //gps로 위치 잡아옴
-
-            MapView mapview = (MapView) findViewById(R.id.mapView);
-
-            Marker startMarker = new Marker(map);
-
-            map.getOverlays().remove(0);
-
-            startMarker.setIcon(this.getResources().getDrawable(R.drawable.map_marker2));
-
-            gpsTracker = new GpsTracker(MapActivity.this);
-
-            double latitude = gpsTracker.getLatitude();
-            double longitude = gpsTracker.getLongitude();
-
-            String address = getCurrentAddress(latitude, longitude);
-
-            map.getController().setZoom(16.0);
-            CompassOverlay compassOverlay = new CompassOverlay(MapActivity.this, map);
-            compassOverlay.enableCompass();
-            map.getOverlays().add(compassOverlay);
-
-            GeoPoint point = new GeoPoint(latitude, longitude);
-
-            mapview.invalidate();
-
-            startMarker.setPosition(point);
-            startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);
-            startMarker.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
-                @Override
-                public boolean onMarkerClick(Marker marker, MapView mapView) {
-                    return false;
-                }
-            });
-
-            mapview.getOverlays().add(0, startMarker);
-
-            mapview.getController().setCenter(point);
-
-            FragmentLocation fragmentLocation = new FragmentLocation();
-            Bundle bundle = new Bundle();
-
-            bundle.putString("send", address );
-            fragmentLocation.setArguments(bundle);
-
-//                Toast.makeText(MapActivity.this, "현재위치 라디오 버튼,\n위도 " + latitude + "\n경도 " + longitude, Toast.LENGTH_SHORT).show();
-            MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, fragmentLocation).commit();
         } else if (view.getId() == R.id.ibt_junmun ) {
             //====================상황도=========================
 
