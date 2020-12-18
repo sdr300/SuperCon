@@ -706,10 +706,10 @@ public class MapActivity extends AppCompatActivity {
             DeleteAllBuho();
 
             //========================MapActivity=============
-//        } else if (view.getId() == R.id.ibt_pia) {
-//            switchAll(view);
-//        } else if (view.getId() == R.id.ibt_buho) {
-//            switchAll(view);
+        } else if (view.getId() == R.id.ibt_zoom_plus) {
+            map.getController().zoomIn();
+       } else if (view.getId() == R.id.ibt_zoom_minus) {
+            map.getController().zoomOut();
         } else if (view.getId() == R.id.ibt_junmun ) {
             //====================상황도=========================
 
