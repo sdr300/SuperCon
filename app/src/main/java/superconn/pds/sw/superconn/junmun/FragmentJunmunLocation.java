@@ -1,4 +1,4 @@
-package superconn.pds.sw.superconn;
+package superconn.pds.sw.superconn.junmun;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import superconn.pds.sw.superconn.DataBase.Buho;
+import superconn.pds.sw.superconn.MapActivity;
+import superconn.pds.sw.superconn.R;
+import superconn.pds.sw.superconn.RecyclerAdapterJunmun;
 
 public class FragmentJunmunLocation extends Fragment implements View.OnClickListener{
 

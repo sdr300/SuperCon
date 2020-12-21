@@ -52,7 +52,7 @@
             <Button
                 android:id="@+id/chook_btn_save"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:text="확인"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -64,34 +64,23 @@
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:background="@drawable/border"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-            <TextView
-                android:id="@+id/chook_tv_map"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="지도 종류 (육도)"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-
             <ScrollView
                 android:id="@+id/chook_sv"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 app:layout_constraintBottom_toTopOf="@+id/btn_savecancel"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/chook_tv_map">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -110,7 +99,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"
-                            android:text="1:25K" />
+                            android:text="육도\n1:25K" />
 
                         <View
                             android:id="@+id/divider1"
@@ -123,7 +112,7 @@
                             android:id="@+id/chook_rb_50k"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="1:50K" />
+                            android:text="육도\n1:50K" />
 
                         <View
                             android:id="@+id/divider2"
@@ -136,7 +125,7 @@
                             android:id="@+id/chook_rb_100k"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="1:100K" />
+                            android:text="육도\n1:100K" />
 
                         <View
                             android:id="@+id/divider3"
@@ -149,7 +138,7 @@
                             android:id="@+id/chook_rb_250k"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="1:250K" />
+                            android:text="육도\n1:250K" />
 
                         <View
                             android:id="@+id/divider4"
@@ -162,7 +151,7 @@
                             android:id="@+id/chook_rb_500k"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="1:500K" />
+                            android:text="육도\n1:500K" />
 
                         <View
                             android:id="@+id/divider5"
@@ -175,7 +164,7 @@
                             android:id="@+id/chook_rb_1m"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="1:1M" />
+                            android:text="육도\n1:1M" />
 
                     </RadioGroup>
                 </LinearLayout>
@@ -185,7 +174,7 @@
             <Button
                 android:id="@+id/btn_savecancel"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:onClick="onButtonClick"
                 android:text="닫기"
                 app:layout_constraintBottom_toBottomOf="parent"

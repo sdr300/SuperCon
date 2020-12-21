@@ -1,4 +1,4 @@
-package superconn.pds.sw.superconn;
+package superconn.pds.sw.superconn.junmun;
 
 import android.os.Bundle;
 
@@ -9,9 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-public class FragmentJunmunSend extends Fragment {
+import superconn.pds.sw.superconn.AddDataFragmentJunmun;
+import superconn.pds.sw.superconn.MapActivity;
+import superconn.pds.sw.superconn.R;
 
-    public FragmentJunmunSend() {
+public class JunmunSendFragment extends Fragment {
+
+    public JunmunSendFragment() {
         // Required empty public constructor
     }
 

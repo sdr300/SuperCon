@@ -18,16 +18,7 @@
         android:id="@+id/mapView"
         tilesource="Mapnik"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:screenOrientation="portrait"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_conversion_absoluteHeight="540dp"
-        tools:layout_conversion_absoluteWidth="960dp">
+        android:layout_height="match_parent">
 
     </org.osmdroid.views.MapView>
 
@@ -152,7 +143,7 @@
             android:id="@+id/text_zoom_plus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2배 확대"
+            android:text="지도 확대"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/ibt_zoom_plus"
@@ -178,7 +169,7 @@
             android:id="@+id/text_zoom_minus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2배 축소"
+            android:text="지도 축소"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/ibt_zoom_minus"
@@ -203,7 +194,7 @@
             android:id="@+id/text_chook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="지도 축척"
+            android:text="지도 종류"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/ibt_chook"
@@ -277,7 +268,7 @@
             android:id="@+id/text_video"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="영상"
+            android:text="영상 센서"
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="@+id/ibt_video"
             app:layout_constraintStart_toStartOf="@+id/ibt_video"
@@ -300,7 +291,7 @@
             android:id="@+id/text_camera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="사진"
+            android:text="정지 영상"
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="@+id/ibt_camera"
             app:layout_constraintStart_toStartOf="@+id/ibt_camera"
@@ -336,7 +327,7 @@
             android:layout_height="40dp"
             android:onClick="onButtonClick"
             android:layout_marginTop="5dp"
-            app:layout_constraintEnd_toStartOf="@+id/ibt_walk"
+            app:layout_constraintEnd_toStartOf="@+id/ibt_waikie"
             app:layout_constraintStart_toEndOf="@id/ibt_chat"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/text_junmun"
@@ -354,7 +345,7 @@
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <ImageButton
-            android:id="@+id/ibt_walk"
+            android:id="@+id/ibt_waikie"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:onClick="onButtonClick"
@@ -362,18 +353,18 @@
             app:layout_constraintEnd_toStartOf="@+id/ibt_etc"
             app:layout_constraintStart_toEndOf="@id/ibt_junmun"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/text_walk"
+            app:layout_constraintBottom_toTopOf="@+id/text_walkie"
             android:background="@drawable/walkietalkie_white" />
 
         <TextView
-            android:id="@+id/text_walk"
+            android:id="@+id/text_walkie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="무전기"
             android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="@id/ibt_walk"
-            app:layout_constraintStart_toStartOf="@id/ibt_walk"
-            app:layout_constraintTop_toBottomOf="@id/ibt_walk"
+            app:layout_constraintEnd_toEndOf="@id/ibt_waikie"
+            app:layout_constraintStart_toStartOf="@id/ibt_waikie"
+            app:layout_constraintTop_toBottomOf="@id/ibt_waikie"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <ImageButton
@@ -384,7 +375,7 @@
             android:background="@drawable/etc_white"
             android:onClick="onButtonClick"
             app:layout_constraintBottom_toTopOf="@id/text_etc"
-            app:layout_constraintStart_toEndOf="@id/ibt_walk"
+            app:layout_constraintStart_toEndOf="@id/ibt_waikie"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 

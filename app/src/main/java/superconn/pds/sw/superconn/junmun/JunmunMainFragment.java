@@ -1,4 +1,4 @@
-package superconn.pds.sw.superconn;
+package superconn.pds.sw.superconn.junmun;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,13 +10,17 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class FragmentJunmun extends Fragment {
+import superconn.pds.sw.superconn.FragmentSetting;
+import superconn.pds.sw.superconn.MapActivity;
+import superconn.pds.sw.superconn.R;
+
+public class JunmunMainFragment extends Fragment {
 
 
     private RecyclerView.LayoutManager layoutManager;
 
 
-    public FragmentJunmun() {
+    public JunmunMainFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +28,7 @@ public class FragmentJunmun extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_junmun, container, false);
+        View view = inflater.inflate(R.layout.fragment_junmun_main, container, false);
         layoutManager=new LinearLayoutManager(getActivity());
 
         // 버튼
@@ -39,14 +43,14 @@ public class FragmentJunmun extends Fragment {
         junmun_tv_input.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new FragmentJunmunReceive(), null).addToBackStack(null).commit();
+                MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new JunmunReceiveFragment(), null).addToBackStack(null).commit();
             }
         });
         TextView junmun_tv_send = view.findViewById(R.id.junmun_tv_send);
         junmun_tv_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new FragmentJunmunSend(), null).addToBackStack(null).commit();
+                MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new JunmunSendFragment(), null).addToBackStack(null).commit();
             }
         });
 

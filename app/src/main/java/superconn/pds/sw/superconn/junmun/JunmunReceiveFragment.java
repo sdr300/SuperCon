@@ -1,4 +1,4 @@
-package superconn.pds.sw.superconn;
+package superconn.pds.sw.superconn.junmun;
 
 import android.os.Bundle;
 
@@ -9,15 +9,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class FragmentJunmunReceive extends Fragment {
+import superconn.pds.sw.superconn.MapActivity;
+import superconn.pds.sw.superconn.R;
+
+public class JunmunReceiveFragment extends Fragment {
 
 
-    public FragmentJunmunReceive() {
+    public JunmunReceiveFragment() {
         // Required empty public constructor
     }
 
-    public static FragmentJunmunReceive newInstance(String param1, String param2) {
-        FragmentJunmunReceive fragment = new FragmentJunmunReceive();
+    public static JunmunReceiveFragment newInstance(String param1, String param2) {
+        JunmunReceiveFragment fragment = new JunmunReceiveFragment();
 
         return fragment;
     }

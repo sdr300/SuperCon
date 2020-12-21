@@ -1,4 +1,4 @@
-package superconn.pds.sw.superconn;
+package superconn.pds.sw.superconn.dogu;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -18,6 +18,9 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
+
+import superconn.pds.sw.superconn.GpsTracker;
+import superconn.pds.sw.superconn.R;
 
 import static android.content.Context.MODE_PRIVATE;
 

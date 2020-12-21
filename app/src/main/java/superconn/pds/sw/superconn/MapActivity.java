@@ -15,7 +15,6 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.LocationManager;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -55,7 +54,6 @@ import org.osmdroid.views.overlay.compass.CompassOverlay;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -70,11 +68,18 @@ import superconn.pds.sw.superconn.DataBase.Buho;
 import superconn.pds.sw.superconn.DataBase.Person;
 import superconn.pds.sw.superconn.DataBase.RoomDatabaseClass;
 import superconn.pds.sw.superconn.ICOPS.DemoMainView;
+import superconn.pds.sw.superconn.camera.CameraMainFragment;
+import superconn.pds.sw.superconn.chat.ChatMainFragment;
 import superconn.pds.sw.superconn.comm.LIFFReceiver;
 import superconn.pds.sw.superconn.coord.CoordDMS;
 import superconn.pds.sw.superconn.coord.CoordUTM;
 import superconn.pds.sw.superconn.coord.CoordinateManager;
 import superconn.pds.sw.superconn.coord.coordMgrs;
+import superconn.pds.sw.superconn.dogu.FragmentDogu;
+import superconn.pds.sw.superconn.etc.EtcMainFragment;
+import superconn.pds.sw.superconn.junmun.JunmunMainFragment;
+import superconn.pds.sw.superconn.video.VideoMainFragment;
+import superconn.pds.sw.superconn.walkie.WalkieMainFragment;
 
 import static android.os.Environment.getExternalStorageDirectory;
 
@@ -95,8 +100,8 @@ public class MapActivity extends AppCompatActivity {
     JarFile mWarsymJar = null;
     static DemoMainView mMainView = null;
     boolean mLoading = false;
-    static FragmentManager fragmentManager;
-    static RoomDatabaseClass roomDatabaseClass;
+    public static FragmentManager fragmentManager;
+    public  static RoomDatabaseClass roomDatabaseClass;
     private int fragmentBoolean = 0;
     private long backKeyPressedTime = 0; // 마지막으로 뒤로가기 버튼을 눌렀던 시간 저장
     private Integer dogu_int;
@@ -133,15 +138,17 @@ public class MapActivity extends AppCompatActivity {
         //
         map = findViewById(R.id.mapView);
         map.setTileSource(TileSourceFactory.MAPNIK);
+
         //줌
         map.getController().setZoom(16.0);
-        map.setBuiltInZoomControls(true);
         map.setMultiTouchControls(true);
 
         requestPermissionsIfNecessary(new String[]{
                 Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.ACCESS_WIFI_STATE, Manifest.permission.INTERNET
         });
-        map.getZoomController().setVisibility(CustomZoomButtonsController.Visibility.ALWAYS);
+
+        //zoom 버튼 ( ALWAYS <-> NEVER 로 버튼 표시/비표시 전환)
+        map.getZoomController().setVisibility(CustomZoomButtonsController.Visibility.NEVER);
 
         //gps로 위치 가져옴
         gpsTracker = new GpsTracker(MapActivity.this);
@@ -704,92 +711,32 @@ public class MapActivity extends AppCompatActivity {
             DeleteAllPia();
         } else if (view.getId() == R.id.btnDeleteAllBuho ) {
             DeleteAllBuho();
-
-            //========================MapActivity=============
+ //======================== MapActivity ibt 버튼 ====================================
         } else if (view.getId() == R.id.ibt_zoom_plus) {
             map.getController().zoomIn();
-       } else if (view.getId() == R.id.ibt_zoom_minus) {
+        } else if (view.getId() == R.id.ibt_zoom_minus) {
             map.getController().zoomOut();
-        } else if (view.getId() == R.id.ibt_junmun ) {
-            //====================상황도=========================
-
-            map.getController().setZoom(17.0);
-            CompassOverlay compassOverlay = new CompassOverlay(MapActivity.this, map);
-            compassOverlay.enableCompass();
-            map.getOverlays().add(compassOverlay);
-
-            GeoPoint friendPoint1 = new GeoPoint(37.4886, 127.1221);
-            GeoPoint friendPoint2 = new GeoPoint(37.4882, 127.1240);
-            GeoPoint enemyPoint1 = new GeoPoint(37.4873, 127.1227);
-            GeoPoint centerPoint1 = new GeoPoint(37.4862, 127.1266);
-
-            MapView mapview = (MapView) findViewById(R.id.mapView);
-
-            Marker friendMarker1 = new Marker(map);
-            Marker friendMarker2 = new Marker(map);
-            Marker enemyMarker = new Marker(map);
-
-            mapview.invalidate();
-
-            friendMarker1.setPosition(friendPoint1);
-            friendMarker1.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);
-
-            friendMarker2.setPosition(friendPoint2);
-            friendMarker2.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);
-
-            enemyMarker.setPosition(enemyPoint1);
-            enemyMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);
-
-            mapview.getOverlays().add(friendMarker1);
-            mapview.getOverlays().add(friendMarker2);
-            mapview.getOverlays().add(enemyMarker);
-
-            friendMarker1.setIcon(ContextCompat.getDrawable(getApplication(), R.drawable.our4));
-            friendMarker2.setIcon(ContextCompat.getDrawable(getApplication(), R.drawable.our4));
-            enemyMarker.setIcon(ContextCompat.getDrawable(getApplication(), R.drawable.enemy4));
-
-            friendMarker1.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
-                @Override
-                public boolean onMarkerClick(Marker marker, MapView mapView) {
-                    return false;
-                }
-            });
-            friendMarker2.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
-                @Override
-                public boolean onMarkerClick(Marker marker, MapView mapView) {
-                    return false;
-                }
-            });
-            enemyMarker.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
-                @Override
-                public boolean onMarkerClick(Marker marker, MapView mapView) {
-                    return false;
-                }
-            });
-
-            mapview.getController().setCenter(centerPoint1);
-        } else if (view.getId() == R.id.ibt_junmun ) {
+        } else if (view.getId() == R.id.ibt_chook ) {
             switchAll(view);
-//        } else if (view.getId() == R.id.ibt_check ) {
-//            switchAll(view);
-//        } else if (view.getId() == R.id.ibt_setting ) {
-//            switchAll(view);
-//        } else if (view.getId() == R.id.ibt_gps ) {
-//            switchAll(view);
-//        } else if (view.getId() == R.id.ibt_power ) {
-//            //                sendTest();
-//            switchFragmentPower();
-            icopsTest(view);
-            Log.d("길이", buhoArrayList.size()+"");
+        } else if (view.getId() == R.id.ibt_globe) {
+            switchAll(view);
         } else if (view.getId() == R.id.ibt_dogu ) {
             FragmentDogu fragmentDogu = new FragmentDogu();
             Bundle bundle = new Bundle();
             bundle.putString("addText", dogu_addText);
             fragmentDogu.setArguments(bundle);
             switchAll(view);
-        } else if (view.getId() == R.id.ibt_chook ) {
+        } else if (view.getId() == R.id.ibt_video ) {
             switchAll(view);
-        } else if (view.getId() == R.id.ibt_globe) {
+        } else if (view.getId() == R.id.ibt_camera ) {
+            switchAll(view);
+        } else if (view.getId() == R.id.ibt_chat ) {
+            switchAll(view);
+        } else if (view.getId() == R.id.ibt_junmun ) {
+            switchAll(view);
+        } else if (view.getId() == R.id.ibt_waikie ) {
+            switchAll(view);
+        } else if (view.getId() == R.id.ibt_etc) {
             switchAll(view);
         }
     }
@@ -866,24 +813,24 @@ public class MapActivity extends AppCompatActivity {
 
     public void switchAll(View view) {
         if (fragmentBoolean == 0) {
-            if (view.getId() ==R.id.ibt_junmun) {
-                fr = new FragmentPia();
-//            } else if (view.getId() ==R.id.ibt_buho) {
-//                fr = new FragmentBuho();
-//            } else if (view.getId() ==R.id.ibt_junmun) {
-//                fr = new FragmentJunmun();
-//            } else if (view.getId() ==R.id.ibt_check) {
-//                fr = new FragmentCheck();
-//            } else if (view.getId() ==R.id.ibt_setting) {
-//                fr = new FragmentSetting();
-//            } else if (view.getId() ==R.id.ibt_gps) {
-//                fr = new FragmentGPS();
-            } else if (view.getId() ==R.id.ibt_dogu) {
-                fr = new FragmentDogu();
-            } else if (view.getId() ==R.id.ibt_chook) {
+            if (view.getId() ==R.id.ibt_chook) {
                 fr = new FragmentChook();
             } else if (view.getId() ==R.id.ibt_globe) {
                 fr = new FragmentGlobe();
+            } else if (view.getId() ==R.id.ibt_dogu) {
+                fr = new FragmentDogu();
+            } else if (view.getId() ==R.id.ibt_video) {
+                fr = new VideoMainFragment();
+            } else if (view.getId() ==R.id.ibt_camera) {
+                fr = new CameraMainFragment();
+            } else if (view.getId() ==R.id.ibt_chat) {
+                fr = new ChatMainFragment();
+            } else if (view.getId() ==R.id.ibt_junmun) {
+                fr = new JunmunMainFragment();
+            } else if (view.getId() ==R.id.ibt_waikie) {
+                fr = new WalkieMainFragment();
+            } else if (view.getId() ==R.id.ibt_etc) {
+                fr = new EtcMainFragment();
             }
             fragmentBoolean = 1;
         } else {

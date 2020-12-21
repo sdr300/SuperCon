@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import superconn.pds.sw.superconn.DataBase.Buho;
+import superconn.pds.sw.superconn.junmun.FragmentJunmunLocation;
 
 /**
  * created 2020-11-17
