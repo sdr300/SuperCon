@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,7 +27,6 @@ public class JunmunSendFragment extends Fragment {
         return fragment;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,7 +41,14 @@ public class JunmunSendFragment extends Fragment {
                 }
             });
 
-
+        Button junmun_btn_write_main = view.findViewById( R.id.junmun_btn_write_main);
+        junmun_btn_write_main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new JummunWriteFragment(), null).addToBackStack(null).commit();
+            }
+        });
+        
         return view;
     }
 }

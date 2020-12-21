@@ -50,7 +50,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout3"
         android:layout_width="0dp"
         android:layout_height="30dp"
@@ -74,7 +74,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout2"
@@ -288,6 +288,30 @@
                 app:layout_constraintTop_toBottomOf="@id/junmun_receiver_time4" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/junmun_btn_write_main"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="작성"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_custom_button4"
+            app:layout_constraintEnd_toStartOf="@+id/junmun_btn_delete_main"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+        <Button
+            android:id="@+id/junmun_btn_delete_main"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="삭제"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_custom_button4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/junmun_btn_write_main"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
