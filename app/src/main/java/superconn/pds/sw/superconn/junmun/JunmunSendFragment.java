@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import superconn.pds.sw.superconn.AddDataFragmentJunmun;
 import superconn.pds.sw.superconn.MapActivity;
@@ -19,6 +20,12 @@ public class JunmunSendFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public static JunmunSendFragment newInstance(String param1, String param2) {
+        JunmunSendFragment fragment = new JunmunSendFragment();
+
+        return fragment;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -26,13 +33,14 @@ public class JunmunSendFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_junmun_send, container, false);
 
-        ImageView junmun_add_btn= view.findViewById(R.id.junmun_add_btn);
-        junmun_add_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new AddDataFragmentJunmun(), null).addToBackStack(null).commit();
-            }
-        });
+            TextView junmun_tv_receive = view.findViewById( R.id.junmun_tv_receive);
+            junmun_tv_receive.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new JunmunReceiveFragment(), null).addToBackStack(null).commit();
+                }
+            });
+
 
         return view;
     }

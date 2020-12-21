@@ -78,6 +78,8 @@ import superconn.pds.sw.superconn.coord.coordMgrs;
 import superconn.pds.sw.superconn.dogu.FragmentDogu;
 import superconn.pds.sw.superconn.etc.EtcMainFragment;
 import superconn.pds.sw.superconn.junmun.JunmunMainFragment;
+import superconn.pds.sw.superconn.junmun.JunmunReceiveFragment;
+import superconn.pds.sw.superconn.junmun.JunmunSendFragment;
 import superconn.pds.sw.superconn.video.VideoMainFragment;
 import superconn.pds.sw.superconn.walkie.WalkieMainFragment;
 
@@ -734,6 +736,10 @@ public class MapActivity extends AppCompatActivity {
             switchAll(view);
         } else if (view.getId() == R.id.ibt_junmun ) {
             switchAll(view);
+//        } else if (view.getId() == R.id.junmun_tv_send ) {
+//            switchAll(view);
+//        } else if (view.getId() == R.id.junmun_tv_receive ) {
+//            switchAll(view);
         } else if (view.getId() == R.id.ibt_waikie ) {
             switchAll(view);
         } else if (view.getId() == R.id.ibt_etc) {
@@ -825,8 +831,10 @@ public class MapActivity extends AppCompatActivity {
                 fr = new CameraMainFragment();
             } else if (view.getId() ==R.id.ibt_chat) {
                 fr = new ChatMainFragment();
-            } else if (view.getId() ==R.id.ibt_junmun) {
-                fr = new JunmunMainFragment();
+            } else if (view.getId() ==R.id.ibt_junmun ) {
+                fr = new JunmunReceiveFragment();
+//            } else if (view.getId() ==R.id.junmun_tv_send) {
+//                fr = new JunmunSendFragment();
             } else if (view.getId() ==R.id.ibt_waikie) {
                 fr = new WalkieMainFragment();
             } else if (view.getId() ==R.id.ibt_etc) {

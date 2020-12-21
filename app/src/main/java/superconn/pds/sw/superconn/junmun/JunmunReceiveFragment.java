@@ -31,11 +31,11 @@ public class JunmunReceiveFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_junmun_receive, container, false);
 
-        TextView  junmun_receiver_receiver1 = view.findViewById( R.id.junmun_receiver_receiver1);
-        junmun_receiver_receiver1.setOnClickListener(new View.OnClickListener() {
+        TextView junmun_tv_send = view.findViewById( R.id.junmun_tv_send);
+        junmun_tv_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new FragmentJunmunOpen(), null).addToBackStack(null).commit();
+                MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new JunmunSendFragment(), null).addToBackStack(null).commit();
             }
         });
 
