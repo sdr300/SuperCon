@@ -119,7 +119,6 @@ public class MapActivity extends AppCompatActivity {
     private RadioButton globe_rb_dms;
     private View 	decorView;
     private int	uiOption;
-    EditText junmun_informal_et_content;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -11,7 +11,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout"
@@ -21,7 +22,8 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            >
 
             <ImageButton
                 android:id="@+id/btn_back"
@@ -59,44 +61,41 @@
             android:layout_margin="5dp"
             android:layout_marginTop="4dp"
             android:background="@drawable/border"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintBottom_toBottomOf="parent">
 
 
             <TextView
-                android:id="@+id/bit_tv_junsi"
+                android:id="@+id/video_tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="5dp"
                 android:clickable="true"
-                android:text="전시단말기"
+                android:text="정지 영상 타이틀"
                 android:textColor="@color/black"
-                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="@+id/bit_btn_junsi"
-                app:layout_constraintTop_toTopOf="@+id/bit_btn_junsi" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/divider1"/>
 
             <TextView
-                android:id="@+id/bit_pf_junsi"
+                android:id="@+id/video_pf_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:clickable="true"
                 android:text="PASS"
                 android:textColor="@color/passcolor"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/bit_btn_junsi"
-                app:layout_constraintEnd_toStartOf="@+id/bit_btn_junsi"
-                app:layout_constraintTop_toTopOf="@+id/bit_btn_junsi" />
+                app:layout_constraintBottom_toBottomOf="@+id/video_btn_title"
+                app:layout_constraintEnd_toStartOf="@+id/video_btn_title"
+                app:layout_constraintTop_toTopOf="@+id/video_btn_title" />
 
             <Button
-                android:id="@+id/bit_btn_junsi"
+                android:id="@+id/video_btn_title"
                 android:layout_width="wrap_content"
-
                 android:layout_height="40dp"
-                android:text="IBIT"
+                android:text="Ivideo"
                 android:textSize="17sp"
                 app:layout_constraintBottom_toTopOf="@+id/divider1"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -108,281 +107,21 @@
                 android:layout_height="1dp"
                 android:layout_centerInParent="true"
                 android:background="#000"
-                app:layout_constraintBottom_toTopOf="@id/bit_btn_linkage"
+                android:layout_marginBottom="3dp"
+                app:layout_constraintBottom_toTopOf="@id/videoView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bit_btn_junsi" />
+                app:layout_constraintTop_toBottomOf="@id/video_tv_title" />
 
-
-            <TextView
-                android:id="@+id/bit_tv_linkage"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:clickable="true"
-                android:text="연동처리기"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/bit_btn_linkage"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bit_btn_junsi" />
-
-            <TextView
-                android:id="@+id/bit_pf_linkage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:text="PASS"
-                android:textColor="@color/passcolor"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/bit_btn_linkage"
-                app:layout_constraintStart_toStartOf="@+id/bit_pf_junsi"
-                app:layout_constraintTop_toTopOf="@+id/bit_btn_linkage" />
-
-            <Button
-                android:id="@+id/bit_btn_linkage"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="IBIT"
-                android:textSize="17sp"
-                app:layout_constraintBottom_toTopOf="@+id/divider2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider1" />
-
-            <View
-                android:id="@+id/divider2"
+            <ImageView
+                android:id="@+id/videoView"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_centerInParent="true"
-                android:background="#000"
-                app:layout_constraintBottom_toTopOf="@id/bit_btn_mock"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="0dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bit_btn_linkage" />
-
-            <TextView
-                android:id="@+id/bit_tv_mock"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:clickable="true"
-                android:text="모의통신기"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/bit_btn_mock"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/bit_btn_mock" />
-
-            <TextView
-                android:id="@+id/bit_pf_mock"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:text="PASS"
-                android:textColor="@color/passcolor"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/bit_btn_mock"
-                app:layout_constraintStart_toStartOf="@+id/bit_pf_linkage"
-                app:layout_constraintTop_toTopOf="@+id/bit_btn_mock" />
-
-            <Button
-                android:id="@+id/bit_btn_mock"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="IBIT"
-                android:textSize="17sp"
-                app:layout_constraintBottom_toTopOf="@+id/divider3"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider2" />
-
-
-            <View
-                android:id="@+id/divider3"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_centerInParent="true"
-                android:background="#000"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bit_btn_mock" />
-
-
-            <TextView
-                android:id="@+id/bit_tv_sight"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:clickable="true"
-                android:text="조준경"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/bit_btn_sight"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/bit_btn_sight" />
-
-
-            <TextView
-                android:id="@+id/bit_pf_sight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:clickable="true"
-                android:text="FAIL"
-                android:textColor="@color/failcolor"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/bit_btn_sight"
-                app:layout_constraintStart_toStartOf="@+id/bit_pf_mock"
-                app:layout_constraintTop_toTopOf="@+id/bit_btn_sight" />
-
-            <Button
-                android:id="@+id/bit_btn_sight"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="IBIT"
-                android:textSize="17sp"
-                app:layout_constraintBottom_toTopOf="@+id/divider4"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider3" />
-
-            <View
-                android:id="@+id/divider4"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_centerInParent="true"
-                android:background="#000"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bit_btn_sight" />
-
-            <TextView
-                android:id="@+id/bit_tv_transmitter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:clickable="true"
-                android:text="송신기"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/bit_btn_transmitter"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/bit_btn_transmitter" />
-
-            <TextView
-                android:id="@+id/bit_pf_transmitter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:text="PASS"
-                android:textColor="@color/passcolor"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/bit_btn_transmitter"
-                app:layout_constraintStart_toStartOf="@+id/bit_pf_sight"
-                app:layout_constraintTop_toTopOf="@+id/bit_btn_transmitter" />
-
-            <Button
-                android:id="@+id/bit_btn_transmitter"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="IBIT"
-                android:textSize="17sp"
-                app:layout_constraintBottom_toTopOf="@+id/divider5"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider4" />
-
-            <View
-                android:id="@+id/divider5"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_centerInParent="true"
-                android:background="#000"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bit_btn_transmitter" />
-
-
-            <TextView
-                android:id="@+id/bit_tv_responder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:clickable="true"
-                android:text="응답기"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/bit_btn_responder"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/bit_btn_responder" />
-
-            <TextView
-                android:id="@+id/bit_pf_responder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:clickable="true"
-                android:text="FAIL"
-                android:textColor="@color/failcolor"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/bit_btn_responder"
-                app:layout_constraintStart_toStartOf="@+id/bit_pf_transmitter"
-                app:layout_constraintTop_toTopOf="@+id/bit_btn_responder" />
-
-            <Button
-                android:id="@+id/bit_btn_responder"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="IBIT"
-                android:textSize="17sp"
-                app:layout_constraintBottom_toTopOf="@+id/divider6"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider5" />
-
-            <View
-                android:id="@+id/divider6"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_centerInParent="true"
-                android:background="#000"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bit_btn_responder" />
-
-
-            <TextView
-                android:id="@+id/bit_tv_power"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:clickable="true"
-                android:text="모의통합전원"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/bit_btn_power"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/bit_btn_power" />
-
-            <TextView
-                android:id="@+id/bit_pf_power"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:clickable="true"
-                android:text="PASS"
-                android:textColor="@color/passcolor"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/bit_btn_power"
-                app:layout_constraintStart_toStartOf="@+id/bit_pf_responder"
-                app:layout_constraintTop_toTopOf="@+id/bit_btn_power" />
-
-            <Button
-                android:id="@+id/bit_btn_power"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="IBIT"
-                android:textSize="17sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider6" />
-
+                app:layout_constraintTop_toBottomOf="@id/divider1"
+                android:layout_marginBottom="5dp"
+                />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

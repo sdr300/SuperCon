@@ -103,7 +103,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
-            android:id="@+id/junmun_btn_intelligence"
+            android:id="@+id/junmun_btn_intel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="첩보 보고"
@@ -123,7 +123,7 @@
             android:textColor="@color/white"
             android:background="@drawable/bg_custom_button3"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/junmun_btn_intelligence"
+            app:layout_constraintStart_toEndOf="@id/junmun_btn_intel"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -172,7 +172,7 @@
             android:textColor="@color/white"
             android:background="@drawable/bg_custom_button3"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/junmun_btn_intelligence"
+            app:layout_constraintStart_toEndOf="@id/junmun_btn_intel"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
 
         <Button
@@ -196,7 +196,7 @@
             android:visibility="invisible"
             android:background="@drawable/bg_custom_button3"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/junmun_btn_intelligence"
+            app:layout_constraintStart_toEndOf="@id/junmun_btn_intel"
             app:layout_constraintTop_toBottomOf="@id/junmun_btn_nbc1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

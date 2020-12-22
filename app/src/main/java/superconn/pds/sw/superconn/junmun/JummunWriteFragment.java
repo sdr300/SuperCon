@@ -25,11 +25,19 @@ public class JummunWriteFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_jummun_write, container, false);
 
-        Button junmun_btn_write_main = view.findViewById( R.id.junmun_btn_informal);
-        junmun_btn_write_main.setOnClickListener(new View.OnClickListener() {
+        Button junmun_btn_informal = view.findViewById( R.id.junmun_btn_informal);
+        junmun_btn_informal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new JunmunInformalFragment(), null).addToBackStack(null).commit();
+            }
+        });
+
+        Button junmun_btn_intel = view.findViewById( R.id.junmun_btn_intel);
+        junmun_btn_intel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new JunmunIntelFragment(), null).addToBackStack(null).commit();
             }
         });
 
