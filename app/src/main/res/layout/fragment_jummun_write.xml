@@ -118,7 +118,7 @@
             android:id="@+id/junmun_btn_obstacle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="비형식 문서"
+            android:text="장애물 보고"
             android:textSize="20sp"
             android:textColor="@color/white"
             android:background="@drawable/bg_custom_button3"

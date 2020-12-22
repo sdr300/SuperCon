@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import superconn.pds.sw.superconn.JunmunObstacleFragment;
 import superconn.pds.sw.superconn.MapActivity;
 import superconn.pds.sw.superconn.R;
 
@@ -38,6 +39,14 @@ public class JummunWriteFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new JunmunIntelFragment(), null).addToBackStack(null).commit();
+            }
+        });
+
+        Button junmun_btn_obstacle = view.findViewById( R.id.junmun_btn_obstacle);
+        junmun_btn_obstacle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new JunmunObstacleFragment(), null).addToBackStack(null).commit();
             }
         });
 
