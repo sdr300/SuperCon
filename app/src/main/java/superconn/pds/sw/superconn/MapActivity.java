@@ -1,6 +1,7 @@
 package superconn.pds.sw.superconn;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Application;
 import android.content.Context;
@@ -18,8 +19,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -109,12 +113,13 @@ public class MapActivity extends AppCompatActivity {
     private Integer dogu_int;
     private String dogu_string;
     TextView distance1, clickLocation;
-    int poweri = 0;
+    int doguint = 0;
     public String dogu_addText;
     private SwitchCompat dogu_sw;
     private RadioButton globe_rb_dms;
     private View 	decorView;
     private int	uiOption;
+    EditText junmun_informal_et_content;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -188,6 +193,7 @@ public class MapActivity extends AppCompatActivity {
         });
 
         map.getController().setCenter(point);
+
 
         //==========================부호 좌표를 가져온 마커들========================//
 
@@ -494,7 +500,6 @@ public class MapActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
     private final String LIFF_IDENTIFICATION_SEND = "LIFF.COMM.RS232.IDENTIFICATION.SEND";
@@ -723,6 +728,9 @@ public class MapActivity extends AppCompatActivity {
         } else if (view.getId() == R.id.ibt_globe) {
             switchAll(view);
         } else if (view.getId() == R.id.ibt_dogu ) {
+            switchDogu();
+            switchAll(view);
+        } else if (view.getId() == R.id.ibt_dogu_target ) {
             FragmentDogu fragmentDogu = new FragmentDogu();
             Bundle bundle = new Bundle();
             bundle.putString("addText", dogu_addText);
@@ -736,14 +744,86 @@ public class MapActivity extends AppCompatActivity {
             switchAll(view);
         } else if (view.getId() == R.id.ibt_junmun ) {
             switchAll(view);
-//        } else if (view.getId() == R.id.junmun_tv_send ) {
-//            switchAll(view);
-//        } else if (view.getId() == R.id.junmun_tv_receive ) {
-//            switchAll(view);
+
         } else if (view.getId() == R.id.ibt_waikie ) {
             switchAll(view);
         } else if (view.getId() == R.id.ibt_etc) {
             switchAll(view);
+        }
+    }
+
+    //========================switchFragment(power)===============
+    //getSupportFragmentManager().findFragmentById(R.id.fragment_frame)==null
+    Fragment fr;
+    FragmentManager fm = getSupportFragmentManager();
+
+
+    //=============측정도구 선택
+    public void switchDogu() {
+        if ( doguint%2 == 0) {
+            findViewById(R.id.doguselect).setVisibility(View.VISIBLE);
+            doguint = doguint+1;
+        } else  if ( doguint%2 == 1 ) {
+            findViewById(R.id.doguselect).setVisibility(View.INVISIBLE);
+            doguint = doguint+1;
+        }
+    }
+
+    public void switchAll(View view) {
+         if (view.getId() ==R.id.ibt_dogu) {
+            fr = new FragmentZ();
+            fm.popBackStack();
+             fragmentBoolean = 0;
+        } else if (fragmentBoolean == 0) {
+            if (view.getId() ==R.id.ibt_chook) {
+                fr = new FragmentChook();
+            } else if (view.getId() ==R.id.ibt_globe) {
+                fr = new FragmentGlobe();
+            } else if (view.getId() ==R.id.ibt_dogu_target) {
+                fr = new FragmentDogu();
+            } else if (view.getId() ==R.id.ibt_video) {
+                fr = new VideoMainFragment();
+            } else if (view.getId() ==R.id.ibt_camera) {
+                fr = new CameraMainFragment();
+            } else if (view.getId() ==R.id.ibt_chat) {
+                fr = new ChatMainFragment();
+            } else if (view.getId() ==R.id.ibt_junmun ) {
+                fr = new JunmunReceiveFragment();
+            } else if (view.getId() ==R.id.ibt_waikie) {
+                fr = new WalkieMainFragment();
+            } else if (view.getId() ==R.id.ibt_etc) {
+                fr = new EtcMainFragment();
+            }
+             if ( doguint%2 == 1 ) {
+                 findViewById(R.id.doguselect).setVisibility(View.INVISIBLE);
+                 doguint = doguint+1;
+             }
+            fragmentBoolean = 1;
+        } else {
+            fr = new FragmentZ() ;
+            fm.popBackStack();
+            fragmentBoolean = 0;
+        }
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_frame, fr);
+        fragmentTransaction.commit();
+    }
+
+    //========================================뒤로 버튼 관리
+    @Override
+    public void onBackPressed() {
+        Toast toast;
+        if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+            backKeyPressedTime = System.currentTimeMillis();
+            toast = Toast.makeText(this, "\'뒤로\' 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
+        // 마지막으로 뒤로가기 버튼을 눌렀던 시간에 2초를 더해 현재시간과 비교 후
+        // 마지막으로 뒤로가기 버튼을 눌렀던 시간이 2초가 지나지 않았으면 종료
+        // 현재 표시된 Toast 취소
+        if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+            finish();
         }
     }
 
@@ -796,78 +876,6 @@ public class MapActivity extends AppCompatActivity {
         AlertDialog msgDlg = showDialogAll.create();
         msgDlg.show(); }
 
-    //========================switchFragment(power)===============
-    //getSupportFragmentManager().findFragmentById(R.id.fragment_frame)==null
-    Fragment fr;
-    FragmentManager fm = getSupportFragmentManager();
-
-    public void switchFragmentPower() {
-        if ( poweri%3 == 0) {
-            findViewById(R.id.buttonour).setVisibility(View.VISIBLE);
-            poweri = poweri+1;
-        } else  if ( poweri%3 == 1 ) {
-            findViewById(R.id.buttonenemy).setVisibility(View.VISIBLE);
-            poweri = poweri+1;
-        } else  if ( poweri%3 == 2 ) {
-            findViewById(R.id.buttonour).setVisibility(View.INVISIBLE);
-            findViewById(R.id.buttonenemy).setVisibility(View.INVISIBLE);
-            poweri = poweri+1;
-        }
-        Toast toast = Toast.makeText(MapActivity.this, "배터리"+poweri, Toast.LENGTH_SHORT);
-        toast.show();
-    }
-
-    public void switchAll(View view) {
-        if (fragmentBoolean == 0) {
-            if (view.getId() ==R.id.ibt_chook) {
-                fr = new FragmentChook();
-            } else if (view.getId() ==R.id.ibt_globe) {
-                fr = new FragmentGlobe();
-            } else if (view.getId() ==R.id.ibt_dogu) {
-                fr = new FragmentDogu();
-            } else if (view.getId() ==R.id.ibt_video) {
-                fr = new VideoMainFragment();
-            } else if (view.getId() ==R.id.ibt_camera) {
-                fr = new CameraMainFragment();
-            } else if (view.getId() ==R.id.ibt_chat) {
-                fr = new ChatMainFragment();
-            } else if (view.getId() ==R.id.ibt_junmun ) {
-                fr = new JunmunReceiveFragment();
-//            } else if (view.getId() ==R.id.junmun_tv_send) {
-//                fr = new JunmunSendFragment();
-            } else if (view.getId() ==R.id.ibt_waikie) {
-                fr = new WalkieMainFragment();
-            } else if (view.getId() ==R.id.ibt_etc) {
-                fr = new EtcMainFragment();
-            }
-            fragmentBoolean = 1;
-        } else {
-            fr = new FragmentZ() ;
-            fm.popBackStack();
-            fragmentBoolean = 0;
-        }
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_frame, fr);
-        fragmentTransaction.commit();
-    }
-
-    //========================================뒤로 버튼 관리
-    @Override
-    public void onBackPressed() {
-        Toast toast;
-        if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
-            backKeyPressedTime = System.currentTimeMillis();
-            toast = Toast.makeText(this, "\'뒤로\' 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT);
-            toast.show();
-            return;
-        }
-        // 마지막으로 뒤로가기 버튼을 눌렀던 시간에 2초를 더해 현재시간과 비교 후
-        // 마지막으로 뒤로가기 버튼을 눌렀던 시간이 2초가 지나지 않았으면 종료
-        // 현재 표시된 Toast 취소
-        if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
-            finish();
-        }
-    }
     //=====ActivityCompat.requestPermissions를 사용한 퍼미션 요청의 결과를 리턴받는 메소드입니다.
 
     void checkRunTimePermission(){

@@ -22,37 +22,77 @@
 
     </org.osmdroid.views.MapView>
 
-    <TextView
-        android:id="@+id/buttonour"
-        android:layout_width="106dp"
-        android:layout_height="66dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/doguselect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/bg_custom_button2"
-        android:padding="10dp"
-        android:text="  아군  "
+        android:layout_marginTop="5dp"
+        android:background="#7F7F7F"
         android:textColor="@android:color/white"
-        android:textSize="30sp"
-        android:textStyle="bold"
         android:visibility="invisible"
-        app:layout_constraintStart_toEndOf="@+id/constraintLayoutSide"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        app:layout_constraintEnd_toStartOf="@+id/fragment_frame"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+         >
 
-    <TextView
-        android:id="@+id/buttonenemy"
-        android:layout_width="106dp"
-        android:layout_height="66dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/bg_custom_button"
-        android:padding="10dp"
-        android:text="  적군  "
-        android:textColor="@android:color/white"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:visibility="invisible"
-        app:layout_constraintStart_toEndOf="@+id/constraintLayoutSide"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        <ImageButton
+            android:id="@+id/ibt_dogu_length"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="20dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:onClick="onButtonClick"
+            android:scaleType="fitXY"
+            android:src="@drawable/length_white"
+            app:layout_constraintBottom_toTopOf="@+id/tv_dogu_length"
+            app:layout_constraintEnd_toStartOf="@id/ibt_dogu_target"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_dogu_length"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="거리측정"
+            android:layout_marginStart="5dp"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toBottomOf="@id/ibt_dogu_length"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/ibt_dogu_length"
+            app:layout_constraintEnd_toEndOf="@id/ibt_dogu_length"
+            />
+
+        <ImageButton
+            android:id="@+id/ibt_dogu_target"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:onClick="onButtonClick"
+            android:scaleType="fitXY"
+            android:src="@drawable/target_white"
+            app:layout_constraintBottom_toTopOf="@id/tv_dogu_target"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ibt_dogu_length"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_dogu_target"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="거리환"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toBottomOf="@id/ibt_dogu_target"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/ibt_dogu_target"
+            app:layout_constraintEnd_toEndOf="@id/ibt_dogu_target"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/chookLevel"
