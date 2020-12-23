@@ -152,7 +152,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
-            android:id="@+id/junmun_btn_location"
+            android:id="@+id/junmun_btn_locationreport"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="위치 보고"
@@ -185,7 +185,7 @@
             android:background="@drawable/bg_custom_button3"
             app:layout_constraintEnd_toStartOf="@+id/junmun_btn_nbc1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/junmun_btn_location" />
+            app:layout_constraintTop_toBottomOf="@+id/junmun_btn_locationreport" />
 
         <Button
             android:id="@+id/junmun_btn_button2"

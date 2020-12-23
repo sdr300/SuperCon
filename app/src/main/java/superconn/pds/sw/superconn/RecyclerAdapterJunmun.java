@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import superconn.pds.sw.superconn.DataBase.Buho;
-import superconn.pds.sw.superconn.junmun.FragmentJunmunLocation;
 
 /**
  * created 2020-11-17
@@ -118,12 +117,12 @@ public class RecyclerAdapterJunmun extends RecyclerView.Adapter <RecyclerAdapter
                         buho.setBuhoID(BuhoID);
                         MapActivity.roomDatabaseClass.buhoDao().deleteBuho(buho);
                         Toast.makeText(itemView.getContext(), "삭제되었습니다", Toast.LENGTH_SHORT).show();
-                        MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new FragmentJunmunLocation(), null).commit();
+
                     }
                 }) .setNegativeButton("취소", new DialogInterface.OnClickListener() {
                     @Override public void onClick(DialogInterface dialogInterface, int i) {
                         Toast.makeText(itemView.getContext(), "삭제 취소", Toast.LENGTH_SHORT).show();
-                        MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new FragmentJunmunLocation(), null).commit();
+
                     }
                 });
             AlertDialog msgDlg = msgBuilder.create();

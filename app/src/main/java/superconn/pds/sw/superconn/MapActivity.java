@@ -705,6 +705,13 @@ public class MapActivity extends AppCompatActivity {
             fragmentTransaction.commit();
         } else if (view.getId() == R.id.btn_back_super){
             super.onBackPressed();
+        } else if (view.getId() == R.id.btn_back_under){
+            fr = new FragmentZ();
+            fm.popBackStack();
+            fragmentBoolean = 0;
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_frame, fr);
+            fragmentTransaction.commit();
         } else if (view.getId() == R.id.pia_update_btn_savecancel ) {
             Toast.makeText(MapActivity.this, "수정 취소", Toast.LENGTH_SHORT).show();
             super.onBackPressed();

@@ -198,41 +198,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/junmun_receiver_time3" />
 
-            <TextView
-                android:id="@+id/junmun_receiver_receiver4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="전투원4"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/junmun_receiver_time4"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider3" />
-
-            <TextView
-                android:id="@+id/junmun_receiver_time4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:text="21일 9시 42분"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/divider4"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/junmun_receiver_receiver4" />
-
-            <View
-                android:id="@+id/divider4"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="3dp"
-                android:background="#000"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/junmun_receiver_time4" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

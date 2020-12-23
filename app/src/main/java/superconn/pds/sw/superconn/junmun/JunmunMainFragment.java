@@ -32,13 +32,6 @@ public class JunmunMainFragment extends Fragment {
         layoutManager=new LinearLayoutManager(getActivity());
 
         // 버튼
-        TextView junmun_tv_location = view.findViewById(R.id.junmun_tv_location);
-        junmun_tv_location.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new FragmentJunmunLocation(), null).addToBackStack(null).commit();
-            }
-        });
         TextView junmun_tv_input = view.findViewById(R.id.junmun_tv_write);
         junmun_tv_input.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -43,16 +43,17 @@ public class JunmunInformalFragment extends Fragment {
 
         arrayList = new ArrayList<>();
 
-        final ArrayAdapter arrayAdapter = ArrayAdapter.createFromResource(getActivity().getApplicationContext(), R.array.informal, android.R.layout.simple_spinner_dropdown_item);
+        final ArrayAdapter arrayAdapter = ArrayAdapter.createFromResource(getActivity().getApplicationContext(), R.array.priority, android.R.layout.simple_spinner_dropdown_item);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         junmun_informal_sp.setAdapter(arrayAdapter);
 
 
-        //글자 수 세기 및 키보드 있을때도 화면 보이기
+
         final EditText junmun_informal_et_content = view.findViewById(R.id.junmun_informal_et_content);
         final TextView junmun_informal_tv_count = view.findViewById(R.id.junmun_informal_tv_count);
-        EditText junmun_informal_et_title = view.findViewById(R.id.junmun_informal_et_title);
+        final EditText junmun_informal_et_title = view.findViewById(R.id.junmun_informal_et_title);
 
+        //글자 수 세기 (내용)
         junmun_informal_et_content.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -72,6 +73,21 @@ public class JunmunInformalFragment extends Fragment {
 
         });
 
+        //엔터 클릭시 다음줄이 아닌 키보드 안보이게 설정
+        junmun_informal_et_title.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(junmun_informal_et_title.getWindowToken(), 0);    //hide keyboard
+                    return true;
+                }
+
+                return false;
+            }
+        });
+
         junmun_informal_et_content.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -85,7 +101,6 @@ public class JunmunInformalFragment extends Fragment {
                 return false;
             }
         });
-
 
         return view;
     }
