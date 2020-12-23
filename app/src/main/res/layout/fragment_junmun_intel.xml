@@ -72,12 +72,12 @@
                 android:textColor="@color/black"
                 android:layout_marginStart="10dp"
                 android:clickable="true"
-                app:layout_constraintBottom_toBottomOf="@id/junmun_intel_sp_rank"
+                app:layout_constraintBottom_toBottomOf="@id/junmun_intel_sp_priority"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Spinner
-                android:id="@+id/junmun_intel_sp_rank"
+                android:id="@+id/junmun_intel_sp_priority"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:dropDownWidth="wrap_content"

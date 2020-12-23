@@ -39,6 +39,8 @@ public class JunmunInformalFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_junmun_informal, container, false);
 
+
+        //spinner 장착
         junmun_informal_sp = view.findViewById(R.id.junmun_informal_sp);
 
         arrayList = new ArrayList<>();
@@ -46,8 +48,6 @@ public class JunmunInformalFragment extends Fragment {
         final ArrayAdapter arrayAdapter = ArrayAdapter.createFromResource(getActivity().getApplicationContext(), R.array.priority, android.R.layout.simple_spinner_dropdown_item);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         junmun_informal_sp.setAdapter(arrayAdapter);
-
-
 
         final EditText junmun_informal_et_content = view.findViewById(R.id.junmun_informal_et_content);
         final TextView junmun_informal_tv_count = view.findViewById(R.id.junmun_informal_tv_count);

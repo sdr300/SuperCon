@@ -14,4 +14,38 @@
         <item>위급</item>
     </string-array>
 
+    <string-array name="type">
+        <item>부대</item>
+        <item>대대</item>
+        <item>중대</item>
+        <item>소대</item>
+    </string-array>
+
+    <string-array name="pia">
+        <item>미식별(적)</item>
+        <item>아군</item>
+        <item>적군</item>
+        <item>미식별</item>
+    </string-array>
+
+    <string-array name="obstaclePia">
+        <item>아군 장애물</item>
+        <item>적군 장애물</item>
+        <item>미식별 장애물</item>
+    </string-array>
+
+    <string-array name="obstacleType">
+        <item>철조망</item>
+        <item>와이어</item>
+        <item>벽</item>
+        <item>미식별</item>
+    </string-array>
+
+    <string-array name="obstacleDetail">
+        <item>유자 철조망</item>
+        <item>가시형 철조망</item>
+        <item>면도날형 철조망</item>
+        <item>미식별</item>
+    </string-array>
+
 </resources>
