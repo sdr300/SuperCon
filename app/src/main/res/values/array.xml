@@ -16,33 +16,47 @@
 
     <string-array name="type">
         <item>부대</item>
-        <item>대대</item>
-        <item>중대</item>
+        <item>장비</item>
+        <item>비상관리</item>
+    </string-array>
+
+    <string-array name="scale">
+        <item>미지정</item>
+        <item>조</item>
+        <item>분대</item>
+        <item>반</item>
         <item>소대</item>
+        <item>중대</item>
+        <item>대대</item>
+
     </string-array>
 
     <string-array name="pia">
         <item>미식별(적)</item>
-        <item>아군</item>
-        <item>적군</item>
-        <item>미식별</item>
+        <item>보병</item>
+        <item>포병</item>
+        <item>기갑</item>
+        <item>공병</item>
+        <item>항공</item>
+        <item>수색/정찰</item>
+        <item>미식별(아군)</item>
     </string-array>
 
     <string-array name="obstaclePia">
         <item>아군 장애물</item>
         <item>적군 장애물</item>
-        <item>미식별 장애물</item>
+        <item>미식별</item>
     </string-array>
 
     <string-array name="obstacleType">
         <item>철조망</item>
-        <item>와이어</item>
-        <item>벽</item>
-        <item>미식별</item>
+        <item>대전차 장애물</item>
+        <item>지뢰지대</item>
+        <item>기타</item>
     </string-array>
 
     <string-array name="obstacleDetail">
-        <item>유자 철조망</item>
+        <item>철조망</item>
         <item>가시형 철조망</item>
         <item>면도날형 철조망</item>
         <item>미식별</item>

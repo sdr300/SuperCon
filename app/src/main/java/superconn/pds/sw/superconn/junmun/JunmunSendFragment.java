@@ -48,6 +48,14 @@ public class JunmunSendFragment extends Fragment {
                 MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new JummunWriteFragment(), null).addToBackStack(null).commit();
             }
         });
+
+        Button junmun_btn_delete_send = view.findViewById(R.id.junmun_btn_delete_send);
+        junmun_btn_delete_send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new JunmunSendDeleteFragment(), null).addToBackStack(null).commit();
+            }
+        });
         
         return view;
     }

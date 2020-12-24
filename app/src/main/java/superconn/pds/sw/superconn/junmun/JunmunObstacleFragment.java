@@ -32,7 +32,6 @@ public class JunmunObstacleFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_junmun_obstacle, container, false);
 
-
         //spinner 장착
 
         arrayList = new ArrayList<>();
@@ -59,9 +58,6 @@ public class JunmunObstacleFragment extends Fragment {
         final ArrayAdapter arrayAdapter_obstacleDetail = ArrayAdapter.createFromResource(getActivity().getApplicationContext(), R.array.obstacleDetail, android.R.layout.simple_spinner_dropdown_item);
         arrayAdapter_obstacleDetail.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         junmun_obstacle_sp_obstacleDetail.setAdapter(arrayAdapter_obstacleDetail);
-
-
-
 
         //엔터 클릭시 다음줄이 아닌 키보드 안보이게 설정
         final EditText junmun_obstacle_et_time = view.findViewById(R.id.junmun_obstacle_et_time);

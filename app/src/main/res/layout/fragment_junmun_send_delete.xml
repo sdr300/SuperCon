@@ -202,7 +202,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
-            android:id="@+id/junmun_btn_write_main"
+            android:id="@+id/junmun_send_btn_selectAll"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="작성"
@@ -222,7 +222,7 @@
             android:textColor="@color/white"
             android:background="@drawable/bg_custom_button4"
             app:layout_constraintEnd_toStartOf="@id/btn_back_super"
-            app:layout_constraintStart_toEndOf="@+id/junmun_btn_write_main"
+            app:layout_constraintStart_toEndOf="@+id/junmun_send_btn_selectAll"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
         <Button
