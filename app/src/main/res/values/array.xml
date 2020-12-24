@@ -28,7 +28,15 @@
         <item>소대</item>
         <item>중대</item>
         <item>대대</item>
+    </string-array>
 
+    <string-array name="property">
+        <item>장갑차량</item>
+        <item>다목적차량</item>
+        <item>공병차량</item>
+        <item>민간차량</item>
+        <item>고정익항공기</item>
+        <item>회전익항공기</item>
     </string-array>
 
     <string-array name="pia">
@@ -55,11 +63,47 @@
         <item>기타</item>
     </string-array>
 
-    <string-array name="obstacleDetail">
+    <string-array name="obstacleMineDetail">
+        <item>지뢰지역</item>
+    </string-array>
+
+    <string-array name="obstacleEtcDetail">
+        <item>부비트랩</item>
+        <item>목책</item>
+    </string-array>
+
+    <string-array name="obstacleWireDetail">
         <item>철조망</item>
         <item>가시형 철조망</item>
         <item>면도날형 철조망</item>
         <item>미식별</item>
+    </string-array>
+
+    <string-array name="obstacleTankDetail">
+        <item>대전차 방벽</item>
+        <item>대전차장애물(고정식)</item>
+        <item>대전차장애물(이동식)</item>
+    </string-array>
+
+    <string-array name="chemicalType">
+        <item>화학</item>
+        <item>생물학</item>
+        <item>핵</item>
+    </string-array>
+
+    <string-array name="means">
+        <item>미확인</item>
+        <item>항공기</item>
+        <item>미사일</item>
+        <item>폭탄</item>
+        <item>포</item>
+        <item>박격포</item>
+        <item>다련장로켓</item>
+    </string-array>
+
+    <string-array name="scheduleCommmandType">
+        <item>작전계획</item>
+        <item>단편명령</item>
     </string-array>
 
 </resources>

@@ -55,7 +55,7 @@ public class JunmunObstacleFragment extends Fragment {
 
         Spinner junmun_obstacle_sp_obstacleDetail = view.findViewById(R.id.junmun_obstacle_sp_obstacleDetail);
 
-        final ArrayAdapter arrayAdapter_obstacleDetail = ArrayAdapter.createFromResource(getActivity().getApplicationContext(), R.array.obstacleDetail, android.R.layout.simple_spinner_dropdown_item);
+        final ArrayAdapter arrayAdapter_obstacleDetail = ArrayAdapter.createFromResource(getActivity().getApplicationContext(), R.array.obstacleWireDetail, android.R.layout.simple_spinner_dropdown_item);
         arrayAdapter_obstacleDetail.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         junmun_obstacle_sp_obstacleDetail.setAdapter(arrayAdapter_obstacleDetail);
 
