@@ -159,12 +159,12 @@
             android:textSize="20sp"
             android:textColor="@color/white"
             android:background="@drawable/bg_custom_button3"
-            app:layout_constraintEnd_toStartOf="@+id/junmun_btn_nbc1"
+            app:layout_constraintEnd_toStartOf="@+id/junmun_btn_nbc"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
 
         <Button
-            android:id="@+id/junmun_btn_nbc1"
+            android:id="@+id/junmun_btn_nbc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="NBC-1 보고"
@@ -176,14 +176,14 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
 
         <Button
-            android:id="@+id/junmun_btn_battlecommand"
+            android:id="@+id/junmun_btn_command"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="전투 명령"
             android:textSize="20sp"
             android:textColor="@color/white"
             android:background="@drawable/bg_custom_button3"
-            app:layout_constraintEnd_toStartOf="@+id/junmun_btn_nbc1"
+            app:layout_constraintEnd_toStartOf="@+id/junmun_btn_nbc"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/junmun_btn_locationreport" />
 
@@ -197,7 +197,7 @@
             android:background="@drawable/bg_custom_button3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/junmun_btn_intel"
-            app:layout_constraintTop_toBottomOf="@id/junmun_btn_nbc1" />
+            app:layout_constraintTop_toBottomOf="@id/junmun_btn_nbc" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

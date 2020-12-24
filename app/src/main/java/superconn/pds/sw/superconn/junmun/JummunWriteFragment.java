@@ -59,6 +59,22 @@ public class JummunWriteFragment extends Fragment {
             }
         });
 
+        Button junmun_btn_nbc = view.findViewById( R.id.junmun_btn_nbc);
+        junmun_btn_nbc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new JunmunNbcFragment(), null).addToBackStack(null).commit();
+            }
+        });
+
+        Button junmun_btn_command = view.findViewById( R.id.junmun_btn_command);
+        junmun_btn_command.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new JunmunCommandFragment(), null).addToBackStack(null).commit();
+            }
+        });
+
         return view;
     }
 }
