@@ -16,7 +16,7 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#2F5597"
+            android:background="#7F7F7F"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,19 +43,12 @@
                 android:text="지도 종류 / 축척 변경"
                 android:textColor="#fff"
                 android:textSize="20sp"
-                android:layout_marginStart="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/btn_back"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/chook_btn_save"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="확인"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -64,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="5dp"
-            android:background="@drawable/border"
+            android:background="@drawable/background59"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -91,39 +84,39 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        >
 
                         <RadioButton
                             android:id="@+id/chook_rb_25k"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:checked="true"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
-                            android:text="육도\n1:25K" />
+                            android:checked="true"
+                            android:text="육도\n1:25K"
+                            android:textColor="@color/white"/>
 
                         <View
                             android:id="@+id/divider1"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="#000"
-                            />
+                            android:background="#fff" />
 
                         <RadioButton
                             android:id="@+id/chook_rb_50k"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
-                            android:text="육도\n1:50K" />
+                            android:text="육도\n1:50K"
+                            android:textColor="@color/white"/>
 
                         <View
                             android:id="@+id/divider2"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="#000"
-                            />
+                            android:background="#fff" />
 
                         <RadioButton
                             android:id="@+id/chook_rb_100k"
@@ -131,14 +124,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
-                            android:text="육도\n1:100K" />
+                            android:text="육도\n1:100K"
+                            android:textColor="@color/white"/>
 
                         <View
                             android:id="@+id/divider3"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="#000"
-                            />
+                            android:background="#fff" />
 
                         <RadioButton
                             android:id="@+id/chook_rb_250k"
@@ -146,14 +139,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
-                            android:text="육도\n1:250K" />
+                            android:text="육도\n1:250K"
+                            android:textColor="@color/white"/>
 
                         <View
                             android:id="@+id/divider4"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="#000"
-                            />
+                            android:background="#fff" />
 
                         <RadioButton
                             android:id="@+id/chook_rb_500k"
@@ -161,14 +154,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
-                            android:text="육도\n1:500K" />
+                            android:text="육도\n1:500K"
+                            android:textColor="@color/white"/>
 
                         <View
                             android:id="@+id/divider5"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="#000"
-                            />
+                            android:background="#fff" />
 
                         <RadioButton
                             android:id="@+id/chook_rb_1m"
@@ -176,7 +169,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
-                            android:text="육도\n1:1M" />
+                            android:text="육도\n1:1M"
+                            android:textColor="@color/white"/>
 
                     </RadioGroup>
                 </LinearLayout>
@@ -184,14 +178,29 @@
             </ScrollView>
 
             <Button
-                android:id="@+id/btn_back_under"
-                android:onClick="onButtonClick"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:text="닫기"
+                android:id="@+id/chook_btn_save"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:background="@drawable/bg_custom_button4"
+                android:text="확인"
+                android:textColor="@color/white"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_back_under"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/btn_back_under"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:background="@drawable/bg_custom_button4"
+                android:onClick="onButtonClick"
+                android:text="닫기"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/chook_btn_save"
+                app:layout_constraintTop_toTopOf="@id/chook_btn_save" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
