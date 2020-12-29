@@ -93,11 +93,12 @@
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/dogu_sw"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="40dp"
                 android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 app:layout_constraintBottom_toBottomOf="@+id/dogu_tv_sw"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/dogu_tv_sw"
@@ -117,6 +118,17 @@
                 app:layout_constraintStart_toEndOf="@+id/dogu_sw"
                 app:layout_constraintTop_toTopOf="@+id/dogu_sw" />
 
+            <View
+                android:id="@+id/divider1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:background="#000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dogu_tv_sw" />
+
 
             <TextView
                 android:id="@+id/dogu_tv_location"
@@ -128,7 +140,8 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/divider1" />
+                app:layout_constraintTop_toBottomOf="@id/divider1"
+                app:layout_constraintBottom_toTopOf="@id/divider2"/>
 
 
             <RadioGroup
@@ -136,7 +149,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 app:layout_constraintBottom_toBottomOf="@+id/dogu_tv_location"
                 app:layout_constraintStart_toStartOf="@+id/dogu_tv_sw_off"
                 app:layout_constraintTop_toTopOf="@+id/dogu_tv_location">
@@ -158,8 +172,20 @@
                     android:text="수동"
                     android:textColor="@color/white"/>
 
-
             </RadioGroup>
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dogu_tv_location"
+                />
 
             <TextView
                 android:id="@+id/dogu_tv_coordinates"
@@ -178,12 +204,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/border"
-                android:text="126.438696, 36.681669"
+                android:text="위도: 126.438696\n경도: 36.681669"
                 android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@id/dogu_tv_coordinates"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toTopOf="@id/divider3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/dogu_tv_sw"
-                app:layout_constraintTop_toTopOf="@id/dogu_tv_coordinates" />
+                app:layout_constraintTop_toTopOf="@id/divider2" />
+
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dogu_tv_setcoordinates" />
 
             <TextView
                 android:id="@+id/dogu_tv_unit"
@@ -197,18 +237,40 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
-            <Spinner
-                android:id="@+id/dogu_sp"
-                style="@style/Widget.AppCompat.Spinner.Underlined"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:dropDownWidth="wrap_content"
-                android:entries="@array/unit"
-                android:theme="@style/SpinnerTheme"
-                app:layout_constraintBottom_toBottomOf="@+id/dogu_tv_unit"
+            <RelativeLayout
+                android:id="@+id/dogu_sp_layout"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="3dp"
+                android:orientation="horizontal"
+                android:background="@drawable/videospinnerborder"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 app:layout_constraintStart_toStartOf="@+id/dogu_tv_sw_off"
-                app:layout_constraintTop_toBottomOf="@+id/divider3" />
+                app:layout_constraintTop_toTopOf="@id/dogu_tv_unit"
+                app:layout_constraintBottom_toBottomOf="@id/dogu_tv_unit">
+
+                <Spinner
+                    android:id="@+id/dogu_sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:spinnerMode="dropdown"
+                    android:entries="@array/unit"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:src="@drawable/arrow_down" />
+
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/dogu_sp_unit"
@@ -219,7 +281,7 @@
                 android:text="M"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                app:layout_constraintStart_toEndOf="@id/dogu_sp"
+                app:layout_constraintStart_toEndOf="@id/dogu_sp_layout"
                 app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
 
@@ -231,11 +293,12 @@
                 android:background="@drawable/bg_custom_button4"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btn_back_under"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider4" />
+                app:layout_constraintTop_toBottomOf="@id/dogu_tv_unit" />
 
             <Button
                 android:id="@+id/btn_back_under"
@@ -250,51 +313,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/dogu_btn_save"
                 app:layout_constraintTop_toTopOf="@+id/dogu_btn_save" />
-
-            <View
-                android:id="@+id/divider1"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="10dp"
-                android:background="#000"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dogu_tv_sw" />
-
-            <View
-                android:id="@+id/divider2"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="10dp"
-                android:background="#000"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/dogu_tv_location" />
-
-            <View
-                android:id="@+id/divider3"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="10dp"
-                android:background="#000"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/dogu_tv_coordinates" />
-
-            <View
-                android:id="@+id/divider4"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="15dp"
-                android:background="#000"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dogu_tv_unit" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
