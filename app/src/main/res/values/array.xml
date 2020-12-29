@@ -106,4 +106,28 @@
         <item>단편명령</item>
     </string-array>
 
+    <string-array name="videoMembers">
+        <item>전투원 1</item>
+        <item>전투원 2</item>
+        <item>전투원 3</item>
+        <item>전투원 4</item>
+        <item>전투원 5</item>
+        <item>전투원 6</item>
+        <item>전투원 7</item>
+        <item>전투원 8</item>
+        <item>전투원 9</item>
+        <item>전투원 10</item>
+        <item>전투원 11</item>
+        <item>전투원 12</item>
+        <item>전투원 13</item>
+        <item>전투원 14</item>
+        <item>전투원 15</item>
+        <item>전투원 16</item>
+    </string-array>
+
+    <string-array name="videoOption">
+        <item>해상도 우선</item>
+        <item>프레임 우선</item>
+    </string-array>
+
 </resources>
