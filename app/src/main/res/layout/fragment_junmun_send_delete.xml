@@ -24,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
-                android:id="@+id/btn_back"
+                android:id="@+id/btn_back_super"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -46,7 +46,7 @@
                 android:textSize="20sp"
                 android:clickable="true"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/btn_back"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -205,13 +205,13 @@
             android:id="@+id/junmun_send_btn_selectAll"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="작성"
+            android:text="전체선택"
             android:textSize="20sp"
             android:textColor="@color/white"
             android:background="@drawable/bg_custom_button4"
             app:layout_constraintEnd_toStartOf="@+id/junmun_btn_delete_send"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <Button
             android:id="@+id/junmun_btn_delete_send"
@@ -221,21 +221,22 @@
             android:textSize="20sp"
             android:textColor="@color/white"
             android:background="@drawable/bg_custom_button4"
-            app:layout_constraintEnd_toStartOf="@id/btn_back_super"
+            app:layout_constraintEnd_toStartOf="@id/btn_back_under_super"
             app:layout_constraintStart_toEndOf="@+id/junmun_send_btn_selectAll"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <Button
-            android:id="@+id/btn_back_super"
+            android:id="@+id/btn_back_under_super"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="닫기"
+            android:text="뒤로"
+            android:onClick="onButtonClick"
             android:textSize="20sp"
             android:textColor="@color/white"
             android:background="@drawable/bg_custom_button4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/junmun_btn_delete_send"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -84,7 +84,7 @@
             android:onClick="onButtonClick"
             android:layout_width="0dp"
             android:layout_height="35dp"
-            android:text="취소"
+            android:text="닫기"
             android:textSize="20sp"
             android:textColor="@color/white"
             android:background="@drawable/bg_custom_button4"
