@@ -20,6 +20,10 @@
         <item>비상관리</item>
     </string-array>
 
+    <string-array name="intelProperty">
+        <item>화재</item>
+    </string-array>
+
     <string-array name="scale">
         <item>미지정</item>
         <item>조</item>

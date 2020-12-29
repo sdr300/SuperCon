@@ -127,6 +127,7 @@
                 android:textSize="15sp"
                 android:maxLength="25"
                 android:imeOptions="actionDone|flagNoExtractUi"
+                android:singleLine="true"
                 app:layout_constraintStart_toEndOf="@id/junmun_informal_tv_title"
                 app:layout_constraintTop_toBottomOf="@id/divider1"
                 app:layout_constraintBottom_toTopOf="@id/divider2"

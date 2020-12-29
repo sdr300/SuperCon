@@ -60,7 +60,6 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-            app:layout_constraintBottom_toTopOf="@+id/junmun_btn_write_main"
             >
 
 
@@ -125,6 +124,7 @@
                 android:textSize="12sp"
                 android:maxLength="25"
                 android:imeOptions="actionDone|flagNoExtractUi"
+                android:singleLine="true"
                 app:layout_constraintStart_toEndOf="@id/junmun_location_tv_time"
                 app:layout_constraintTop_toBottomOf="@id/divider1"
                 app:layout_constraintBottom_toTopOf="@id/divider2"
@@ -162,6 +162,7 @@
                 android:layout_marginEnd="10dp"
                 android:hint="방향 입력"
                 android:imeOptions="actionDone|flagNoExtractUi"
+                android:singleLine="true"
                 android:maxLength="25"
                 android:textSize="12sp"
                 app:layout_constraintWidth_percent="0.5"
@@ -202,6 +203,7 @@
                 android:textSize="12sp"
                 android:maxLength="25"
                 android:imeOptions="actionDone|flagNoExtractUi"
+                android:singleLine="true"
                 app:layout_constraintWidth_percent="0.5"
                 app:layout_constraintStart_toEndOf="@id/junmun_location_tv_location_object"
                 app:layout_constraintTop_toBottomOf="@id/divider3"
@@ -239,6 +241,7 @@
                 android:textSize="12sp"
                 android:maxLength="25"
                 android:imeOptions="actionDone|flagNoExtractUi"
+                android:singleLine="true"
                 app:layout_constraintWidth_percent="0.5"
                 app:layout_constraintStart_toEndOf="@id/junmun_location_tv_height"
                 app:layout_constraintTop_toBottomOf="@id/divider4"
@@ -257,8 +260,7 @@
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_back_under"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btn_back_under"
