@@ -17,7 +17,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="20dp"
             android:background="#7F7F7F"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="5dp"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:onClick="onButtonClick"
                 android:src="@drawable/back_white"
@@ -45,7 +45,7 @@
                 android:gravity="center"
                 android:text="거리환 설정"
                 android:textColor="#fff"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:layout_marginStart="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/btn_back"
@@ -57,9 +57,10 @@
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="5dp"
+            android:layout_margin="2dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/background59"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout">
@@ -71,10 +72,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
                 android:text="거리환 표시"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:layout_marginTop="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/divider1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -83,10 +84,10 @@
                 android:id="@+id/dogu_tv_sw_off"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
                 android:text="OFF"
                 android:textColor="@color/white"
                 android:textSize="15sp"
-                android:layout_marginEnd="5dp"
                 app:layout_constraintBottom_toBottomOf="@+id/dogu_sw"
                 app:layout_constraintEnd_toStartOf="@+id/dogu_sw"
                 app:layout_constraintTop_toTopOf="@+id/dogu_sw" />
@@ -95,10 +96,10 @@
                 android:id="@+id/dogu_sw"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="40dp"
-                android:orientation="horizontal"
                 android:layout_marginTop="5dp"
+                android:layout_marginEnd="40dp"
                 android:layout_marginBottom="5dp"
+                android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="@+id/dogu_tv_sw"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/dogu_tv_sw"
@@ -139,18 +140,18 @@
                 android:text="위치"
                 android:textColor="@color/white"
                 android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@id/divider2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/divider1"
-                app:layout_constraintBottom_toTopOf="@id/divider2"/>
+                app:layout_constraintTop_toBottomOf="@id/divider1" />
 
 
             <RadioGroup
                 android:id="@+id/dogu_rg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
+                android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="@+id/dogu_tv_location"
                 app:layout_constraintStart_toStartOf="@+id/dogu_tv_sw_off"
                 app:layout_constraintTop_toTopOf="@+id/dogu_tv_location">
@@ -162,7 +163,7 @@
                     android:layout_marginLeft="-5dp"
                     android:checked="true"
                     android:text="자동"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white" />
 
                 <RadioButton
                     android:id="@+id/dogu_rb_manual"
@@ -170,7 +171,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:text="수동"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white" />
 
             </RadioGroup>
 
@@ -184,8 +185,7 @@
                 android:background="#000"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/dogu_tv_location"
-                />
+                app:layout_constraintTop_toBottomOf="@id/dogu_tv_location" />
 
             <TextView
                 android:id="@+id/dogu_tv_coordinates"
@@ -203,11 +203,11 @@
                 android:id="@+id/dogu_tv_setcoordinates"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/border"
                 android:text="위도: 126.438696\n경도: 36.681669"
                 android:textColor="@color/black"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
                 app:layout_constraintBottom_toTopOf="@id/divider3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/dogu_tv_sw"
@@ -241,14 +241,14 @@
                 android:id="@+id/dogu_sp_layout"
                 android:layout_width="120dp"
                 android:layout_height="30dp"
-                android:layout_marginRight="3dp"
-                android:orientation="horizontal"
-                android:background="@drawable/videospinnerborder"
                 android:layout_marginTop="5dp"
+                android:layout_marginRight="3dp"
                 android:layout_marginBottom="5dp"
+                android:background="@drawable/videospinnerborder"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="@id/dogu_tv_unit"
                 app:layout_constraintStart_toStartOf="@+id/dogu_tv_sw_off"
-                app:layout_constraintTop_toTopOf="@id/dogu_tv_unit"
-                app:layout_constraintBottom_toBottomOf="@id/dogu_tv_unit">
+                app:layout_constraintTop_toTopOf="@id/dogu_tv_unit">
 
                 <Spinner
                     android:id="@+id/dogu_sp"
@@ -256,11 +256,11 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"
-                    android:gravity="center"
                     android:layout_marginLeft="5dp"
-                    android:spinnerMode="dropdown"
-                    android:entries="@array/unit"/>
+                    android:background="@android:color/transparent"
+                    android:entries="@array/unit"
+                    android:gravity="center"
+                    android:spinnerMode="dropdown" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -287,28 +287,27 @@
 
             <Button
                 android:id="@+id/dogu_btn_save"
-                android:text="확인"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
-                android:background="@drawable/bg_custom_button4"
-                android:textColor="@color/white"
-                android:textSize="20sp"
+                android:layout_height="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="1dp"
+                android:background="@drawable/bg_custom_button4"
+                android:text="확인"
+                android:textColor="@color/white"
+                android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btn_back_under"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/dogu_tv_unit" />
+                app:layout_constraintStart_toStartOf="parent"/>
 
             <Button
                 android:id="@+id/btn_back_under"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
+                android:layout_height="20dp"
                 android:background="@drawable/bg_custom_button4"
                 android:onClick="onButtonClick"
                 android:text="닫기"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="@+id/dogu_btn_save"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/dogu_btn_save"

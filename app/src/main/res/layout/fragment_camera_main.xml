@@ -17,7 +17,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="20dp"
             android:background="#7F7F7F"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -30,11 +30,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="5dp"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:onClick="onButtonClick"
                 android:src="@drawable/back_white"
-
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -46,10 +45,10 @@
                 android:gravity="center"
                 android:text="정지 영상 관리"
                 android:textColor="#fff"
-                android:textSize="20sp"
-                android:layout_marginStart="10dp"
+                android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/btn_back"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -57,11 +56,12 @@
         <Button
             android:id="@+id/camera_btn_capture"
             android:layout_width="0dp"
-            android:layout_height="35dp"
+            android:layout_height="20dp"
             android:text="촬영"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:textColor="@color/white"
             android:background="@drawable/bg_custom_button4"
+            android:layout_marginBottom="1dp"
             app:layout_constraintEnd_toStartOf="@+id/camera_btn_delete"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
@@ -70,11 +70,12 @@
         <Button
             android:id="@+id/camera_btn_delete"
             android:layout_width="0dp"
-            android:layout_height="35dp"
+            android:layout_height="20dp"
             android:text="삭제"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:textColor="@color/white"
             android:background="@drawable/bg_custom_button4"
+            android:layout_marginBottom="1dp"
             app:layout_constraintEnd_toStartOf="@+id/btn_back_under"
             app:layout_constraintStart_toEndOf="@id/camera_btn_capture"
             app:layout_constraintBottom_toBottomOf="parent"/>
@@ -83,11 +84,12 @@
             android:id="@+id/btn_back_under"
             android:onClick="onButtonClick"
             android:layout_width="0dp"
-            android:layout_height="35dp"
+            android:layout_height="20dp"
             android:text="닫기"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:textColor="@color/white"
             android:background="@drawable/bg_custom_button4"
+            android:layout_marginBottom="1dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/camera_btn_delete"
             app:layout_constraintTop_toTopOf="@id/camera_btn_delete" />
