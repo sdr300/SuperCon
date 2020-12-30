@@ -315,11 +315,11 @@
             android:textSize="15sp"
             android:layout_marginBottom="1dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btn_back_under"
+            app:layout_constraintEnd_toStartOf="@+id/btn_back_under_super"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/btn_back_under"
+            android:id="@+id/btn_back_under_super"
             android:onClick="onButtonClick"
             android:layout_width="0dp"
             android:layout_height="20dp"
