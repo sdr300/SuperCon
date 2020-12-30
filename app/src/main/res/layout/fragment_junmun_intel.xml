@@ -389,11 +389,11 @@
                 android:id="@+id/junmun_intel_tv_quantity2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
                 android:gravity="center_horizontal"
                 android:text="문"
                 android:imeOptions="flagNoExtractUi"
                 android:textColor="@color/white"
+                android:layout_marginStart="5dp"
                 app:layout_constraintBottom_toBottomOf="@id/junmun_intel_et_quantity"
                 app:layout_constraintStart_toEndOf="@id/junmun_intel_et_quantity"
                 app:layout_constraintTop_toTopOf="@id/junmun_intel_et_quantity"/>
