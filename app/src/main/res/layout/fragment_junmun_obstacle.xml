@@ -17,7 +17,7 @@
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:background="#2F5597"
+            android:background="#7F7F7F"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,38 +54,60 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_margin="2dp"
-            android:background="@drawable/border"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/borderblack"
+            app:layout_constraintBottom_toTopOf="@+id/junmun_btn_write_main"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-            >
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
 
             <TextView
                 android:id="@+id/junmun_obstacle_tv_priority"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="우선 순위 : "
-                android:textColor="@color/black"
                 android:layout_marginStart="10dp"
                 android:clickable="true"
-                app:layout_constraintBottom_toBottomOf="@id/junmun_obstacle_sp_priority"
+                android:text="우선 순위 : "
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/junmun_obstacle_sp_priority_rl"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/junmun_obstacle_sp_priority_rl" />
 
-            <Spinner
-                android:id="@+id/junmun_obstacle_sp_priority"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginBottom="5dp"
-                android:dropDownWidth="wrap_content"
-                android:entries="@array/unit"
-                android:theme="@style/SpinnerTheme"
+            <RelativeLayout
+                android:id="@+id/junmun_obstacle_sp_priority_rl"
+                android:layout_width="120dp"
+                android:layout_height="25dp"
+                android:orientation="horizontal"
+                android:background="@drawable/videospinnerborder"
                 app:layout_constraintBottom_toTopOf="@id/divider1"
-                app:layout_constraintStart_toStartOf="@+id/junmun_obstacle_sp_obstaclePia"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="@+id/junmun_obstacle_sp_obstaclePia_rl"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <Spinner
+                    android:id="@+id/junmun_obstacle_sp_priority"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:spinnerMode="dropdown"
+                    android:entries="@array/priority"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:src="@drawable/arrow_down" />
+
+            </RelativeLayout>
 
             <View
                 android:id="@+id/divider1"
@@ -93,11 +115,11 @@
                 android:layout_height="1dp"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="2dp"
-                android:background="#000"
+                android:background="#fff"
+                app:layout_constraintBottom_toTopOf="@id/junmun_obstacle_et_time"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/junmun_obstacle_tv_priority"
-                app:layout_constraintBottom_toTopOf="@id/junmun_obstacle_et_time"/>
+                app:layout_constraintTop_toBottomOf="@id/junmun_obstacle_sp_priority_rl" />
 
 
             <TextView
@@ -106,10 +128,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:gravity="center_horizontal"
-                android:text="관측 시간 : "
-                android:maxLength="25"
                 android:imeOptions="flagNoExtractUi"
-                android:textColor="@color/black"
+                android:maxLength="25"
+                android:text="관측 시간 : "
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@id/junmun_obstacle_et_time"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/junmun_obstacle_et_time" />
@@ -121,9 +143,11 @@
                 android:layout_marginEnd="10dp"
                 android:hint="관측 시간 입력"
                 android:imeOptions="actionDone|flagNoExtractUi"
-                android:singleLine="true"
                 android:maxLength="25"
-                android:textSize="12sp"
+                android:singleLine="true"
+                android:textSize="16sp"
+                android:background="@color/white"
+                android:layout_marginStart="5dp"
                 app:layout_constraintBottom_toTopOf="@id/divider2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/junmun_obstacle_tv_obslocation"
@@ -134,11 +158,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_centerInParent="true"
-                android:background="#000"
+                android:background="#fff"
+                app:layout_constraintBottom_toTopOf="@id/junmun_obstacle_et_obslocation"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/junmun_obstacle_et_time"
-                app:layout_constraintBottom_toTopOf="@id/junmun_obstacle_et_obslocation"/>
+                app:layout_constraintTop_toBottomOf="@+id/junmun_obstacle_et_time" />
 
             <TextView
                 android:id="@+id/junmun_obstacle_tv_obslocation"
@@ -146,9 +170,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:gravity="center_horizontal"
-                android:text="장애물 위치 : "
                 android:imeOptions="flagNoExtractUi"
-                android:textColor="@color/black"
+                android:text="장애물 위치 : "
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@id/junmun_obstacle_et_obslocation"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/junmun_obstacle_et_obslocation" />
@@ -160,9 +184,11 @@
                 android:layout_marginEnd="10dp"
                 android:hint="장애물 위치 입력"
                 android:imeOptions="actionDone|flagNoExtractUi"
-                android:singleLine="true"
                 android:maxLength="25"
-                android:textSize="12sp"
+                android:singleLine="true"
+                android:textSize="16sp"
+                android:background="@color/white"
+                android:layout_marginStart="5dp"
                 app:layout_constraintBottom_toTopOf="@id/divider3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/junmun_obstacle_tv_obslocation"
@@ -173,12 +199,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_centerInParent="true"
-                android:background="#000"
+                android:background="#fff"
+                app:layout_constraintBottom_toTopOf="@id/junmun_obstacle_sp_obstaclePia_rl"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/junmun_obstacle_et_obslocation"
-                app:layout_constraintBottom_toTopOf="@id/junmun_obstacle_sp_obstaclePia"/>
-
+                app:layout_constraintTop_toBottomOf="@+id/junmun_obstacle_et_obslocation" />
 
             <TextView
                 android:id="@+id/junmun_obstacle_tv_obstaclePia"
@@ -186,36 +211,56 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:gravity="center_horizontal"
-                android:text="피아 구분 : "
                 android:imeOptions="flagNoExtractUi"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@id/junmun_obstacle_sp_obstaclePia"
+                android:text="피아 구분 : "
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/junmun_obstacle_sp_obstaclePia_rl"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/junmun_obstacle_sp_obstaclePia"/>
+                app:layout_constraintTop_toTopOf="@id/junmun_obstacle_sp_obstaclePia_rl" />
 
-            <Spinner
-                android:id="@+id/junmun_obstacle_sp_obstaclePia"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:dropDownWidth="wrap_content"
-                android:entries="@array/unit"
-                android:theme="@style/SpinnerTheme"
+            <RelativeLayout
+                android:id="@+id/junmun_obstacle_sp_obstaclePia_rl"
+                android:layout_width="120dp"
+                android:layout_height="25dp"
+                android:orientation="horizontal"
+                android:background="@drawable/videospinnerborder"
                 app:layout_constraintBottom_toTopOf="@id/divider4"
-                app:layout_constraintStart_toStartOf="@+id/junmun_obstacle_sp_obstacleType"
-                app:layout_constraintTop_toBottomOf="@id/divider3" />
+                app:layout_constraintStart_toStartOf="@+id/junmun_obstacle_sp_obstacleType_rl"
+                app:layout_constraintTop_toBottomOf="@id/divider3" >
+
+                <Spinner
+                    android:id="@+id/junmun_obstacle_sp_obstaclePia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:spinnerMode="dropdown"
+                    android:entries="@array/obstaclePia"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:src="@drawable/arrow_down" />
+
+            </RelativeLayout>
 
             <View
                 android:id="@+id/divider4"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_centerInParent="true"
-                android:background="#000"
                 android:layout_marginTop="5dp"
+                android:background="#fff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/junmun_obstacle_sp_obstaclePia"/>
+                app:layout_constraintTop_toBottomOf="@+id/junmun_obstacle_sp_obstaclePia_rl"
+                app:layout_constraintBottom_toTopOf="@id/junmun_obstacle_sp_obstacleType_rl"/>
 
             <TextView
                 android:id="@+id/junmun_obstacle_tv_obstacleType"
@@ -223,39 +268,57 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:gravity="center_horizontal"
-                android:text="장애물 유형 : "
                 android:imeOptions="flagNoExtractUi"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@id/junmun_obstacle_sp_obstacleType"
+                android:text="장애물 유형 : "
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/junmun_obstacle_sp_obstacleType_rl"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/junmun_obstacle_sp_obstacleType"/>
+                app:layout_constraintTop_toTopOf="@id/junmun_obstacle_sp_obstacleType_rl" />
 
-
-            <Spinner
-                android:id="@+id/junmun_obstacle_sp_obstacleType"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:dropDownWidth="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:entries="@array/unit"
-                android:theme="@style/SpinnerTheme"
-                app:layout_constraintStart_toEndOf="@id/junmun_obstacle_tv_obstacleType"
-                app:layout_constraintTop_toBottomOf="@id/divider4"
+            <RelativeLayout
+                android:id="@+id/junmun_obstacle_sp_obstacleType_rl"
+                android:layout_width="120dp"
+                android:layout_height="25dp"
+                android:orientation="horizontal"
+                android:background="@drawable/videospinnerborder"
                 app:layout_constraintBottom_toTopOf="@id/divider5"
-                />
+                app:layout_constraintStart_toEndOf="@id/junmun_obstacle_tv_obstacleType"
+                app:layout_constraintTop_toBottomOf="@id/divider4">
+
+                <Spinner
+                    android:id="@+id/junmun_obstacle_sp_obstacleType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:spinnerMode="dropdown"
+                    android:entries="@array/obstacleType"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:src="@drawable/arrow_down" />
+
+            </RelativeLayout>
 
             <View
                 android:id="@+id/divider5"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_centerInParent="true"
-                android:background="#000"
                 android:layout_marginTop="5dp"
+                android:background="#fff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/junmun_obstacle_sp_obstacleType"/>
+                app:layout_constraintTop_toBottomOf="@+id/junmun_obstacle_sp_obstacleType_rl"
+                app:layout_constraintBottom_toTopOf="@id/junmun_obstacle_sp_obstacleDetail_rl"/>
+
 
             <TextView
                 android:id="@+id/junmun_obstacle_tv_obstacleDetail"
@@ -264,25 +327,44 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginBottom="3dp"
                 android:text="세부 장애물 : "
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/junmun_obstacle_sp_obstacleDetail"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-            <Spinner
-                android:id="@+id/junmun_obstacle_sp_obstacleDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:dropDownWidth="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:entries="@array/unit"
-                android:theme="@style/SpinnerTheme"
-                app:layout_constraintStart_toEndOf="@id/junmun_obstacle_tv_obstacleDetail"
-                app:layout_constraintTop_toBottomOf="@id/divider5"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/junmun_obstacle_sp_obstacleDetail_rl"
+                app:layout_constraintEnd_toStartOf="@id/junmun_obstacle_sp_obstacleDetail_rl"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/junmun_obstacle_sp_obstacleDetail_rl"
                 />
+
+            <RelativeLayout
+                android:id="@+id/junmun_obstacle_sp_obstacleDetail_rl"
+                android:layout_width="120dp"
+                android:layout_height="25dp"
+                android:orientation="horizontal"
+                android:background="@drawable/videospinnerborder"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/junmun_obstacle_tv_obstacleDetail"
+                app:layout_constraintTop_toBottomOf="@id/divider5">
+
+                <Spinner
+                    android:id="@+id/junmun_obstacle_sp_obstacleDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:spinnerMode="dropdown"
+                    android:entries="@array/obstacleWireDetail"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:src="@drawable/arrow_down" />
+
+            </RelativeLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

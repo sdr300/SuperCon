@@ -17,7 +17,7 @@
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:background="#2F5597"
+            android:background="#7F7F7F"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="5dp"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:onClick="onButtonClick"
                 android:src="@drawable/back_white"
@@ -56,7 +56,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="2dp"
-            android:background="@drawable/border"
+            android:background="@drawable/borderblack"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
@@ -68,28 +68,26 @@
                 android:id="@+id/junmun_intel_tv_rank"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="우선 순위 : "
-                android:textColor="@color/black"
                 android:layout_marginStart="10dp"
                 android:clickable="true"
-                app:layout_constraintBottom_toBottomOf="@id/junmun_intel_sp_priority"
+                android:text="우선 순위 : "
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/junmun_intel_sp_priority_rl"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/junmun_intel_sp_priority_rl" />
 
             <RelativeLayout
-                android:id="@+id/junmun_intel_sp_priority"
+                android:id="@+id/junmun_intel_sp_priority_rl"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="3dp"
                 android:orientation="horizontal"
                 android:background="@drawable/videospinnerborder"
-                android:layout_marginBottom="3dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toEndOf="@id/junmun_intel_tv_rank"
                 app:layout_constraintBottom_toTopOf="@id/divider1">
 
                 <Spinner
-                    android:id="@+id/junmun_intel_sp_priority1"
+                    android:id="@+id/junmun_intel_sp_priority"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -115,12 +113,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_centerInParent="true"
-                android:layout_marginTop="2dp"
-                android:background="#000"
+                android:background="#fff"
+                app:layout_constraintBottom_toTopOf="@id/junmun_intel_et_time"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/junmun_intel_tv_rank"
-                app:layout_constraintBottom_toTopOf="@id/junmun_intel_et_time"/>
+                app:layout_constraintTop_toBottomOf="@id/junmun_intel_sp_priority_rl" />
 
 
             <TextView
@@ -131,8 +128,7 @@
                 android:gravity="center_horizontal"
                 android:text="관측 시간 : "
                 android:maxLength="25"
-                android:imeOptions="flagNoExtractUi"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@id/junmun_intel_et_time"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/junmun_intel_et_time" />
@@ -141,30 +137,30 @@
                 android:id="@+id/junmun_intel_et_time"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:layout_marginEnd="10dp"
-                android:hint="관측 시간 입력"
-                android:textSize="16sp"
-                android:maxLength="25"
                 android:background="@color/white"
-                android:layout_marginBottom="3dp"
-                android:singleLine="true"
+                android:hint="관측 시간 입력"
                 android:imeOptions="actionDone|flagNoExtractUi"
-                app:layout_constraintStart_toEndOf="@id/junmun_intel_tv_time"
-                app:layout_constraintTop_toBottomOf="@id/divider1"
+                android:maxLength="25"
+                android:singleLine="true"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@id/divider2"
                 app:layout_constraintEnd_toEndOf="parent"
-                />
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/junmun_intel_tv_time"
+                app:layout_constraintTop_toBottomOf="@id/divider1" />
 
             <View
                 android:id="@+id/divider2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_centerInParent="true"
-                android:background="#000"
+                android:background="#fff"
+                app:layout_constraintBottom_toTopOf="@id/junmun_intel_et_location_observe"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/junmun_intel_et_time"
-                app:layout_constraintBottom_toTopOf="@id/junmun_intel_et_location_observe"/>
+                app:layout_constraintTop_toBottomOf="@+id/junmun_intel_et_time" />
 
             <TextView
                 android:id="@+id/junmun_intel_tv_location_observe"
@@ -173,7 +169,7 @@
                 android:layout_marginStart="10dp"
                 android:gravity="center_horizontal"
                 android:text="관측 위치 : "
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@id/junmun_intel_et_location_observe"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/junmun_intel_et_location_observe" />
@@ -189,8 +185,7 @@
                 android:textSize="16sp"
                 android:background="@color/white"
                 android:singleLine="true"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
+                android:layout_marginStart="5dp"
                 app:layout_constraintBottom_toTopOf="@id/divider3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/junmun_intel_tv_location_observe"
@@ -201,7 +196,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_centerInParent="true"
-                android:background="#000"
+                android:background="#fff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/junmun_intel_et_location_observe"
@@ -215,7 +210,7 @@
                 android:gravity="center_horizontal"
                 android:text="개체 위치 : "
                 android:imeOptions="flagNoExtractUi"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@id/junmun_intel_et_location_object"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/junmun_intel_et_location_object"/>
@@ -231,8 +226,7 @@
                 android:background="@color/white"
                 android:imeOptions="actionDone|flagNoExtractUi"
                 android:singleLine="true"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
+                android:layout_marginStart="5dp"
                 app:layout_constraintStart_toEndOf="@id/junmun_intel_tv_location_object"
                 app:layout_constraintTop_toBottomOf="@id/divider3"
                 app:layout_constraintBottom_toTopOf="@id/divider4"
@@ -244,11 +238,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_centerInParent="true"
-                android:background="#000"
-                android:layout_marginTop="2dp"
+                android:background="#fff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/junmun_intel_et_location_object"/>
+                app:layout_constraintTop_toBottomOf="@+id/junmun_intel_et_location_object"
+                app:layout_constraintBottom_toTopOf="@id/junmun_intel_sp_type_rl"/>
 
             <TextView
                 android:id="@+id/junmun_intel_tv_type"
@@ -258,26 +252,23 @@
                 android:gravity="center_horizontal"
                 android:text="개체 유형 : "
                 android:imeOptions="flagNoExtractUi"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@id/junmun_intel_sp_type"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/junmun_intel_sp_type_rl"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/junmun_intel_sp_type"/>
+                app:layout_constraintTop_toTopOf="@id/junmun_intel_sp_type_rl"/>
 
             <RelativeLayout
-                android:id="@+id/junmun_intel_sp_type"
+                android:id="@+id/junmun_intel_sp_type_rl"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="3dp"
                 android:orientation="horizontal"
                 android:background="@drawable/videospinnerborder"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="3dp"
                 app:layout_constraintTop_toBottomOf="@id/divider4"
                 app:layout_constraintBottom_toTopOf="@id/divider5"
                 app:layout_constraintStart_toEndOf="@id/junmun_intel_tv_type">
 
                 <Spinner
-                    android:id="@+id/junmun_intel_sp_type1"
+                    android:id="@+id/junmun_intel_sp_type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -303,11 +294,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_centerInParent="true"
-                android:background="#000"
-                android:layout_marginTop="3dp"
+                android:background="#fff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/junmun_intel_sp_type"/>
+                app:layout_constraintTop_toBottomOf="@+id/junmun_intel_sp_type_rl"
+                app:layout_constraintBottom_toTopOf="@id/junmun_intel_sp_property_rl"/>
 
             <TextView
                 android:id="@+id/junmun_intel_tv_property"
@@ -317,26 +308,23 @@
                 android:gravity="center_horizontal"
                 android:text="부대 규모 : "
                 android:imeOptions="flagNoExtractUi"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@id/junmun_intel_sp_property"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/junmun_intel_sp_property_rl"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/junmun_intel_sp_property"/>
+                app:layout_constraintTop_toTopOf="@id/junmun_intel_sp_property_rl"/>
 
             <RelativeLayout
-                android:id="@+id/junmun_intel_sp_property"
+                android:id="@+id/junmun_intel_sp_property_rl"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="3dp"
                 android:orientation="horizontal"
                 android:background="@drawable/videospinnerborder"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="3dp"
                 app:layout_constraintStart_toEndOf="@id/junmun_intel_tv_property"
                 app:layout_constraintTop_toBottomOf="@id/divider5"
                 app:layout_constraintBottom_toTopOf="@id/divider6">
 
                 <Spinner
-                    android:id="@+id/junmun_intel_sp_property1"
+                    android:id="@+id/junmun_intel_sp_property"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -362,11 +350,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_centerInParent="true"
-                android:background="#000"
-                android:layout_marginTop="3dp"
+                android:background="#fff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/junmun_intel_sp_property"/>
+                app:layout_constraintTop_toBottomOf="@+id/junmun_intel_sp_property_rl"
+                app:layout_constraintBottom_toTopOf="@+id/junmun_intel_et_quantity"/>
 
             <TextView
                 android:id="@+id/junmun_intel_tv_quantity"
@@ -376,7 +364,7 @@
                 android:gravity="center_horizontal"
                 android:text="개체 수량 : "
                 android:imeOptions="flagNoExtractUi"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@id/junmun_intel_et_quantity"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/junmun_intel_et_quantity"/>
@@ -385,16 +373,15 @@
                 android:id="@+id/junmun_intel_et_quantity"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="3dp"
-                android:maxLength="25"
+                android:maxLength="15"
                 android:background="@color/white"
                 android:imeOptions="actionDone|flagNoExtractUi"
                 android:singleLine="true"
                 android:hint="개체 수량 입력"
                 android:textSize="16sp"
+                android:layout_marginStart="5dp"
                 app:layout_constraintBottom_toTopOf="@id/divider7"
-                app:layout_constraintEnd_toEndOf="@+id/junmun_intel_sp_property"
+                app:layout_constraintEnd_toEndOf="@+id/junmun_intel_sp_property_rl"
                 app:layout_constraintStart_toEndOf="@id/junmun_intel_tv_quantity"
                 app:layout_constraintTop_toBottomOf="@id/divider6" />
 
@@ -406,7 +393,7 @@
                 android:gravity="center_horizontal"
                 android:text="문"
                 android:imeOptions="flagNoExtractUi"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@id/junmun_intel_et_quantity"
                 app:layout_constraintStart_toEndOf="@id/junmun_intel_et_quantity"
                 app:layout_constraintTop_toTopOf="@id/junmun_intel_et_quantity"/>
@@ -416,11 +403,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_centerInParent="true"
-                android:background="#000"
-                android:layout_marginTop="3dp"
+                android:background="#fff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/junmun_intel_et_quantity"/>
+                app:layout_constraintTop_toBottomOf="@+id/junmun_intel_et_quantity"
+                app:layout_constraintBottom_toTopOf="@id/junmun_intel_et_file"/>
 
             <TextView
                 android:id="@+id/junmun_intel_tv_file"
@@ -428,7 +415,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="사진 첨부 : "
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@id/junmun_intel_ibt_file"
                 app:layout_constraintEnd_toStartOf="@id/junmun_intel_et_file"
                 app:layout_constraintStart_toStartOf="parent"
@@ -439,25 +426,24 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:textSize="16sp"
-                android:focusable="false"
                 android:background="@color/white"
+                android:focusable="false"
                 android:singleLine="true"
-                app:layout_constraintStart_toEndOf="@id/junmun_intel_tv_file"
-                app:layout_constraintTop_toTopOf="@id/junmun_intel_ibt_file"
+                android:textSize="16sp"
+                android:layout_marginStart="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/junmun_intel_ibt_file"
-                app:layout_constraintBottom_toBottomOf="@id/junmun_intel_ibt_file"
-                />
+                app:layout_constraintStart_toEndOf="@id/junmun_intel_tv_file"
+                app:layout_constraintTop_toBottomOf="@+id/divider7" />
 
             <ImageButton
                 android:id="@+id/junmun_intel_ibt_file"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginTop="2dp"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:scaleType="fitXY"
-                android:src="@drawable/plus_black"
+                android:src="@drawable/plus3"
                 app:layout_constraintStart_toEndOf="@id/junmun_intel_et_file"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -469,25 +455,27 @@
         <Button
             android:id="@+id/junmun_btn_write_main"
             android:layout_width="0dp"
-            android:layout_height="35dp"
+            android:layout_height="20dp"
             android:background="@drawable/bg_custom_button4"
             android:text="전송"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="15sp"
+            android:layout_marginBottom="1dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btn_back_under"
+            app:layout_constraintEnd_toStartOf="@+id/btn_back_under_super"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
         <Button
-            android:id="@+id/btn_back_under"
+            android:id="@+id/btn_back_under_super"
             android:onClick="onButtonClick"
             android:layout_width="0dp"
-            android:layout_height="35dp"
+            android:layout_height="20dp"
             android:text="취소"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:textColor="@color/white"
             android:background="@drawable/bg_custom_button4"
+            android:layout_marginBottom="1dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/junmun_btn_write_main"
             app:layout_constraintTop_toTopOf="@id/junmun_btn_write_main" />
