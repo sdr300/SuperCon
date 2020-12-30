@@ -46,9 +46,9 @@
                 android:text="거리환 설정"
                 android:textColor="#fff"
                 android:textSize="15sp"
-                android:layout_marginStart="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/btn_back"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -242,12 +242,11 @@
                 android:layout_width="120dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight="3dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/videospinnerborder"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="@id/dogu_tv_unit"
-                app:layout_constraintStart_toStartOf="@+id/dogu_tv_sw_off"
+                app:layout_constraintStart_toStartOf="@+id/dogu_tv_setcoordinates"
                 app:layout_constraintTop_toTopOf="@id/dogu_tv_unit">
 
                 <Spinner
