@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -20,7 +21,8 @@ import superconn.pds.sw.superconn.R;
 
 public class JunmunObstacleFragment extends Fragment {
 
-    ArrayList<String> arrayList;
+    ArrayList<String> arrayList_obstacle, arrayList_obstacle_wire, arrayList_obstacle_tank, arrayList_obstacle_mine, arrayList_obstacle_etc;
+    ArrayAdapter<String> arrayAdapter_obstacle, arrayAdapter_obstacle_detail;
 
     public JunmunObstacleFragment() {
         // Required empty public constructor
@@ -33,8 +35,6 @@ public class JunmunObstacleFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_junmun_obstacle, container, false);
 
         //spinner 장착
-
-        arrayList = new ArrayList<>();
         Spinner junmun_obstacle_sp_priority = view.findViewById(R.id.junmun_obstacle_sp_priority);
 
         final ArrayAdapter arrayAdapter_priority = ArrayAdapter.createFromResource(getActivity().getApplicationContext(), R.array.priority, android.R.layout.simple_spinner_dropdown_item);
@@ -47,17 +47,68 @@ public class JunmunObstacleFragment extends Fragment {
         arrayAdapter_obstaclePia.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         junmun_obstacle_sp_obstaclePia.setAdapter(arrayAdapter_obstaclePia);
 
+        //============ dependant spinner - obstacle ===========//
+
         Spinner junmun_obstacle_sp_obstacleType = view.findViewById(R.id.junmun_obstacle_sp_obstacleType);
+        final Spinner junmun_obstacle_sp_obstacleDetail = view.findViewById(R.id.junmun_obstacle_sp_obstacleDetail);
 
-        final ArrayAdapter arrayAdapter_obstacleType = ArrayAdapter.createFromResource(getActivity().getApplicationContext(), R.array.obstacleType, android.R.layout.simple_spinner_dropdown_item);
-        arrayAdapter_obstacleType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        junmun_obstacle_sp_obstacleType.setAdapter(arrayAdapter_obstacleType);
+        arrayList_obstacle = new ArrayList<>();
+        arrayList_obstacle.add("철조망");
+        arrayList_obstacle.add("대전차 장애물");
+        arrayList_obstacle.add("지뢰지대");
+        arrayList_obstacle.add("기타");
 
-        Spinner junmun_obstacle_sp_obstacleDetail = view.findViewById(R.id.junmun_obstacle_sp_obstacleDetail);
+        arrayAdapter_obstacle = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, arrayList_obstacle);
 
-        final ArrayAdapter arrayAdapter_obstacleDetail = ArrayAdapter.createFromResource(getActivity().getApplicationContext(), R.array.obstacleWireDetail, android.R.layout.simple_spinner_dropdown_item);
-        arrayAdapter_obstacleDetail.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        junmun_obstacle_sp_obstacleDetail.setAdapter(arrayAdapter_obstacleDetail);
+        junmun_obstacle_sp_obstacleType.setAdapter(arrayAdapter_obstacle);
+
+        //============ dependant spinner - detail ===========//
+
+        arrayList_obstacle_wire = new ArrayList<>();
+        arrayList_obstacle_wire.add("철조망");
+        arrayList_obstacle_wire.add("가시형 철조망");
+        arrayList_obstacle_wire.add("면도칼형 철조망");
+        arrayList_obstacle_wire.add("미식별");
+
+        arrayList_obstacle_tank = new ArrayList<>();
+        arrayList_obstacle_tank.add("대전차 방벽");
+        arrayList_obstacle_tank.add("대전차장애물(고정식)");
+        arrayList_obstacle_tank.add("대전차장애물(이동식)");
+
+        arrayList_obstacle_mine = new ArrayList<>();
+        arrayList_obstacle_mine.add("지뢰지역");
+
+        arrayList_obstacle_etc = new ArrayList<>();
+        arrayList_obstacle_etc.add("부비트랩");
+        arrayList_obstacle_etc.add("목책");
+        arrayList_obstacle_etc.add("미식별");
+
+        //==== spinner 장착 =====//
+
+        junmun_obstacle_sp_obstacleType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) {
+                    arrayAdapter_obstacle_detail = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, arrayList_obstacle_wire);
+                }
+                if (position == 1) {
+                    arrayAdapter_obstacle_detail = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, arrayList_obstacle_tank);
+                }
+                if (position == 2) {
+                    arrayAdapter_obstacle_detail = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, arrayList_obstacle_mine);
+                }
+                if (position == 3) {
+                    arrayAdapter_obstacle_detail = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, arrayList_obstacle_etc);
+                }
+
+                junmun_obstacle_sp_obstacleDetail.setAdapter(arrayAdapter_obstacle_detail);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         //엔터 클릭시 다음줄이 아닌 키보드 안보이게 설정
         final EditText junmun_obstacle_et_time = view.findViewById(R.id.junmun_obstacle_et_time);

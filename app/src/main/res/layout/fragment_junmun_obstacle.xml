@@ -220,7 +220,7 @@
 
             <RelativeLayout
                 android:id="@+id/junmun_obstacle_sp_obstaclePia_rl"
-                android:layout_width="120dp"
+                android:layout_width="140dp"
                 android:layout_height="25dp"
                 android:orientation="horizontal"
                 android:background="@drawable/videospinnerborder"
@@ -277,7 +277,7 @@
 
             <RelativeLayout
                 android:id="@+id/junmun_obstacle_sp_obstacleType_rl"
-                android:layout_width="120dp"
+                android:layout_width="140dp"
                 android:layout_height="25dp"
                 android:orientation="horizontal"
                 android:background="@drawable/videospinnerborder"
@@ -294,8 +294,7 @@
                     android:background="@android:color/transparent"
                     android:gravity="center"
                     android:layout_marginLeft="5dp"
-                    android:spinnerMode="dropdown"
-                    android:entries="@array/obstacleType"/>
+                    android:spinnerMode="dropdown"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -336,7 +335,7 @@
 
             <RelativeLayout
                 android:id="@+id/junmun_obstacle_sp_obstacleDetail_rl"
-                android:layout_width="120dp"
+                android:layout_width="140dp"
                 android:layout_height="25dp"
                 android:orientation="horizontal"
                 android:background="@drawable/videospinnerborder"
@@ -353,8 +352,7 @@
                     android:background="@android:color/transparent"
                     android:gravity="center"
                     android:layout_marginLeft="5dp"
-                    android:spinnerMode="dropdown"
-                    android:entries="@array/obstacleWireDetail"/>
+                    android:spinnerMode="dropdown"/>
 
                 <ImageView
                     android:layout_width="wrap_content"

@@ -78,7 +78,7 @@
 
             <RelativeLayout
                 android:id="@+id/junmun_intel_sp_priority_rl"
-                android:layout_width="120dp"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:background="@drawable/videospinnerborder"
@@ -242,7 +242,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/junmun_intel_et_location_object"
-                app:layout_constraintBottom_toTopOf="@id/junmun_intel_sp_type_rl"/>
+                app:layout_constraintBottom_toTopOf="@id/junmun_intel_sp_type1_rl"/>
 
             <TextView
                 android:id="@+id/junmun_intel_tv_type"
@@ -253,13 +253,13 @@
                 android:text="개체 유형 : "
                 android:imeOptions="flagNoExtractUi"
                 android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@id/junmun_intel_sp_type_rl"
+                app:layout_constraintBottom_toBottomOf="@id/junmun_intel_sp_type1_rl"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/junmun_intel_sp_type_rl"/>
+                app:layout_constraintTop_toTopOf="@id/junmun_intel_sp_type1_rl"/>
 
             <RelativeLayout
-                android:id="@+id/junmun_intel_sp_type_rl"
-                android:layout_width="120dp"
+                android:id="@+id/junmun_intel_sp_type1_rl"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:background="@drawable/videospinnerborder"
@@ -268,7 +268,7 @@
                 app:layout_constraintStart_toEndOf="@id/junmun_intel_tv_type">
 
                 <Spinner
-                    android:id="@+id/junmun_intel_sp_type"
+                    android:id="@+id/junmun_intel_sp_type1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -276,8 +276,7 @@
                     android:background="@android:color/transparent"
                     android:gravity="center"
                     android:layout_marginLeft="5dp"
-                    android:spinnerMode="dropdown"
-                    android:entries="@array/type"/>
+                    android:spinnerMode="dropdown"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -297,11 +296,11 @@
                 android:background="#fff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/junmun_intel_sp_type_rl"
-                app:layout_constraintBottom_toTopOf="@id/junmun_intel_sp_property_rl"/>
+                app:layout_constraintTop_toBottomOf="@+id/junmun_intel_sp_type1_rl"
+                app:layout_constraintBottom_toTopOf="@id/junmun_intel_sp_type2_rl"/>
 
             <TextView
-                android:id="@+id/junmun_intel_tv_property"
+                android:id="@+id/junmun_intel_tv_type2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -309,22 +308,22 @@
                 android:text="부대 규모 : "
                 android:imeOptions="flagNoExtractUi"
                 android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@id/junmun_intel_sp_property_rl"
+                app:layout_constraintBottom_toBottomOf="@id/junmun_intel_sp_type2_rl"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/junmun_intel_sp_property_rl"/>
+                app:layout_constraintTop_toTopOf="@id/junmun_intel_sp_type2_rl"/>
 
             <RelativeLayout
-                android:id="@+id/junmun_intel_sp_property_rl"
-                android:layout_width="120dp"
+                android:id="@+id/junmun_intel_sp_type2_rl"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:background="@drawable/videospinnerborder"
-                app:layout_constraintStart_toEndOf="@id/junmun_intel_tv_property"
+                app:layout_constraintStart_toEndOf="@id/junmun_intel_tv_type2"
                 app:layout_constraintTop_toBottomOf="@id/divider5"
                 app:layout_constraintBottom_toTopOf="@id/divider6">
 
                 <Spinner
-                    android:id="@+id/junmun_intel_sp_property"
+                    android:id="@+id/junmun_intel_sp_type2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -332,8 +331,7 @@
                     android:background="@android:color/transparent"
                     android:gravity="center"
                     android:layout_marginLeft="5dp"
-                    android:spinnerMode="dropdown"
-                    android:entries="@array/intelProperty"/>
+                    android:spinnerMode="dropdown"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -353,8 +351,8 @@
                 android:background="#fff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/junmun_intel_sp_property_rl"
-                app:layout_constraintBottom_toTopOf="@+id/junmun_intel_et_quantity"/>
+                app:layout_constraintTop_toBottomOf="@+id/junmun_intel_sp_type2_rl"
+                app:layout_constraintBottom_toTopOf="@+id/junmun_intel_sp_type3_rl"/>
 
             <TextView
                 android:id="@+id/junmun_intel_tv_quantity"
@@ -365,25 +363,41 @@
                 android:text="개체 수량 : "
                 android:imeOptions="flagNoExtractUi"
                 android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@id/junmun_intel_et_quantity"
+                app:layout_constraintBottom_toBottomOf="@id/junmun_intel_sp_type3_rl"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/junmun_intel_et_quantity"/>
+                app:layout_constraintTop_toTopOf="@id/junmun_intel_sp_type3_rl"/>
 
-            <EditText
-                android:id="@+id/junmun_intel_et_quantity"
-                android:layout_width="0dp"
+            <RelativeLayout
+                android:id="@+id/junmun_intel_sp_type3_rl"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:maxLength="15"
-                android:background="@color/white"
-                android:imeOptions="actionDone|flagNoExtractUi"
-                android:singleLine="true"
-                android:hint="개체 수량 입력"
-                android:textSize="16sp"
-                android:layout_marginStart="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/videospinnerborder"
                 app:layout_constraintBottom_toTopOf="@id/divider7"
-                app:layout_constraintEnd_toEndOf="@+id/junmun_intel_sp_property_rl"
+                app:layout_constraintEnd_toEndOf="@+id/junmun_intel_sp_type2_rl"
                 app:layout_constraintStart_toEndOf="@id/junmun_intel_tv_quantity"
-                app:layout_constraintTop_toBottomOf="@id/divider6" />
+                app:layout_constraintTop_toBottomOf="@id/divider6">
+
+                <Spinner
+                    android:id="@+id/junmun_intel_sp_type3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:spinnerMode="dropdown"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:src="@drawable/arrow_down" />
+
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/junmun_intel_tv_quantity2"
@@ -394,9 +408,9 @@
                 android:imeOptions="flagNoExtractUi"
                 android:textColor="@color/white"
                 android:layout_marginStart="5dp"
-                app:layout_constraintBottom_toBottomOf="@id/junmun_intel_et_quantity"
-                app:layout_constraintStart_toEndOf="@id/junmun_intel_et_quantity"
-                app:layout_constraintTop_toTopOf="@id/junmun_intel_et_quantity"/>
+                app:layout_constraintBottom_toBottomOf="@id/junmun_intel_sp_type3_rl"
+                app:layout_constraintStart_toEndOf="@id/junmun_intel_sp_type3_rl"
+                app:layout_constraintTop_toTopOf="@id/junmun_intel_sp_type3_rl"/>
 
             <View
                 android:id="@+id/divider7"
@@ -406,7 +420,7 @@
                 android:background="#fff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/junmun_intel_et_quantity"
+                app:layout_constraintTop_toBottomOf="@+id/junmun_intel_sp_type3_rl"
                 app:layout_constraintBottom_toTopOf="@id/junmun_intel_et_file"/>
 
             <TextView
