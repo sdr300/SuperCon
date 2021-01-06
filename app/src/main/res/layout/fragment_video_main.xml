@@ -14,69 +14,25 @@
         android:layout_height="match_parent"
         android:background="@drawable/background59"
        >
-            <Button
-                android:id="@+id/video_btn_ir"
-                android:layout_width="0dp"
-                android:layout_height="35dp"
-                android:text="IR 영상"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toTopOf="@+id/video_btn_eo"
-                app:layout_constraintStart_toEndOf="@id/videoView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/video_btn_eo"
-                android:layout_width="0dp"
-                android:layout_height="35dp"
-                android:text="EO 영상"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toTopOf="@+id/video_btn_zoomin"
-                app:layout_constraintStart_toEndOf="@id/videoView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/video_btn_ir" />
-
-            <Button
-                android:id="@+id/video_btn_zoomin"
-                android:layout_width="0dp"
-                android:layout_height="35dp"
-                android:text="Zoom In"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toTopOf="@+id/video_btn_zoomout"
-                app:layout_constraintStart_toEndOf="@id/videoView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/video_btn_eo" />
-
-            <Button
-                android:id="@+id/video_btn_zoomout"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:text="Zoom out"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toTopOf="@+id/video_tv_share_title"
-                app:layout_constraintStart_toEndOf="@id/videoView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/video_btn_zoomin" />
-
 
             <VideoView
                 android:id="@+id/videoView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintEnd_toStartOf="@id/video_btn_zoomout"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/video_tv_share_title"/>
 
-
             <TextView
                 android:id="@+id/video_tv_share_title"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="18dp"
                 android:text="영상공유"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:gravity="center"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
                 android:textColor="@color/white"
                 android:background="#7f7f7f"
                 app:layout_constraintStart_toStartOf="parent"
@@ -85,32 +41,29 @@
                 app:layout_constraintBottom_toTopOf="@id/video_btn_share"
                 />
 
-
-        <TextView
-            android:id="@+id/video_tv_share_member"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:background="@drawable/sharememberborder"
-            android:text="전투원1\n공유중"
-            android:textColor="@color/white"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/video_btn_ir"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:background="@drawable/bg_custom_button5"
+            android:text="IR 영상"
             android:textSize="10sp"
-            app:layout_constraintBottom_toTopOf="@+id/btn_back_under"
+            app:layout_constraintBottom_toBottomOf="@+id/video_sp_target"
+            app:layout_constraintEnd_toStartOf="@id/video_tv_share_target"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/video_tv_share_title" />
+            app:layout_constraintTop_toTopOf="@+id/video_sp_target" />
 
-        <TextView
-            android:id="@+id/video_tv_share_state"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="상태"
-            android:textColor="@color/white"
+        <Button
+            android:id="@+id/video_btn_eo"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:background="@drawable/bg_custom_button5"
+            android:text="EO 영상"
             android:textSize="10sp"
-            android:background="#595959"
-            android:layout_marginBottom="34dp"
-            app:layout_constraintBottom_toBottomOf="@id/video_tv_share_member"
-            app:layout_constraintEnd_toEndOf="@+id/video_tv_share_member"
-            app:layout_constraintStart_toStartOf="@id/video_tv_share_member" />
+            app:layout_constraintBottom_toBottomOf="@+id/video_sp_option"
+            app:layout_constraintEnd_toEndOf="@+id/video_btn_ir"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/video_sp_target" />
 
 
         <TextView
@@ -123,7 +76,7 @@
             android:textSize="10sp"
             app:layout_constraintBottom_toTopOf="@id/video_tv_share_option"
             app:layout_constraintEnd_toStartOf="@id/video_sp_target"
-            app:layout_constraintStart_toEndOf="@id/video_tv_share_state"
+            app:layout_constraintStart_toEndOf="@id/video_btn_ir"
             app:layout_constraintTop_toBottomOf="@id/video_tv_share_title" />
 
         <TextView
@@ -140,7 +93,7 @@
         <RelativeLayout
             android:id="@+id/video_sp_target"
             android:layout_width="120dp"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:layout_marginRight="3dp"
             android:orientation="horizontal"
             android:background="@drawable/videospinnerborder"
@@ -157,7 +110,8 @@
                 android:layout_gravity="center"
                 android:background="@android:color/transparent"
                 android:gravity="center"
-                android:layout_marginLeft="5dp"
+                android:theme="@style/SpinnerStyle"
+                android:layout_marginStart="5dp"
                 android:spinnerMode="dropdown"
                 android:entries="@array/videoMembers"/>
 
@@ -175,7 +129,7 @@
         <RelativeLayout
             android:id="@+id/video_sp_option"
             android:layout_width="120dp"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:layout_marginRight="3dp"
             android:orientation="horizontal"
             android:background="@drawable/videospinnerborder"
@@ -193,6 +147,7 @@
                 android:background="@android:color/transparent"
                 android:gravity="center"
                 android:layout_marginLeft="5dp"
+                android:theme="@style/SpinnerStyle"
                 android:spinnerMode="dropdown"
                 android:entries="@array/videoOption"/>
 
@@ -202,7 +157,6 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
-
                 android:src="@drawable/arrow_down" />
 
         </RelativeLayout>
@@ -211,9 +165,10 @@
             android:id="@+id/video_btn_share"
             android:onClick="onButtonClick"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="20dp"
             android:textSize="10sp"
             android:text="공유"
+            android:background="@drawable/bg_custom_button5"
             app:layout_constraintTop_toBottomOf="@id/video_tv_share_title"
             app:layout_constraintBottom_toTopOf="@id/video_btn_stop"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -222,9 +177,10 @@
             android:id="@+id/video_btn_stop"
             android:onClick="onButtonClick"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="20dp"
             android:textSize="10sp"
             android:text="정지"
+            android:background="@drawable/bg_custom_button5"
             app:layout_constraintTop_toBottomOf="@id/video_btn_share"
             app:layout_constraintBottom_toTopOf="@id/btn_back_under"
             app:layout_constraintEnd_toEndOf="parent" />
