@@ -246,7 +246,7 @@ public class MapActivity extends AppCompatActivity {
 
                 distance1 = (TextView) findViewById(R.id.distance1);
                 dogu_string = distance1.getText().toString();
-                dogu_int = (Integer.parseInt(dogu_string))/250;
+                dogu_int = (Integer.parseInt(dogu_string))/50;
                 int i=0;
                 drawMarker(p);
                 CompassOverlay compassOverlay = new CompassOverlay(MapActivity.this, map);
@@ -319,7 +319,7 @@ public class MapActivity extends AppCompatActivity {
                     for (i = 0; i < 4; i++) {
                         dGpoints[i] = new GeoPoint(p.getLatitude() + 0.002245 * dogu_int * (i + 1), p.getLongitude());
                         dmarkers[i] = new Marker(map);
-                        dmarkers[i].setTextIcon(250 * dogu_int * (i + 1) + "");
+                        dmarkers[i].setTextIcon(50 * dogu_int * (i + 1) + "");
                         dmarkers[i].setPosition(dGpoints[i]);
                         dmarkers[i].setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
                             @Override

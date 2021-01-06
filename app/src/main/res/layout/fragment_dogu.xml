@@ -72,7 +72,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="7dp"
                 android:text="거리환 표시"
                 android:textColor="@color/white"
                 android:textSize="20sp"
@@ -96,9 +96,8 @@
                 android:id="@+id/dogu_sw"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:layout_marginEnd="40dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="3dp"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="@+id/dogu_tv_sw"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -125,7 +124,7 @@
                 android:layout_height="1dp"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="10dp"
-                android:background="#000"
+                android:background="#fff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dogu_tv_sw" />
@@ -149,8 +148,8 @@
                 android:id="@+id/dogu_rg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="@+id/dogu_tv_location"
                 app:layout_constraintStart_toStartOf="@+id/dogu_tv_sw_off"
@@ -182,7 +181,7 @@
                 android:layout_centerInParent="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="#000"
+                android:background="#fff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/dogu_tv_location" />
@@ -203,8 +202,8 @@
                 android:id="@+id/dogu_tv_setcoordinates"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"
                 android:background="@drawable/border"
                 android:text="위도: 126.438696\n경도: 36.681669"
                 android:textColor="@color/black"
@@ -220,10 +219,80 @@
                 android:layout_centerInParent="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="#000"
+                android:background="#fff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/dogu_tv_setcoordinates" />
+
+            <TextView
+                android:id="@+id/dogu_tv_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10sp"
+                android:text="갯수"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider4" />
+
+            <RelativeLayout
+                android:id="@+id/dogu_sp_layout_number"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:background="@drawable/videospinnerborder"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="@id/dogu_tv_number"
+                app:layout_constraintStart_toStartOf="@+id/dogu_tv_setcoordinates"
+                app:layout_constraintTop_toTopOf="@id/dogu_tv_number">
+
+                <Spinner
+                    android:id="@+id/dogu_sp_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:background="@android:color/transparent"
+                    android:entries="@array/number"
+                    android:gravity="center"
+                    android:spinnerMode="dropdown" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:src="@drawable/arrow_down" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/dogu_tv_unit2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10sp"
+                android:text="M"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@id/dogu_sp_layout"
+                app:layout_constraintTop_toBottomOf="@+id/divider3" />
+
+            <View
+                android:id="@+id/divider4"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#fff"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dogu_sp_layout" />
 
             <TextView
                 android:id="@+id/dogu_tv_unit"
@@ -241,8 +310,8 @@
                 android:id="@+id/dogu_sp_layout"
                 android:layout_width="120dp"
                 android:layout_height="30dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
                 android:background="@drawable/videospinnerborder"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="@id/dogu_tv_unit"
@@ -272,17 +341,16 @@
             </RelativeLayout>
 
             <TextView
-                android:id="@+id/dogu_sp_unit"
+                android:id="@+id/dogu_tv_number2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10sp"
-                android:text="M"
+                android:text="개"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@id/dogu_sp_layout"
-                app:layout_constraintTop_toBottomOf="@+id/divider3" />
-
+                app:layout_constraintTop_toBottomOf="@+id/divider4" />
 
             <Button
                 android:id="@+id/dogu_btn_save"
