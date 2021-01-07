@@ -15,7 +15,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
             android:background="#7F7F7F"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -178,7 +178,7 @@
             <Button
                 android:id="@+id/chook_btn_save"
                 android:layout_width="0dp"
-                android:layout_height="20dp"
+                android:layout_height="30dp"
                 android:background="@drawable/bg_custom_button4"
                 android:text="확인"
                 android:textColor="@color/white"
@@ -190,7 +190,7 @@
             <Button
                 android:id="@+id/btn_back_under"
                 android:layout_width="0dp"
-                android:layout_height="20dp"
+                android:layout_height="30dp"
                 android:background="@drawable/bg_custom_button4"
                 android:onClick="onButtonClick"
                 android:text="닫기"

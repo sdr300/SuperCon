@@ -15,7 +15,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout"
             android:layout_width="0dp"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
             android:background="#2F5597"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +53,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout3"
             android:layout_width="0dp"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
             android:background="#7F7F7F"
             android:orientation="horizontal"
             app:layout_constraintStart_toEndOf="@id/linearLayout"
@@ -76,175 +76,11 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="5dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/border"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-
-
-
-            <ImageView
-                android:id="@+id/urgent4"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/urgent4"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/divider1"
-                app:layout_constraintStart_toStartOf="parent"
-                />
-
-            <TextView
-                android:id="@+id/junmun_receiver_receiver1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="전투원1"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:layout_marginStart="10dp"
-                app:layout_constraintStart_toEndOf="@id/urgent4"
-                app:layout_constraintBottom_toTopOf="@+id/junmun_receiver_time1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/junmun_receiver_time1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:text="27일 9시 42분"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:layout_marginStart="10dp"
-                app:layout_constraintStart_toEndOf="@id/urgent4"
-                app:layout_constraintBottom_toTopOf="@+id/divider1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/junmun_receiver_receiver1" />
-
-            <View
-                android:id="@+id/divider1"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="3dp"
-                android:background="#000"
-                app:layout_constraintBottom_toTopOf="@id/junmun_receiver_receiver2"
-                app:layout_constraintEnd_toEndOf="parent"
-
-                app:layout_constraintTop_toBottomOf="@id/junmun_receiver_time1" />
-
-            <ImageView
-                android:id="@+id/urgent3"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/urgent3"
-                app:layout_constraintTop_toBottomOf="@id/divider1"
-                app:layout_constraintBottom_toTopOf="@id/divider2"
-                app:layout_constraintStart_toStartOf="parent"
-                />
-
-            <TextView
-                android:id="@+id/junmun_receiver_receiver2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="전투원2"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:layout_marginStart="10dp"
-                app:layout_constraintStart_toEndOf="@id/urgent4"
-                app:layout_constraintBottom_toTopOf="@+id/junmun_receiver_time2"
-                app:layout_constraintEnd_toEndOf="parent"
-
-                app:layout_constraintTop_toBottomOf="@+id/divider1" />
-
-            <TextView
-                android:id="@+id/junmun_receiver_time2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:text="28일 9시 42분"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:layout_marginStart="10dp"
-                app:layout_constraintStart_toEndOf="@id/urgent4"
-                app:layout_constraintBottom_toTopOf="@+id/divider2"
-                app:layout_constraintEnd_toEndOf="parent"
-
-                app:layout_constraintTop_toBottomOf="@+id/junmun_receiver_receiver2" />
-
-            <View
-                android:id="@+id/divider2"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="3dp"
-                android:background="#000"
-                app:layout_constraintEnd_toEndOf="parent"
-
-                app:layout_constraintTop_toBottomOf="@id/junmun_receiver_time2" />
-
-            <ImageView
-                android:id="@+id/urgent2"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/urgent2"
-                app:layout_constraintTop_toBottomOf="@id/divider2"
-                app:layout_constraintBottom_toTopOf="@id/divider3"
-                app:layout_constraintStart_toStartOf="parent"
-                />
-
-            <TextView
-                android:id="@+id/junmun_receiver_receiver3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="전투원3"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintStart_toEndOf="@id/urgent3"
-                app:layout_constraintBottom_toTopOf="@+id/junmun_receiver_time3"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginStart="10dp"
-                app:layout_constraintTop_toBottomOf="@+id/divider2" />
-
-            <TextView
-                android:id="@+id/junmun_receiver_time3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:text="29일 9시 42분"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintStart_toEndOf="@id/urgent3"
-                app:layout_constraintBottom_toTopOf="@+id/divider3"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginStart="10dp"
-                app:layout_constraintTop_toBottomOf="@+id/junmun_receiver_receiver3" />
-
-            <View
-                android:id="@+id/divider3"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="3dp"
-                android:background="#000"
-                app:layout_constraintEnd_toEndOf="parent"
-
-                app:layout_constraintTop_toBottomOf="@id/junmun_receiver_time3" />
-
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
             android:id="@+id/junmun_btn_selectAll"
             android:layout_width="0dp"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
             android:text="전체선택"
             android:textSize="15sp"
             android:textColor="@color/white"
@@ -257,7 +93,7 @@
         <Button
             android:id="@+id/junmun_btn_delete_receiver"
             android:layout_width="0dp"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
             android:text="삭제"
             android:textSize="15sp"
             android:textColor="@color/white"
@@ -270,7 +106,7 @@
         <Button
             android:id="@+id/btn_back_under_super"
             android:layout_width="0dp"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
             android:text="뒤로"
             android:onClick="onButtonClick"
             android:textSize="15sp"

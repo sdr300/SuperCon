@@ -5,7 +5,6 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".junmun.JunmunMainFragment"
-    android:clickable="true"
     app:layout_constraintWidth_percent="0.5"
     app:layout_constraintEnd_toEndOf="parent"
     >
@@ -14,16 +13,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/transparent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
             android:layout_marginTop="5dp"
-            android:background="@drawable/border"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/bg_custom_button5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
             app:layout_constraintTop_toTopOf="parent">
@@ -36,20 +36,20 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
                 android:clickable="true"
-                android:text="내용 입력1"
-                android:textColor="@color/black"
-                android:textSize="15sp"
+                android:text="물체탐지"
+                android:textColor="@color/white"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <View
                 android:id="@+id/divider1"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_centerInParent="true"
-                android:background="#000"
                 android:layout_marginTop="5dp"
+                android:background="#fff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/etc_text_1" />
@@ -62,9 +62,9 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
                 android:clickable="true"
-                android:text="내용 입력2"
-                android:textColor="@color/black"
-                android:textSize="15sp"
+                android:text="투명도 관리"
+                android:textColor="@color/white"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toTopOf="@+id/divider2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -76,22 +76,22 @@
                 android:layout_height="1dp"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="5dp"
-                android:background="#000"
+                android:background="#fff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etc_text_2" />
 
             <TextView
-                android:id="@+id/etc_text_3"
+                android:id="@+id/etc_tv_etc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
                 android:clickable="true"
-                android:text="내용 입력3"
-                android:textColor="@color/black"
-                android:textSize="15sp"
+                android:text="TMMR 설정"
+                android:textColor="@color/white"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toTopOf="@id/divider3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -103,10 +103,10 @@
                 android:layout_height="1dp"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="5dp"
-                android:background="#000"
+                android:background="#fff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etc_text_3" />
+                app:layout_constraintTop_toBottomOf="@+id/etc_tv_etc" />
 
             <TextView
                 android:id="@+id/etc_text_4"
@@ -117,8 +117,8 @@
                 android:layout_marginEnd="5dp"
                 android:clickable="true"
                 android:text="내용 입력4"
-                android:textColor="@color/black"
-                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider3" />
@@ -129,7 +129,7 @@
                 android:layout_height="1dp"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="5dp"
-                android:background="#000"
+                android:background="#fff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etc_text_4" />
@@ -143,8 +143,8 @@
                 android:layout_marginEnd="5dp"
                 android:clickable="true"
                 android:text="내용 입력5"
-                android:textColor="@color/black"
-                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider4" />
@@ -155,7 +155,7 @@
                 android:layout_height="1dp"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="5dp"
-                android:background="#000"
+                android:background="#fff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etc_text_5" />
@@ -167,15 +167,15 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
                 android:clickable="true"
                 android:text="내용 입력6"
-                android:layout_marginBottom="5dp"
-                android:textColor="@color/black"
-                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider5"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@+id/divider5" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -125,17 +125,17 @@ public class MapActivity extends AppCompatActivity {
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));
 
         //풀화면
-//        View decorView = getWindow().getDecorView();
-//        decorView.setSystemUiVisibility(
-//                View.SYSTEM_UI_FLAG_IMMERSIVE|
-//                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE|
-//                        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION|
-//                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|
-//                        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|
-//                        View.SYSTEM_UI_FLAG_FULLSCREEN);
-//        int uiOptions = getWindow().getDecorView().getSystemUiVisibility();
-//        int newUiOptions = uiOptions;
-//        getWindow().getDecorView().setSystemUiVisibility(newUiOptions);
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_IMMERSIVE|
+                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE|
+                        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION|
+                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|
+                        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|
+                        View.SYSTEM_UI_FLAG_FULLSCREEN);
+        int uiOptions = getWindow().getDecorView().getSystemUiVisibility();
+        int newUiOptions = uiOptions;
+        getWindow().getDecorView().setSystemUiVisibility(newUiOptions);
 
         //
         map = findViewById(R.id.mapView);
@@ -165,9 +165,11 @@ public class MapActivity extends AppCompatActivity {
         addressText =  findViewById(R.id.addressText);
         addressText.setText("현재위치 좌표계: 경위도(DMS)\n"+dms(maplatitude, maplongitude));
 
-        CompassOverlay compassOverlay = new CompassOverlay(this, map);
-        compassOverlay.enableCompass();
-        map.getOverlays().add(compassOverlay);
+
+        //콤파스(compass) 필요하면 복구
+//        CompassOverlay compassOverlay = new CompassOverlay(this, map);
+//        compassOverlay.enableCompass();
+//        map.getOverlays().add(compassOverlay);
 
         //========starterMarker
         GeoPoint point = new GeoPoint(latitude, longitude);
@@ -188,7 +190,6 @@ public class MapActivity extends AppCompatActivity {
         });
 
         map.getController().setCenter(point);
-
 
         //==========================부호 좌표를 가져온 마커들========================//
 

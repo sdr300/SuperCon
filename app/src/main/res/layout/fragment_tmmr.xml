@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MapActivity"
+    android:background="#595959"
+    android:clickable="true"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="#7F7F7F"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btn_back_super"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:onClick="onButtonClick"
+                android:src="@drawable/back_white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:text="TMMR 설정"
+                android:textColor="#fff"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/tmmr_tv_ip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IP 주소 : "
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tmmr_cl_ip"
+            app:layout_constraintEnd_toStartOf="@id/tmmr_cl_ip"
+            app:layout_constraintBottom_toBottomOf="@id/tmmr_cl_ip"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/tmmr_cl_ip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/tmmr_et_subnet1"
+            app:layout_constraintStart_toEndOf="@+id/tmmr_tv_subnet"
+            app:layout_constraintTop_toBottomOf="@id/constraintLayout"
+            >
+
+        <EditText
+            android:id="@+id/tmmr_et_ip1"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tmmr_tv_ip1"/>
+        <TextView
+            android:id="@+id/tmmr_tv_ip1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="."
+            app:layout_constraintTop_toTopOf="@id/tmmr_et_ip1"
+            app:layout_constraintBottom_toBottomOf="@id/tmmr_et_ip1"
+            app:layout_constraintStart_toEndOf="@id/tmmr_et_ip1"
+            app:layout_constraintEnd_toStartOf="@id/tmmr_et_ip2"
+            />
+        <EditText
+            android:id="@+id/tmmr_et_ip2"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            app:layout_constraintTop_toTopOf="@id/tmmr_et_ip1"
+            app:layout_constraintBottom_toBottomOf="@id/tmmr_et_ip1"
+            app:layout_constraintStart_toEndOf="@id/tmmr_tv_ip1"
+            app:layout_constraintEnd_toStartOf="@id/tmmr_tv_ip2" />
+        <TextView
+            android:id="@+id/tmmr_tv_ip2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="."
+            app:layout_constraintTop_toTopOf="@id/tmmr_et_ip1"
+            app:layout_constraintBottom_toBottomOf="@id/tmmr_et_ip1"
+            app:layout_constraintStart_toEndOf="@id/tmmr_et_ip2"
+            app:layout_constraintEnd_toStartOf="@id/tmmr_et_ip3"
+            />
+        <EditText
+            android:id="@+id/tmmr_et_ip3"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            app:layout_constraintTop_toTopOf="@id/tmmr_et_ip1"
+            app:layout_constraintBottom_toBottomOf="@id/tmmr_et_ip1"
+            app:layout_constraintStart_toEndOf="@id/tmmr_tv_ip2"
+            app:layout_constraintEnd_toStartOf="@id/tmmr_tv_ip3" />
+        <TextView
+            android:id="@+id/tmmr_tv_ip3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="."
+            app:layout_constraintTop_toTopOf="@id/tmmr_et_ip1"
+            app:layout_constraintBottom_toBottomOf="@id/tmmr_et_ip1"
+            app:layout_constraintStart_toEndOf="@id/tmmr_et_ip3"
+            app:layout_constraintEnd_toStartOf="@id/tmmr_et_ip4"
+            />
+        <EditText
+            android:id="@+id/tmmr_et_ip4"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            app:layout_constraintTop_toTopOf="@id/tmmr_et_ip1"
+            app:layout_constraintBottom_toBottomOf="@id/tmmr_et_ip1"
+            app:layout_constraintStart_toEndOf="@id/tmmr_tv_ip3"
+            app:layout_constraintEnd_toEndOf="parent"  />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tmmr_tv_subnet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="서브넷 마스크 : "
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf= "@+id/tmmr_et_subnet1"
+            app:layout_constraintEnd_toStartOf="@+id/tmmr_et_subnet1"
+            app:layout_constraintBottom_toBottomOf="@+id/tmmr_et_subnet1" />
+
+         <EditText
+         android:id="@+id/tmmr_et_subnet1"
+         android:layout_width="50dp"
+         android:layout_height="wrap_content"
+            android:inputType="number"
+             app:layout_constraintBottom_toTopOf="@id/tmmr_et_gate1"
+             app:layout_constraintStart_toEndOf="@id/tmmr_tv_subnet"
+             app:layout_constraintTop_toBottomOf="@id/tmmr_et_ip1"/>
+
+        <TextView
+            android:id="@+id/tmmr_tv_gate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="게이트웨이 : "
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tmmr_et_gate1"
+            app:layout_constraintEnd_toStartOf="@id/tmmr_et_gate1"
+            app:layout_constraintBottom_toBottomOf="@id/tmmr_et_gate1"
+            />
+
+        <EditText
+            android:id="@+id/tmmr_et_gate1"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            app:layout_constraintStart_toEndOf="@+id/tmmr_tv_subnet"
+            app:layout_constraintTop_toBottomOf="@id/tmmr_et_subnet1"
+
+            />
+
+        <Button
+            android:id="@+id/tmmr_btn_save"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:text="전송"
+            android:textSize="15sp"
+            android:layout_margin="3dp"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_custom_button4"
+            app:layout_constraintEnd_toStartOf="@+id/btn_back_under"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <Button
+            android:id="@+id/btn_back_under"
+            android:onClick="onButtonClick"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:background="@drawable/bg_custom_button4"
+            android:text="닫기"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:layout_margin="3dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tmmr_btn_save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tmmr_btn_save"
+            app:layout_constraintTop_toTopOf="@id/tmmr_btn_save" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

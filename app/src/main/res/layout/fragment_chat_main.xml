@@ -16,7 +16,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
             android:background="#7F7F7F"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -98,7 +98,7 @@
         <Button
             android:id="@+id/junmun_chat_btn_write_main"
             android:layout_width="0dp"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
             android:text="전송"
             android:textSize="15sp"
             android:layout_margin="3dp"
@@ -112,7 +112,7 @@
             android:id="@+id/btn_back_under"
             android:onClick="onButtonClick"
             android:layout_width="0dp"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
             android:background="@drawable/bg_custom_button4"
             android:text="닫기"
             android:textColor="@color/white"
