@@ -99,7 +99,6 @@ public class FragmentDogu extends Fragment {
                     dogu_string = dogu_sp.getSelectedItem().toString();
                     dogu_int = Integer.parseInt(dogu_string);
                 }
-
             }
 
             @Override
@@ -117,7 +116,6 @@ public class FragmentDogu extends Fragment {
             @Override
             public void onClick(View v) {
                 saveData();
-
                 distance1.setText(dogu_int+"");
             }
         });

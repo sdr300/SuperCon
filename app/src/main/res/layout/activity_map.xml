@@ -174,22 +174,12 @@
             android:background="?android:attr/selectableItemBackgroundBorderless"
             android:src= "@drawable/zoomplus_white"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/ibt_zoom_minus"
-            android:clickable="false"/>
-
-        <TextView
-            android:id="@+id/text_zoom_plus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="지도 확대"
-            android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/ibt_zoom_plus"
-            app:layout_constraintStart_toStartOf="@+id/ibt_zoom_plus"
-            app:layout_constraintTop_toBottomOf="@id/ibt_zoom_plus"/>
-
+            android:clickable="false"/>
 
 
         <ImageButton
@@ -205,207 +195,98 @@
             app:layout_constraintStart_toEndOf="@id/ibt_zoom_plus"
             app:layout_constraintEnd_toStartOf="@id/ibt_chook" />
 
-        <TextView
-            android:id="@+id/text_zoom_minus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="지도 축소"
-            android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/ibt_zoom_minus"
-            app:layout_constraintStart_toStartOf="@+id/ibt_zoom_minus"
-            app:layout_constraintTop_toBottomOf="@id/ibt_zoom_minus"/>
-
         <ImageButton
             android:id="@+id/ibt_chook"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:onClick="onButtonClick"
-            android:scaleType="fitXY"
             android:layout_marginTop="5dp"
             android:background="?android:attr/selectableItemBackgroundBorderless"
-            android:src= "@drawable/map_chook_white"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ibt_zoom_minus"
+            android:onClick="onButtonClick"
+            android:scaleType="fitXY"
+            android:src="@drawable/map_chook_white"
             app:layout_constraintEnd_toStartOf="@id/ibt_globe"
-            app:layout_constraintBottom_toTopOf="@+id/text_chook" />
-
-        <TextView
-            android:id="@+id/text_chook"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="지도 종류"
-            android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/ibt_chook"
-            app:layout_constraintStart_toStartOf="@+id/ibt_chook"
-            app:layout_constraintTop_toBottomOf="@id/ibt_chook"/>
+            app:layout_constraintStart_toEndOf="@id/ibt_zoom_minus"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/ibt_globe"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/mapglobe_white"
             android:onClick="onButtonClick"
-            android:layout_marginTop="5dp"
-            app:layout_constraintStart_toEndOf="@id/ibt_chook"
             app:layout_constraintEnd_toStartOf="@id/ibt_dogu"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/text_globe"
-            tools:layout_editor_absoluteX="21dp" />
-
-        <TextView
-            android:id="@+id/text_globe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="좌표계"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="@+id/ibt_globe"
-            app:layout_constraintStart_toStartOf="@+id/ibt_globe"
-            app:layout_constraintTop_toBottomOf="@+id/ibt_globe"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
+            app:layout_constraintStart_toEndOf="@id/ibt_chook"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <ImageButton
             android:id="@+id/ibt_dogu"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_marginTop="5dp"
             android:background="?android:attr/selectableItemBackgroundBorderless"
             android:onClick="onButtonClick"
             android:scaleType="fitXY"
-            android:layout_marginTop="5dp"
             android:src="@drawable/ruler_white"
-            app:layout_constraintStart_toEndOf="@id/ibt_globe"
             app:layout_constraintEnd_toStartOf="@id/ibt_video"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/text_dogu"
-            tools:layout_editor_absoluteX="40dp" />
-
-        <TextView
-            android:id="@+id/text_dogu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="측정 도구"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="@+id/ibt_dogu"
-            app:layout_constraintStart_toStartOf="@+id/ibt_dogu"
-            app:layout_constraintTop_toBottomOf="@+id/ibt_dogu" />
+            app:layout_constraintStart_toEndOf="@id/ibt_globe"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/ibt_video"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:onClick="onButtonClick"
             android:layout_marginTop="5dp"
+            android:background="@drawable/video_white"
+            android:onClick="onButtonClick"
             app:layout_constraintEnd_toStartOf="@+id/ibt_camera"
             app:layout_constraintStart_toEndOf="@id/ibt_dogu"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/text_video"
-            android:background="@drawable/video_white" />
-
-        <TextView
-            android:id="@+id/text_video"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="영상 센서"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="@+id/ibt_video"
-            app:layout_constraintStart_toStartOf="@+id/ibt_video"
-            app:layout_constraintTop_toBottomOf="@+id/ibt_dogu"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/ibt_camera"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:onClick="onButtonClick"
             android:layout_marginTop="5dp"
+            android:background="@drawable/camera_white"
+            android:onClick="onButtonClick"
             app:layout_constraintEnd_toStartOf="@+id/ibt_chat"
             app:layout_constraintStart_toEndOf="@id/ibt_video"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/text_camera"
-            android:background="@drawable/camera_white" />
-
-        <TextView
-            android:id="@+id/text_camera"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="정지 영상"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="@+id/ibt_camera"
-            app:layout_constraintStart_toStartOf="@+id/ibt_camera"
-            app:layout_constraintTop_toBottomOf="@+id/ibt_camera"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/ibt_chat"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:onClick="onButtonClick"
             android:layout_marginTop="5dp"
+            android:background="@drawable/chat_white"
+            android:onClick="onButtonClick"
             app:layout_constraintEnd_toStartOf="@+id/ibt_junmun"
             app:layout_constraintStart_toEndOf="@id/ibt_camera"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/text_chat"
-            android:background="@drawable/chat_white" />
-
-        <TextView
-            android:id="@+id/text_chat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="문자 회의"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="@+id/ibt_chat"
-            app:layout_constraintStart_toStartOf="@+id/ibt_chat"
-            app:layout_constraintTop_toBottomOf="@+id/ibt_chat"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/ibt_junmun"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:onClick="onButtonClick"
             android:layout_marginTop="5dp"
+            android:background="@drawable/mail_white"
+            android:onClick="onButtonClick"
             app:layout_constraintEnd_toStartOf="@+id/ibt_waikie"
             app:layout_constraintStart_toEndOf="@id/ibt_chat"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/text_junmun"
-            android:background="@drawable/mail_white" />
-
-        <TextView
-            android:id="@+id/text_junmun"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="전문"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="@id/ibt_junmun"
-            app:layout_constraintStart_toStartOf="@id/ibt_junmun"
-            app:layout_constraintTop_toBottomOf="@id/ibt_junmun"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/ibt_waikie"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:onClick="onButtonClick"
             android:layout_marginTop="5dp"
+            android:background="@drawable/walkietalkie_white"
+            android:onClick="onButtonClick"
             app:layout_constraintEnd_toStartOf="@+id/ibt_etc"
             app:layout_constraintStart_toEndOf="@id/ibt_junmun"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/text_walkie"
-            android:background="@drawable/walkietalkie_white" />
-
-        <TextView
-            android:id="@+id/text_walkie"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="무전기"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="@id/ibt_waikie"
-            app:layout_constraintStart_toStartOf="@id/ibt_waikie"
-            app:layout_constraintTop_toBottomOf="@id/ibt_waikie"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/ibt_etc"
@@ -414,21 +295,9 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/etc_white"
             android:onClick="onButtonClick"
-            app:layout_constraintBottom_toTopOf="@id/text_etc"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ibt_waikie"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <TextView
-            android:id="@+id/text_etc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="기타"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="@id/ibt_etc"
-            app:layout_constraintStart_toStartOf="@id/ibt_etc"
-            app:layout_constraintTop_toBottomOf="@id/ibt_etc"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

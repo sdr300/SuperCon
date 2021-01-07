@@ -15,69 +15,59 @@
         android:background="@drawable/background59"
        >
 
-            <VideoView
-                android:id="@+id/videoView"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/video_tv_share_title"/>
 
-            <TextView
-                android:id="@+id/video_tv_share_title"
-                android:layout_width="match_parent"
-                android:layout_height="18dp"
-                android:text="영상공유"
-                android:textSize="14sp"
-                android:gravity="center"
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="1dp"
-                android:textColor="@color/white"
-                android:background="#7f7f7f"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/videoView"
-                app:layout_constraintBottom_toTopOf="@id/video_btn_share"
-                />
+        <VideoView
+            android:id="@+id/videoView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintBottom_toTopOf="@id/video_sp_target_rl"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <Button
             android:id="@+id/video_btn_ir"
             android:layout_width="0dp"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="1dp"
             android:background="@drawable/bg_custom_button5"
             android:text="IR 영상"
+            android:textColor="@color/white"
             android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="@+id/video_sp_target"
+            app:layout_constraintBottom_toBottomOf="@+id/video_sp_target_rl"
             app:layout_constraintEnd_toStartOf="@id/video_tv_share_target"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/video_sp_target" />
+            app:layout_constraintTop_toBottomOf="@+id/videoView" />
 
         <Button
             android:id="@+id/video_btn_eo"
             android:layout_width="0dp"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
             android:background="@drawable/bg_custom_button5"
             android:text="EO 영상"
             android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="@+id/video_sp_option"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/video_btn_ir"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/video_sp_target" />
+            app:layout_constraintTop_toBottomOf="@+id/video_btn_ir" />
 
 
         <TextView
             android:id="@+id/video_tv_share_target"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
             android:text="공유대상:"
             android:textColor="@color/white"
             android:textSize="10sp"
-            app:layout_constraintBottom_toTopOf="@id/video_tv_share_option"
-            app:layout_constraintEnd_toStartOf="@id/video_sp_target"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/video_sp_target_rl"
+            app:layout_constraintEnd_toStartOf="@id/video_sp_target_rl"
             app:layout_constraintStart_toEndOf="@id/video_btn_ir"
-            app:layout_constraintTop_toBottomOf="@id/video_tv_share_title" />
+            app:layout_constraintTop_toTopOf="@+id/video_sp_target_rl" />
 
         <TextView
             android:id="@+id/video_tv_share_option"
@@ -86,24 +76,25 @@
             android:text="압축옵션:"
             android:textColor="@color/white"
             android:textSize="10sp"
-            app:layout_constraintBottom_toTopOf="@id/btn_back_under"
-            app:layout_constraintStart_toStartOf="@+id/video_tv_share_target"
-            app:layout_constraintTop_toBottomOf="@id/video_tv_share_target" />
+            app:layout_constraintBottom_toBottomOf="@+id/video_sp_option_rl"
+            app:layout_constraintStart_toStartOf="@id/video_tv_share_target"
+            app:layout_constraintTop_toTopOf="@+id/video_sp_option_rl"
+            app:layout_constraintEnd_toEndOf="@id/video_tv_share_target"/>
 
         <RelativeLayout
-            android:id="@+id/video_sp_target"
+            android:id="@+id/video_sp_target_rl"
             android:layout_width="120dp"
             android:layout_height="20dp"
-            android:layout_marginRight="3dp"
             android:orientation="horizontal"
             android:background="@drawable/videospinnerborder"
-            app:layout_constraintBottom_toTopOf="@id/video_sp_option"
-            app:layout_constraintEnd_toStartOf="@id/video_btn_share"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toTopOf="@id/video_sp_option_rl"
             app:layout_constraintStart_toEndOf="@id/video_tv_share_target"
-            app:layout_constraintTop_toBottomOf="@id/video_tv_share_title">
+            app:layout_constraintTop_toBottomOf="@id/videoView"
+            app:layout_constraintEnd_toStartOf="@id/btn_back_under">
 
             <Spinner
-                android:id="@+id/video_sp_target1"
+                android:id="@+id/video_sp_target"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -127,29 +118,27 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/video_sp_option"
+            android:id="@+id/video_sp_option_rl"
             android:layout_width="120dp"
             android:layout_height="20dp"
-            android:layout_marginRight="3dp"
-            android:orientation="horizontal"
             android:background="@drawable/videospinnerborder"
-            app:layout_constraintBottom_toTopOf="@+id/btn_back_under"
-            app:layout_constraintEnd_toStartOf="@+id/video_btn_stop"
-            app:layout_constraintStart_toEndOf="@id/video_tv_share_option"
-            app:layout_constraintTop_toBottomOf="@id/video_sp_target">
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/video_sp_target_rl"
+            app:layout_constraintStart_toStartOf="@+id/video_sp_target_rl"
+            app:layout_constraintTop_toBottomOf="@id/video_sp_target_rl">
 
             <Spinner
-                android:id="@+id/video_sp_option1"
+                android:id="@+id/video_sp_option"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:background="@android:color/transparent"
+                android:entries="@array/videoOption"
                 android:gravity="center"
-                android:layout_marginLeft="5dp"
-                android:theme="@style/SpinnerStyle"
                 android:spinnerMode="dropdown"
-                android:entries="@array/videoOption"/>
+                android:theme="@style/SpinnerStyle" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -162,42 +151,19 @@
         </RelativeLayout>
 
         <Button
-            android:id="@+id/video_btn_share"
-            android:onClick="onButtonClick"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:textSize="10sp"
-            android:text="공유"
-            android:background="@drawable/bg_custom_button5"
-            app:layout_constraintTop_toBottomOf="@id/video_tv_share_title"
-            app:layout_constraintBottom_toTopOf="@id/video_btn_stop"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <Button
-            android:id="@+id/video_btn_stop"
-            android:onClick="onButtonClick"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:textSize="10sp"
-            android:text="정지"
-            android:background="@drawable/bg_custom_button5"
-            app:layout_constraintTop_toBottomOf="@id/video_btn_share"
-            app:layout_constraintBottom_toTopOf="@id/btn_back_under"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <Button
             android:id="@+id/btn_back_under"
             android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:background="@drawable/bg_custom_button4"
+            android:layout_height="60dp"
+            android:background="@drawable/bg_custom_button5"
             android:onClick="onButtonClick"
             android:text="닫기"
             android:textColor="@color/white"
             android:textSize="15sp"
-            app:layout_constraintTop_toBottomOf="@id/video_btn_stop"
+            android:layout_marginStart="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/video_sp_target_rl"
+            app:layout_constraintTop_toBottomOf="@id/videoView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

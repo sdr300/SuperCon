@@ -1,4 +1,4 @@
-package superconn.pds.sw.superconn;
+package superconn.pds.sw.superconn.globe;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -8,12 +8,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+
+import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.gridlines.LatLonGridlineOverlay2;
+
+import superconn.pds.sw.superconn.GpsTracker;
+import superconn.pds.sw.superconn.MapActivity;
+import superconn.pds.sw.superconn.R;
 
 public class FragmentGlobe extends Fragment {
 
@@ -22,6 +30,8 @@ public class FragmentGlobe extends Fragment {
     private RadioButton globe_rb_utm, globe_rb_mgrs, globe_rb_dms;
     private RadioGroup globe_rg;
     private String globe_String, globe_String_map;
+    CheckBox globe_checkBox;
+    LatLonGridlineOverlay2 grid;
 
     public FragmentGlobe() {
         // Required empty public constructor
@@ -43,6 +53,8 @@ public class FragmentGlobe extends Fragment {
         globe_rb_utm = view.findViewById(R.id.globe_rb_utm);
         globe_rb_dms = view.findViewById(R.id.globe_rb_dms);
         globe_btn_save = view.findViewById(R.id.globe_btn_save);
+
+        globe_checkBox = view.findViewById(R.id.globe_checkBox);
 
         globe_rb_mgrs.setChecked(Update("GLOBE_MGRS"));
         globe_rb_utm.setChecked(Update("GLOBE_UTM"));
@@ -115,6 +127,18 @@ public class FragmentGlobe extends Fragment {
 
 //                TextView doguAdrress = getActivity().findViewById(R.id.dogu_tv_setcoordinates);
 //                doguAdrress.setText("현재위치 좌표계: "+globe_String_map+"\n"+globe_String);
+
+                //그리드 설정
+                final MapView map = (MapView) getActivity().findViewById(R.id.mapView);
+
+                if (globe_checkBox.isChecked()) {
+                    grid = new LatLonGridlineOverlay2();
+                    grid.setFontSizeDp((short) 40);
+                    grid.setMultiplier(2.0f);
+                    map.getOverlays().add(grid);
+                } else if(!globe_checkBox.isChecked()) {
+                    map.getOverlays().remove(grid);
+                }
             }
         });
 

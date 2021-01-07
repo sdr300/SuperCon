@@ -1,7 +1,6 @@
 package superconn.pds.sw.superconn;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Application;
 import android.content.Context;
@@ -19,11 +18,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,6 +49,7 @@ import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.Polygon;
 import org.osmdroid.views.overlay.Polyline;
 import org.osmdroid.views.overlay.compass.CompassOverlay;
+import org.osmdroid.views.overlay.gridlines.LatLonGridlineOverlay2;
 
 
 import java.io.FileNotFoundException;
@@ -81,9 +78,8 @@ import superconn.pds.sw.superconn.coord.CoordinateManager;
 import superconn.pds.sw.superconn.coord.coordMgrs;
 import superconn.pds.sw.superconn.dogu.FragmentDogu;
 import superconn.pds.sw.superconn.etc.EtcMainFragment;
-import superconn.pds.sw.superconn.junmun.JunmunMainFragment;
+import superconn.pds.sw.superconn.globe.FragmentGlobe;
 import superconn.pds.sw.superconn.junmun.JunmunReceiveFragment;
-import superconn.pds.sw.superconn.junmun.JunmunSendFragment;
 import superconn.pds.sw.superconn.video.VideoMainFragment;
 import superconn.pds.sw.superconn.walkie.WalkieMainFragment;
 
@@ -499,6 +495,8 @@ public class MapActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
 
     private final String LIFF_IDENTIFICATION_SEND = "LIFF.COMM.RS232.IDENTIFICATION.SEND";
