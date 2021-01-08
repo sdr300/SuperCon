@@ -2,6 +2,7 @@ package superconn.pds.sw.superconn.globe;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,11 +20,13 @@ import androidx.fragment.app.Fragment;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.gridlines.LatLonGridlineOverlay2;
 
+import java.util.Collection;
+
 import superconn.pds.sw.superconn.GpsTracker;
 import superconn.pds.sw.superconn.MapActivity;
 import superconn.pds.sw.superconn.R;
 
-public class FragmentGlobe extends Fragment {
+public class GlobeFragment extends Fragment {
 
     private GpsTracker gpsTracker;
     Button globe_btn_save;
@@ -31,9 +34,9 @@ public class FragmentGlobe extends Fragment {
     private RadioGroup globe_rg;
     private String globe_String, globe_String_map;
     CheckBox globe_checkBox;
-    LatLonGridlineOverlay2 grid;
+    LatLonGridlineOverlay2 grid;;
 
-    public FragmentGlobe() {
+    public GlobeFragment() {
         // Required empty public constructor
     }
 
@@ -118,6 +121,9 @@ public class FragmentGlobe extends Fragment {
             }
         });
 
+        final MapView map = (MapView) getActivity().findViewById(R.id.mapView);
+        grid = new LatLonGridlineOverlay2();
+
         globe_btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,15 +135,15 @@ public class FragmentGlobe extends Fragment {
 //                doguAdrress.setText("현재위치 좌표계: "+globe_String_map+"\n"+globe_String);
 
                 //그리드 설정
-                final MapView map = (MapView) getActivity().findViewById(R.id.mapView);
 
                 if (globe_checkBox.isChecked()) {
-                    grid = new LatLonGridlineOverlay2();
                     grid.setFontSizeDp((short) 40);
                     grid.setMultiplier(2.0f);
-                    map.getOverlays().add(grid);
-                } else  {
-                    map.getOverlays().remove(grid);
+                    grid.setBackgroundColor(Color.TRANSPARENT);
+                    grid.setFontColor(Color.BLACK);
+                    map.getOverlays().add(1, grid);
+                } else  if (!globe_checkBox.isChecked()){
+                    map.getOverlays().remove(1);
                 }
             }
         });

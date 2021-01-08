@@ -1,4 +1,4 @@
-package superconn.pds.sw.superconn;
+package superconn.pds.sw.superconn.chook;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -19,14 +19,17 @@ import androidx.fragment.app.Fragment;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 
-public class FragmentChook extends Fragment {
+import superconn.pds.sw.superconn.GpsTracker;
+import superconn.pds.sw.superconn.R;
+
+public class ChookFragment extends Fragment {
 
     private GpsTracker gpsTracker;
     RadioGroup chook_rg_chook, chook_rg_chook2;
     RadioButton chook_rb_25k,chook_rb_50k,chook_rb_100k,chook_rb_250k,chook_rb_500k,chook_rb_1m;
 
 
-    public FragmentChook() {
+    public ChookFragment() {
         // Required empty public constructor
     }
 

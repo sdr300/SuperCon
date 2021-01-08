@@ -70,77 +70,96 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:background="@color/white"
-            app:layout_constraintBottom_toTopOf="@id/tmmr_et_subnet1"
+            app:layout_constraintBottom_toTopOf="@id/tmmr_cl_subnet"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tmmr_tv_subnet"
-            app:layout_constraintTop_toBottomOf="@id/constraintLayout"
-            >
+            app:layout_constraintTop_toBottomOf="@id/constraintLayout">
 
-        <EditText
-            android:id="@+id/tmmr_et_ip1"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/tmmr_tv_ip1"/>
-        <TextView
-            android:id="@+id/tmmr_tv_ip1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="."
-            app:layout_constraintTop_toTopOf="@id/tmmr_et_ip1"
-            app:layout_constraintBottom_toBottomOf="@id/tmmr_et_ip1"
-            app:layout_constraintStart_toEndOf="@id/tmmr_et_ip1"
-            app:layout_constraintEnd_toStartOf="@id/tmmr_et_ip2"
-            />
-        <EditText
-            android:id="@+id/tmmr_et_ip2"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            app:layout_constraintTop_toTopOf="@id/tmmr_et_ip1"
-            app:layout_constraintBottom_toBottomOf="@id/tmmr_et_ip1"
-            app:layout_constraintStart_toEndOf="@id/tmmr_tv_ip1"
-            app:layout_constraintEnd_toStartOf="@id/tmmr_tv_ip2" />
-        <TextView
-            android:id="@+id/tmmr_tv_ip2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="."
-            app:layout_constraintTop_toTopOf="@id/tmmr_et_ip1"
-            app:layout_constraintBottom_toBottomOf="@id/tmmr_et_ip1"
-            app:layout_constraintStart_toEndOf="@id/tmmr_et_ip2"
-            app:layout_constraintEnd_toStartOf="@id/tmmr_et_ip3"
-            />
-        <EditText
-            android:id="@+id/tmmr_et_ip3"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            app:layout_constraintTop_toTopOf="@id/tmmr_et_ip1"
-            app:layout_constraintBottom_toBottomOf="@id/tmmr_et_ip1"
-            app:layout_constraintStart_toEndOf="@id/tmmr_tv_ip2"
-            app:layout_constraintEnd_toStartOf="@id/tmmr_tv_ip3" />
-        <TextView
-            android:id="@+id/tmmr_tv_ip3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="."
-            app:layout_constraintTop_toTopOf="@id/tmmr_et_ip1"
-            app:layout_constraintBottom_toBottomOf="@id/tmmr_et_ip1"
-            app:layout_constraintStart_toEndOf="@id/tmmr_et_ip3"
-            app:layout_constraintEnd_toStartOf="@id/tmmr_et_ip4"
-            />
-        <EditText
-            android:id="@+id/tmmr_et_ip4"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            app:layout_constraintTop_toTopOf="@id/tmmr_et_ip1"
-            app:layout_constraintBottom_toBottomOf="@id/tmmr_et_ip1"
-            app:layout_constraintStart_toEndOf="@id/tmmr_tv_ip3"
-            app:layout_constraintEnd_toEndOf="parent"  />
+            <EditText
+                android:id="@+id/tmmr_et_ip1"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="number"
+                android:maxLength="3"
+                android:nextFocusDown="@id/tmmr_et_ip2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tmmr_tv_ip1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tmmr_tv_ip1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="."
+                app:layout_constraintBottom_toBottomOf="@id/tmmr_et_ip1"
+                app:layout_constraintEnd_toStartOf="@id/tmmr_et_ip2"
+                app:layout_constraintStart_toEndOf="@id/tmmr_et_ip1"
+                app:layout_constraintTop_toTopOf="@id/tmmr_et_ip1" />
+
+            <EditText
+                android:id="@+id/tmmr_et_ip2"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="number"
+                android:maxLength="3"
+                android:nextFocusDown="@id/tmmr_et_ip3"
+                app:layout_constraintBottom_toBottomOf="@id/tmmr_et_ip1"
+                app:layout_constraintEnd_toStartOf="@id/tmmr_tv_ip2"
+                app:layout_constraintStart_toEndOf="@id/tmmr_tv_ip1"
+                app:layout_constraintTop_toTopOf="@id/tmmr_et_ip1" />
+
+            <TextView
+                android:id="@+id/tmmr_tv_ip2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="."
+                app:layout_constraintBottom_toBottomOf="@id/tmmr_et_ip1"
+                app:layout_constraintEnd_toStartOf="@id/tmmr_et_ip3"
+                app:layout_constraintStart_toEndOf="@id/tmmr_et_ip2"
+                app:layout_constraintTop_toTopOf="@id/tmmr_et_ip1" />
+
+            <EditText
+                android:id="@+id/tmmr_et_ip3"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="number"
+                android:maxLength="3"
+                android:nextFocusDown="@id/tmmr_et_ip4"
+                app:layout_constraintBottom_toBottomOf="@id/tmmr_et_ip1"
+                app:layout_constraintEnd_toStartOf="@id/tmmr_tv_ip3"
+                app:layout_constraintStart_toEndOf="@id/tmmr_tv_ip2"
+                app:layout_constraintTop_toTopOf="@id/tmmr_et_ip1" />
+
+            <TextView
+                android:id="@+id/tmmr_tv_ip3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="."
+                app:layout_constraintBottom_toBottomOf="@id/tmmr_et_ip1"
+                app:layout_constraintEnd_toStartOf="@id/tmmr_et_ip4"
+                app:layout_constraintStart_toEndOf="@id/tmmr_et_ip3"
+                app:layout_constraintTop_toTopOf="@id/tmmr_et_ip1" />
+
+            <EditText
+                android:id="@+id/tmmr_et_ip4"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="number"
+                android:maxLength="3"
+                android:nextFocusDown="@id/tmmr_cl_subnet"
+                app:layout_constraintBottom_toBottomOf="@id/tmmr_et_ip1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tmmr_tv_ip3"
+                app:layout_constraintTop_toTopOf="@id/tmmr_et_ip1" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -151,18 +170,108 @@
             android:text="서브넷 마스크 : "
             android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf= "@+id/tmmr_et_subnet1"
-            app:layout_constraintEnd_toStartOf="@+id/tmmr_et_subnet1"
-            app:layout_constraintBottom_toBottomOf="@+id/tmmr_et_subnet1" />
+            app:layout_constraintTop_toTopOf= "@+id/tmmr_cl_subnet"
+            app:layout_constraintEnd_toStartOf="@+id/tmmr_cl_subnet"
+            app:layout_constraintBottom_toBottomOf="@+id/tmmr_cl_subnet" />
 
-         <EditText
-         android:id="@+id/tmmr_et_subnet1"
-         android:layout_width="50dp"
-         android:layout_height="wrap_content"
-            android:inputType="number"
-             app:layout_constraintBottom_toTopOf="@id/tmmr_et_gate1"
-             app:layout_constraintStart_toEndOf="@id/tmmr_tv_subnet"
-             app:layout_constraintTop_toBottomOf="@id/tmmr_et_ip1"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/tmmr_cl_subnet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/tmmr_cl_gate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tmmr_tv_subnet"
+            app:layout_constraintTop_toBottomOf="@id/tmmr_cl_ip">
+
+            <EditText
+                android:id="@+id/tmmr_et_subnet1"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="number"
+                android:maxLength="3"
+                android:nextFocusDown="@id/tmmr_et_subnet2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tmmr_tv_subnet1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tmmr_tv_subnet1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="."
+                app:layout_constraintBottom_toBottomOf="@id/tmmr_et_subnet1"
+                app:layout_constraintEnd_toStartOf="@id/tmmr_et_subnet2"
+                app:layout_constraintStart_toEndOf="@id/tmmr_et_subnet1"
+                app:layout_constraintTop_toTopOf="@id/tmmr_et_subnet1" />
+
+            <EditText
+                android:id="@+id/tmmr_et_subnet2"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="number"
+                android:maxLength="3"
+                android:nextFocusDown="@id/tmmr_et_subnet3"
+                app:layout_constraintBottom_toBottomOf="@id/tmmr_et_subnet1"
+                app:layout_constraintEnd_toStartOf="@id/tmmr_tv_subnet2"
+                app:layout_constraintStart_toEndOf="@id/tmmr_tv_subnet1"
+                app:layout_constraintTop_toTopOf="@id/tmmr_et_subnet1" />
+
+            <TextView
+                android:id="@+id/tmmr_tv_subnet2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="."
+                app:layout_constraintBottom_toBottomOf="@id/tmmr_et_subnet1"
+                app:layout_constraintEnd_toStartOf="@id/tmmr_et_subnet3"
+                app:layout_constraintStart_toEndOf="@id/tmmr_et_subnet2"
+                app:layout_constraintTop_toTopOf="@id/tmmr_et_subnet1" />
+
+            <EditText
+                android:id="@+id/tmmr_et_subnet3"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="number"
+                android:maxLength="3"
+                android:nextFocusDown="@id/tmmr_et_subnet4"
+                app:layout_constraintBottom_toBottomOf="@id/tmmr_et_subnet1"
+                app:layout_constraintEnd_toStartOf="@id/tmmr_tv_subnet3"
+                app:layout_constraintStart_toEndOf="@id/tmmr_tv_subnet2"
+                app:layout_constraintTop_toTopOf="@id/tmmr_et_subnet1" />
+
+            <TextView
+                android:id="@+id/tmmr_tv_subnet3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="."
+                app:layout_constraintBottom_toBottomOf="@id/tmmr_et_subnet1"
+                app:layout_constraintEnd_toStartOf="@id/tmmr_et_subnet4"
+                app:layout_constraintStart_toEndOf="@id/tmmr_et_subnet3"
+                app:layout_constraintTop_toTopOf="@id/tmmr_et_subnet1" />
+
+            <EditText
+                android:id="@+id/tmmr_et_subnet4"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="number"
+                android:maxLength="3"
+                android:nextFocusDown="@id/tmmr_cl_subnet"
+                app:layout_constraintBottom_toBottomOf="@id/tmmr_et_subnet1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tmmr_tv_subnet3"
+                app:layout_constraintTop_toTopOf="@id/tmmr_et_subnet1" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/tmmr_tv_gate"
@@ -171,26 +280,116 @@
             android:text="게이트웨이 : "
             android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tmmr_et_gate1"
-            app:layout_constraintEnd_toStartOf="@id/tmmr_et_gate1"
-            app:layout_constraintBottom_toBottomOf="@id/tmmr_et_gate1"
+            app:layout_constraintTop_toTopOf="@id/tmmr_cl_gate"
+            app:layout_constraintEnd_toStartOf="@id/tmmr_cl_gate"
+            app:layout_constraintBottom_toBottomOf="@id/tmmr_cl_gate"
             />
 
-        <EditText
-            android:id="@+id/tmmr_et_gate1"
-            android:layout_width="50dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/tmmr_cl_gate"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:layout_margin="5dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/tmmr_cl_gate"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tmmr_tv_subnet"
-            app:layout_constraintTop_toBottomOf="@id/tmmr_et_subnet1"
+            app:layout_constraintTop_toBottomOf="@id/tmmr_cl_ip">
 
-            />
+
+            <EditText
+                android:id="@+id/tmmr_et_gate1"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="number"
+                android:maxLength="3"
+                android:nextFocusDown="@id/tmmr_et_gate2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tmmr_tv_gate1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tmmr_tv_gate1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="."
+                app:layout_constraintBottom_toBottomOf="@id/tmmr_et_gate1"
+                app:layout_constraintEnd_toStartOf="@id/tmmr_et_gate2"
+                app:layout_constraintStart_toEndOf="@id/tmmr_et_gate1"
+                app:layout_constraintTop_toTopOf="@id/tmmr_et_gate1" />
+
+            <EditText
+                android:id="@+id/tmmr_et_gate2"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="number"
+                android:maxLength="3"
+                android:nextFocusDown="@id/tmmr_et_gate3"
+                app:layout_constraintBottom_toBottomOf="@id/tmmr_et_gate1"
+                app:layout_constraintEnd_toStartOf="@id/tmmr_tv_gate2"
+                app:layout_constraintStart_toEndOf="@id/tmmr_tv_gate1"
+                app:layout_constraintTop_toTopOf="@id/tmmr_et_gate1" />
+
+            <TextView
+                android:id="@+id/tmmr_tv_gate2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="."
+                app:layout_constraintBottom_toBottomOf="@id/tmmr_et_gate1"
+                app:layout_constraintEnd_toStartOf="@id/tmmr_et_gate3"
+                app:layout_constraintStart_toEndOf="@id/tmmr_et_gate2"
+                app:layout_constraintTop_toTopOf="@id/tmmr_et_gate1" />
+
+            <EditText
+                android:id="@+id/tmmr_et_gate3"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="number"
+                android:maxLength="3"
+                android:nextFocusDown="@id/tmmr_et_gate4"
+                app:layout_constraintBottom_toBottomOf="@id/tmmr_et_gate1"
+                app:layout_constraintEnd_toStartOf="@id/tmmr_tv_gate3"
+                app:layout_constraintStart_toEndOf="@id/tmmr_tv_gate2"
+                app:layout_constraintTop_toTopOf="@id/tmmr_et_gate1" />
+
+            <TextView
+                android:id="@+id/tmmr_tv_gate3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="."
+                app:layout_constraintBottom_toBottomOf="@id/tmmr_et_gate1"
+                app:layout_constraintEnd_toStartOf="@id/tmmr_et_gate4"
+                app:layout_constraintStart_toEndOf="@id/tmmr_et_gate3"
+                app:layout_constraintTop_toTopOf="@id/tmmr_et_gate1" />
+
+            <EditText
+                android:id="@+id/tmmr_et_gate4"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="number"
+                android:maxLength="3"
+                android:nextFocusDown="@id/tmmr_cl_gate"
+                app:layout_constraintBottom_toBottomOf="@id/tmmr_et_gate1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tmmr_tv_gate3"
+                app:layout_constraintTop_toTopOf="@id/tmmr_et_gate1" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
             android:id="@+id/tmmr_btn_save"
             android:layout_width="0dp"
             android:layout_height="30dp"
-            android:text="전송"
+            android:text="적용"
             android:textSize="15sp"
             android:layout_margin="3dp"
             android:textColor="@color/white"

@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import superconn.pds.sw.superconn.MapActivity;
 import superconn.pds.sw.superconn.R;
+import superconn.pds.sw.superconn.databinding.FragmentEtcMainBinding;
 
 /**
  * created 2020-12-21
@@ -21,6 +22,7 @@ import superconn.pds.sw.superconn.R;
 public class EtcMainFragment extends Fragment {
 
     private RecyclerView.LayoutManager layoutManager;
+    private FragmentEtcMainBinding mBinding;
 
     public EtcMainFragment() {
         // Required empty public constructor
@@ -29,7 +31,8 @@ public class EtcMainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_etc_main, container, false);
+        mBinding = FragmentEtcMainBinding.inflate(inflater,container, false);
+
         layoutManager=new LinearLayoutManager(getActivity());
 
         // 버튼
@@ -41,24 +44,20 @@ public class EtcMainFragment extends Fragment {
 //            }
 //        });
 
-//        TextView junmun_tv_input = view.findViewById(R.id.junmun_tv_write);
-//        junmun_tv_input.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new FragmentJunmunReceive(), null).addToBackStack(null).commit();
-//            }
-//        });
+        mBinding.etcTvTransparency.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new TransparencyFragment(), null).addToBackStack(null).commit();
+            }
+        });
 
-        TextView etc_tv_etc = view.findViewById(R.id.etc_tv_etc);
-        etc_tv_etc.setOnClickListener(new View.OnClickListener() {
+        mBinding.etcTvTmmr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new TmmrFragment(), null).addToBackStack(null).commit();
             }
         });
 
-
-//
 //        TextView junmun_tv_setting = view.findViewById(R.id.junmun_tv_setting);
 //        junmun_tv_setting.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -68,7 +67,7 @@ public class EtcMainFragment extends Fragment {
 //        });
 
 
-        return view;
+        return mBinding.getRoot();
     }
 
 }

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".junmun.JunmunMainFragment"
+    tools:context=".etc.EtcMainFragment"
     app:layout_constraintWidth_percent="0.5"
     app:layout_constraintEnd_toEndOf="parent"
     >
@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/etc_text_1"
+                android:id="@+id/etc_tv_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -52,10 +52,10 @@
                 android:background="#fff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etc_text_1" />
+                app:layout_constraintTop_toBottomOf="@id/etc_tv_1" />
 
             <TextView
-                android:id="@+id/etc_text_2"
+                android:id="@+id/etc_tv_transparency"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -79,10 +79,10 @@
                 android:background="#fff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etc_text_2" />
+                app:layout_constraintTop_toBottomOf="@+id/etc_tv_transparency" />
 
             <TextView
-                android:id="@+id/etc_tv_etc"
+                android:id="@+id/etc_tv_tmmr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -106,10 +106,10 @@
                 android:background="#fff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etc_tv_etc" />
+                app:layout_constraintTop_toBottomOf="@+id/etc_tv_tmmr" />
 
             <TextView
-                android:id="@+id/etc_text_4"
+                android:id="@+id/etc_tv_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -132,10 +132,10 @@
                 android:background="#fff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etc_text_4" />
+                app:layout_constraintTop_toBottomOf="@+id/etc_tv_4" />
 
             <TextView
-                android:id="@+id/etc_text_5"
+                android:id="@+id/etc_tv_5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -158,10 +158,10 @@
                 android:background="#fff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etc_text_5" />
+                app:layout_constraintTop_toBottomOf="@+id/etc_tv_5" />
 
             <TextView
-                android:id="@+id/etc_text_6"
+                android:id="@+id/etc_tv_6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"

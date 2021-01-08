@@ -49,7 +49,6 @@ import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.Polygon;
 import org.osmdroid.views.overlay.Polyline;
 import org.osmdroid.views.overlay.compass.CompassOverlay;
-import org.osmdroid.views.overlay.gridlines.LatLonGridlineOverlay2;
 
 
 import java.io.FileNotFoundException;
@@ -66,11 +65,11 @@ import icops.framework.common.Geometry;
 import icops.framework.util.CGeometricUtil;
 import icops.warsym.inf.IWarSymFactory;
 import superconn.pds.sw.superconn.DataBase.Buho;
-import superconn.pds.sw.superconn.DataBase.Person;
 import superconn.pds.sw.superconn.DataBase.RoomDatabaseClass;
 import superconn.pds.sw.superconn.ICOPS.DemoMainView;
 import superconn.pds.sw.superconn.camera.CameraMainFragment;
 import superconn.pds.sw.superconn.chat.ChatMainFragment;
+import superconn.pds.sw.superconn.chook.ChookFragment;
 import superconn.pds.sw.superconn.comm.LIFFReceiver;
 import superconn.pds.sw.superconn.coord.CoordDMS;
 import superconn.pds.sw.superconn.coord.CoordUTM;
@@ -78,7 +77,7 @@ import superconn.pds.sw.superconn.coord.CoordinateManager;
 import superconn.pds.sw.superconn.coord.coordMgrs;
 import superconn.pds.sw.superconn.dogu.FragmentDogu;
 import superconn.pds.sw.superconn.etc.EtcMainFragment;
-import superconn.pds.sw.superconn.globe.FragmentGlobe;
+import superconn.pds.sw.superconn.globe.GlobeFragment;
 import superconn.pds.sw.superconn.junmun.JunmunReceiveFragment;
 import superconn.pds.sw.superconn.video.VideoMainFragment;
 import superconn.pds.sw.superconn.walkie.WalkieMainFragment;
@@ -100,7 +99,7 @@ public class MapActivity extends AppCompatActivity {
     private MapView map = null;
     IWarSymFactory mSymFac = null;
     JarFile mWarsymJar = null;
-    static DemoMainView mMainView = null;
+    public static DemoMainView mMainView = null;
     boolean mLoading = false;
     public static FragmentManager fragmentManager;
     public  static RoomDatabaseClass roomDatabaseClass;
@@ -247,7 +246,7 @@ public class MapActivity extends AppCompatActivity {
                 final Polyline line250lat = new Polyline();
 
                 line250lat.setPoints(geoPoint250lat);
-                line250lat.setColor(Color.BLACK);
+                line250lat.setColor(Color.TRANSPARENT);
                 line250lat.setWidth(6);
 
                 map.getOverlayManager().add(line250lat);
@@ -259,22 +258,22 @@ public class MapActivity extends AppCompatActivity {
 
                 final Polyline line250lon = new Polyline();
                 line250lon.setPoints(geoPoint250lon);
-                line250lon.setColor(Color.BLACK);
+                line250lon.setColor(Color.TRANSPARENT);
                 line250lon.setWidth(6);
 
                 map.getOverlayManager().add(line250lon);
 
                 //거리환 원그리기 (4개)
-                final Marker[] dmarkers = new Marker[4];
-                GeoPoint[] dGpoints = new GeoPoint[4];
-                final Polygon[] dpolygons = new Polygon[4];
-                for ( i=0; i<4; i++){
+                final Marker[] dmarkers = new Marker[5];
+                GeoPoint[] dGpoints = new GeoPoint[5];
+                final Polygon[] dpolygons = new Polygon[5];
+                for ( i=0; i<5; i++){
                     dpolygons[i] = new Polygon(map);
-                    dpolygons[i].setPoints(Polygon.pointsAsCircle(p, 250.0*dogu_int*(i+1)));
+                    dpolygons[i].setPoints(Polygon.pointsAsCircle(p, 250.0*dogu_int*(i)));
                     dpolygons[i].setFillColor(Color.TRANSPARENT);
                     dpolygons[i].setStrokeColor(Color.BLACK);
-                    dpolygons[i].setStrokeWidth(4);
-                    if (i<3) {
+                    dpolygons[i].setStrokeWidth(5);
+                    if (i<4) {
                         dpolygons[i].setOnClickListener(new Polygon.OnClickListener() {
                             @Override
                             public boolean onClick(Polygon polygon, MapView mapView, GeoPoint eventPos) {
@@ -286,7 +285,7 @@ public class MapActivity extends AppCompatActivity {
                             @Override
                             public boolean onClick(Polygon polygon, MapView mapView, GeoPoint eventPos) {
                                 int i =0;
-                                for (i=0; i<4 ; i++) {
+                                for (i=0; i<5 ; i++) {
                                     dmarkers[i].remove(map);
                                     mapView.getOverlays().remove(dpolygons[i]);
                                 }
@@ -301,10 +300,10 @@ public class MapActivity extends AppCompatActivity {
 
                 //===========================거리환 숫자 표기(단위)
                 if(dogu_int>0) {
-                    for (i = 0; i < 4; i++) {
-                        dGpoints[i] = new GeoPoint(p.getLatitude() + 0.002245 * dogu_int * (i + 1), p.getLongitude());
+                    for (i = 0; i < 5; i++) {
+                        dGpoints[i] = new GeoPoint(p.getLatitude() + 0.002245 * dogu_int * (i), p.getLongitude());
                         dmarkers[i] = new Marker(map);
-                        dmarkers[i].setTextIcon(50 * dogu_int * (i + 1) + "");
+                        dmarkers[i].setTextIcon(50 * dogu_int * (i) + "");
                         dmarkers[i].setPosition(dGpoints[i]);
                         dmarkers[i].setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
                             @Override
@@ -312,19 +311,22 @@ public class MapActivity extends AppCompatActivity {
                                 return false;
                             }
                         });
+
                         map.getOverlayManager().add(dmarkers[i]);
                     }
+
                 }
+
                 dpolygons[0].setOnClickListener(new Polygon.OnClickListener() {
                     @Override
                     public boolean onClick(Polygon polygon, MapView mapView, GeoPoint eventPos) {
                         int i=0;
-                        for ( i=0; i<4; i++) {
+                        for ( i=0; i<5; i++) {
                             dpolygons[i].setOnClickListener(new Polygon.OnClickListener() {
                                 @Override
                                 public boolean onClick(Polygon polygon, MapView mapView, GeoPoint eventPos) {
                                     int i = 0;
-                                    for (i = 0; i < 4; i++) {
+                                    for (i = 0; i < 5; i++) {
                                         dmarkers[i].remove(map);
                                         mapView.getOverlays().remove(dpolygons[i]);
                                     }
@@ -750,9 +752,9 @@ public class MapActivity extends AppCompatActivity {
              fragmentBoolean = 0;
         } else if (fragmentBoolean == 0) {
             if (view.getId() ==R.id.ibt_chook) {
-                fr = new FragmentChook();
+                fr = new ChookFragment();
             } else if (view.getId() ==R.id.ibt_globe) {
-                fr = new FragmentGlobe();
+                fr = new GlobeFragment();
             } else if (view.getId() ==R.id.ibt_dogu_target) {
                 fr = new FragmentDogu();
             } else if (view.getId() ==R.id.ibt_video) {
