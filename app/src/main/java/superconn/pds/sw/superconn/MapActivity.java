@@ -228,18 +228,6 @@ public class MapActivity extends AppCompatActivity {
                 double dlongitude = Double.parseDouble(String.format("%.6f",p.getLongitude()));
                 Toast.makeText(getBaseContext(),"선택 좌표 위치:" +"\n"+dlatitude + "\n"+ dlongitude, Toast.LENGTH_LONG).show();
 
-                //부호 fragment에 클릭시 위치 전송(try catch 한곳에 add롸 update를 몰아넣었을때는 작동 안됨)
-                try { AddDataFragmentBuho addDataFragmentBuho = (AddDataFragmentBuho) getSupportFragmentManager().findFragmentById(R.id.fragment_frame);
-                    addDataFragmentBuho.addLatitude(dlatitude+"");
-                    addDataFragmentBuho.addLongitude(dlongitude+"");
-                } catch (Exception e){
-                }
-                try {
-                    UpdateDataFragmentBuho updateDataFragmentBuho = (UpdateDataFragmentBuho)  getSupportFragmentManager().findFragmentById(R.id.fragment_frame);
-                    updateDataFragmentBuho.addLatitude(dlatitude+"");
-                    updateDataFragmentBuho.addLongitude(dlongitude+"");
-                } catch (Exception e){
-                }
 
                 distance1 = (TextView) findViewById(R.id.distance1);
                 dogu_string = distance1.getText().toString();
@@ -485,15 +473,6 @@ public class MapActivity extends AppCompatActivity {
 
                 mapview.getController().setCenter(point);
 
-                FragmentLocation fragmentLocation = new FragmentLocation();
-                Bundle bundle = new Bundle();
-
-                bundle.putString("send", address );
-                fragmentLocation.setArguments(bundle);
-
-//                Toast.makeText(MapActivity.this, "현재위치 라디오 버튼,\n위도 " + latitude + "\n경도 " + longitude, Toast.LENGTH_SHORT).show();
-                MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, fragmentLocation).commit();
-
             }
         });
 
@@ -713,18 +692,6 @@ public class MapActivity extends AppCompatActivity {
             fragmentTransaction.commit();
         } else if (view.getId() == R.id.btn_back_under_super){
             super.onBackPressed();
-        } else if (view.getId() == R.id.pia_update_btn_savecancel ) {
-            Toast.makeText(MapActivity.this, "수정 취소", Toast.LENGTH_SHORT).show();
-            super.onBackPressed();
-        } else if (view.getId() == R.id.pia_add_btn_savecancel ) {
-            Toast.makeText(MapActivity.this, "입력 취소", Toast.LENGTH_SHORT).show();
-            super.onBackPressed();
-        } else if (view.getId() == R.id.btn_savecancel ) {
-            Toast.makeText(MapActivity.this, "취소", Toast.LENGTH_SHORT).show();
-        } else if (view.getId() == R.id.btnDeleteAll ) {
-            DeleteAllPia();
-        } else if (view.getId() == R.id.btnDeleteAllBuho ) {
-            DeleteAllBuho();
  //======================== MapActivity ibt 버튼 ====================================
         } else if (view.getId() == R.id.ibt_zoom_plus) {
             map.getController().zoomIn();
@@ -833,55 +800,6 @@ public class MapActivity extends AppCompatActivity {
             finish();
         }
     }
-
-    //===================== 전체 삭제 =============
-    void DeleteAllPia() { AlertDialog.Builder showDialogAll =
-            new AlertDialog.Builder(MapActivity.this);
-        showDialogAll.setTitle("모든 피아식별 데이터를 삭제하시겠습니까?");
-        showDialogAll.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialogInterface, int i) {
-
-                List<Person> personList = new ArrayList<>();
-                MapActivity.roomDatabaseClass.personDao().reset2();
-                personList.clear();
-                Toast.makeText(getApplicationContext(),"Pressed Reset",
-                        Toast.LENGTH_SHORT).show();
-                MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new FragmentPia(), null).commit();
-
-            }
-        }) .setNegativeButton("취소", new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(getApplicationContext(),"Pressed Cancle",
-                        Toast.LENGTH_SHORT).show();
-                MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new FragmentPia(), null).commit();
-            }
-        });
-        AlertDialog msgDlg = showDialogAll.create();
-        msgDlg.show(); }
-
-    void DeleteAllBuho() { AlertDialog.Builder showDialogAll =
-            new AlertDialog.Builder(MapActivity.this);
-        showDialogAll.setTitle("모든 군대부호 모의 데이터를 삭제하시겠습니까?");
-        showDialogAll.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialogInterface, int i) {
-
-                List<Buho> buhoList = new ArrayList<>();
-                MapActivity.roomDatabaseClass.buhoDao().resetBuho2();
-                buhoList.clear();
-                Toast.makeText(getApplicationContext(),"Pressed Reset",
-                        Toast.LENGTH_SHORT).show();
-                MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new FragmentBuho(), null).commit();
-
-            }
-        }) .setNegativeButton("취소", new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(getApplicationContext(),"Pressed Cancle",
-                        Toast.LENGTH_SHORT).show();
-                MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new FragmentBuho(), null).commit();
-            }
-        });
-        AlertDialog msgDlg = showDialogAll.create();
-        msgDlg.show(); }
 
     //=====ActivityCompat.requestPermissions를 사용한 퍼미션 요청의 결과를 리턴받는 메소드입니다.
 

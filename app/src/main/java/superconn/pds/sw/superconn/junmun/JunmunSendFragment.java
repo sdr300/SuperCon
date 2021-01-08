@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import superconn.pds.sw.superconn.AddDataFragmentJunmun;
+
 import superconn.pds.sw.superconn.MapActivity;
 import superconn.pds.sw.superconn.R;
 

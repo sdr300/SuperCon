@@ -136,7 +136,7 @@ public class FragmentGlobe extends Fragment {
                     grid.setFontSizeDp((short) 40);
                     grid.setMultiplier(2.0f);
                     map.getOverlays().add(grid);
-                } else if(!globe_checkBox.isChecked()) {
+                } else  {
                     map.getOverlays().remove(grid);
                 }
             }
