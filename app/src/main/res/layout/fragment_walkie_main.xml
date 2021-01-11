@@ -290,7 +290,7 @@
             android:layout_height="30dp"
             android:background="@drawable/bg_custom_button4"
             android:onClick="onButtonClick"
-            android:text="뒤로"
+            android:text="닫기"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:layout_marginBottom="1dp"

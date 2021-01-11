@@ -59,10 +59,9 @@
             android:layout_height="wrap_content"
             android:text="IP 주소 : "
             android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tmmr_cl_ip"
-            app:layout_constraintEnd_toStartOf="@id/tmmr_cl_ip"
-            app:layout_constraintBottom_toBottomOf="@id/tmmr_cl_ip"/>
+            app:layout_constraintBottom_toBottomOf="@id/tmmr_cl_ip"
+            app:layout_constraintStart_toStartOf="@+id/tmmr_tv_subnet"
+            app:layout_constraintTop_toTopOf="@id/tmmr_cl_ip" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/tmmr_cl_ip"
@@ -279,11 +278,9 @@
             android:layout_height="wrap_content"
             android:text="게이트웨이 : "
             android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tmmr_cl_gate"
-            app:layout_constraintEnd_toStartOf="@id/tmmr_cl_gate"
             app:layout_constraintBottom_toBottomOf="@id/tmmr_cl_gate"
-            />
+            app:layout_constraintStart_toStartOf="@+id/tmmr_tv_subnet"
+            app:layout_constraintTop_toTopOf="@id/tmmr_cl_gate" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/tmmr_cl_gate"

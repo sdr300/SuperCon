@@ -112,7 +112,7 @@ public class MapActivity extends AppCompatActivity {
     private Integer dogu_int;
     private String dogu_string;
     TextView distance1, clickLocation;
-    int doguint = 0;
+    int doguint , junmunint = 0;
     public String dogu_addText;
     private SwitchCompat dogu_sw;
     private RadioButton globe_rb_dms;
@@ -239,6 +239,9 @@ public class MapActivity extends AppCompatActivity {
                 dogu_int = (Integer.parseInt(dogu_string))/50;
                 int i=0;
                 drawMarker(p);
+                CompassOverlay compassOverlay = new CompassOverlay(MapActivity.this, map);
+                compassOverlay.enableCompass();
+                map.getOverlays().add(1, compassOverlay);
 
                 // ======================== 거리환 십자 직선
                 List<GeoPoint> geoPoint250lat = new ArrayList<>();
@@ -724,8 +727,10 @@ public class MapActivity extends AppCompatActivity {
         } else if (view.getId() == R.id.ibt_chat ) {
             switchAll(view);
         } else if (view.getId() == R.id.ibt_junmun ) {
+            switchJunmun();
             switchAll(view);
-
+        } else if (view.getId() == R.id.ibt_junmun_team) {
+            switchAll(view);
         } else if (view.getId() == R.id.ibt_waikie ) {
             switchAll(view);
         } else if (view.getId() == R.id.ibt_etc) {
@@ -750,8 +755,19 @@ public class MapActivity extends AppCompatActivity {
         }
     }
 
+    //=============전문 선택
+    public void switchJunmun() {
+        if ( junmunint%2 == 0) {
+            findViewById(R.id.junmunselect).setVisibility(View.VISIBLE);
+            junmunint = junmunint+1;
+        } else  if ( junmunint%2 == 1 ) {
+            findViewById(R.id.junmunselect).setVisibility(View.INVISIBLE);
+            junmunint = junmunint+1;
+        }
+    }
+
     public void switchAll(View view) {
-         if (view.getId() ==R.id.ibt_dogu) {
+         if (view.getId() == R.id.ibt_dogu || view.getId() == R.id.ibt_junmun) {
             fr = new FragmentZ();
             fm.popBackStack();
              fragmentBoolean = 0;
@@ -768,7 +784,7 @@ public class MapActivity extends AppCompatActivity {
                 fr = new CameraMainFragment();
             } else if (view.getId() ==R.id.ibt_chat) {
                 fr = new ChatMainFragment();
-            } else if (view.getId() ==R.id.ibt_junmun ) {
+            } else if (view.getId() ==R.id.ibt_junmun_team ) {
                 fr = new JunmunReceiveFragment();
             } else if (view.getId() ==R.id.ibt_waikie) {
                 fr = new WalkieMainFragment();
@@ -778,6 +794,10 @@ public class MapActivity extends AppCompatActivity {
              if ( doguint%2 == 1 ) {
                  findViewById(R.id.doguselect).setVisibility(View.INVISIBLE);
                  doguint = doguint+1;
+             }
+             if ( junmunint%2 == 1 ) {
+                 findViewById(R.id.junmunselect).setVisibility(View.INVISIBLE);
+                 junmunint = junmunint + 1;
              }
             fragmentBoolean = 1;
         } else {

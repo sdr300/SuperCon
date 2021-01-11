@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:layout_margin="5dp"
-            android:textSize="15sp"
+            android:textSize="20sp"
             android:maxLength="50"
             android:imeOptions="actionDone|flagNoExtractUi"
             android:singleLine="true"
@@ -82,8 +82,8 @@
 
         <ImageButton
             android:id="@+id/junmun_chat_ibt_chat"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginEnd="5dp"
             android:background="?android:attr/selectableItemBackgroundBorderless"
             android:scaleType="fitXY"
@@ -93,7 +93,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/junmun_chat_et"
             />
-
 
         <Button
             android:id="@+id/junmun_chat_btn_write_main"
