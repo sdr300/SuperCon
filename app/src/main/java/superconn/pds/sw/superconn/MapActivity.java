@@ -239,9 +239,6 @@ public class MapActivity extends AppCompatActivity {
                 dogu_int = (Integer.parseInt(dogu_string))/50;
                 int i=0;
                 drawMarker(p);
-                CompassOverlay compassOverlay = new CompassOverlay(MapActivity.this, map);
-                compassOverlay.enableCompass();
-                map.getOverlays().add(1, compassOverlay);
 
                 // ======================== 거리환 십자 직선
                 List<GeoPoint> geoPoint250lat = new ArrayList<>();

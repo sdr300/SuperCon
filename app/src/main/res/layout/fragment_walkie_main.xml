@@ -5,16 +5,16 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MapActivity"
-    android:background="#D6D6D6"
-    android:clickable="true"
-    >
+    android:background="#595959"
+    android:clickable="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:background="#7F7F7F"
@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="무전기 메뉴"
+                android:text="개인무전기 설정"
                 android:textColor="#fff"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -52,6 +52,251 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <TextView
+            android:id="@+id/walkie_tv_channel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="채널 : "
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/walkie_sp_channel_rl"
+            app:layout_constraintStart_toStartOf="@+id/walkie_tv_network"
+            app:layout_constraintTop_toTopOf="@id/walkie_sp_channel_rl" />
+
+        <RelativeLayout
+            android:id="@+id/walkie_sp_channel_rl"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:background="@drawable/videospinnerborder"
+            android:orientation="horizontal"
+
+            app:layout_constraintBottom_toTopOf="@id/walkie_sp_power_rl"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/constraintLayout">
+
+            <Spinner
+                android:id="@+id/walkie_sp_channel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:background="@android:color/transparent"
+                android:entries="@array/channel"
+                android:gravity="center"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:src="@drawable/arrow_down" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/walkie_tv_power"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="송신파워 : "
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/walkie_sp_power_rl"
+            app:layout_constraintStart_toStartOf="@+id/walkie_tv_network"
+            app:layout_constraintTop_toTopOf="@id/walkie_sp_power_rl" />
+
+        <RelativeLayout
+            android:id="@+id/walkie_sp_power_rl"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:background="@drawable/videospinnerborder"
+            android:orientation="horizontal"
+
+            app:layout_constraintBottom_toTopOf="@id/constraintLayout2"
+            app:layout_constraintEnd_toEndOf="@+id/walkie_sp_channel_rl"
+            app:layout_constraintStart_toStartOf="@+id/walkie_sp_channel_rl"
+            app:layout_constraintTop_toBottomOf="@id/walkie_sp_channel_rl">
+
+            <Spinner
+                android:id="@+id/walkie_sp_power"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:background="@android:color/transparent"
+                android:entries="@array/priority"
+                android:gravity="center"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:src="@drawable/arrow_down" />
+
+        </RelativeLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="#7F7F7F"
+            android:orientation="horizontal"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/walkie_sp_power_rl"
+            app:layout_constraintBottom_toTopOf="@id/walkie_sp_id_rl">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="사용자 설정"
+                android:textColor="#fff"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/walkie_tv_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="아이디 : "
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/walkie_sp_id_rl"
+            app:layout_constraintStart_toStartOf="@+id/walkie_tv_network"
+            app:layout_constraintTop_toTopOf="@id/walkie_sp_id_rl" />
+
+        <RelativeLayout
+            android:id="@+id/walkie_sp_id_rl"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:background="@drawable/videospinnerborder"
+            android:orientation="horizontal"
+
+            app:layout_constraintBottom_toTopOf="@id/walkie_btn_network"
+            app:layout_constraintEnd_toEndOf="@+id/walkie_sp_channel_rl"
+            app:layout_constraintStart_toStartOf="@+id/walkie_sp_channel_rl"
+            app:layout_constraintTop_toBottomOf="@id/constraintLayout2">
+
+            <Spinner
+                android:id="@+id/walkie_sp_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:background="@android:color/transparent"
+                android:entries="@array/videoMembers"
+                android:gravity="center"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:src="@drawable/arrow_down" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/walkie_tv_network"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="네트워크 : "
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/walkie_btn_network"
+            app:layout_constraintEnd_toStartOf="@+id/walkie_btn_network"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/walkie_btn_network" />
+
+        <Button
+            android:id="@+id/walkie_btn_network"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="설정"
+
+            app:layout_constraintBottom_toTopOf="@id/constraintLayout3"
+            app:layout_constraintStart_toStartOf="@+id/walkie_sp_id_rl"
+            app:layout_constraintTop_toBottomOf="@id/walkie_sp_id_rl" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="#7F7F7F"
+            android:orientation="horizontal"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/walkie_btn_network"
+            app:layout_constraintBottom_toTopOf="@id/walkie_tv_conn">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="개인무전기 상태"
+                android:textColor="#fff"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/walkie_tv_conn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="100dp"
+            android:text="연결 상태 : "
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_back_under"
+            app:layout_constraintEnd_toStartOf="@id/walkie_tv_battery"
+            app:layout_constraintStart_toStartOf="@+id/walkie_tv_network"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+
+        <TextView
+            android:id="@+id/walkie_tv_battery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="배터리 : "
+            android:layout_marginEnd="100dp"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/walkie_tv_conn"
+            app:layout_constraintTop_toTopOf="@id/walkie_tv_conn" />
+
+        <Button
+            android:id="@+id/btn_back_under"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:background="@drawable/bg_custom_button4"
+            android:onClick="onButtonClick"
+            android:text="뒤로"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:layout_marginBottom="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
