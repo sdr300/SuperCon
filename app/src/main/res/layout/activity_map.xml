@@ -139,6 +139,77 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/chatselect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:background="#444444"
+        android:textColor="@android:color/white"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.73"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        >
+
+        <ImageButton
+            android:id="@+id/ibt_chat_team"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:onClick="onButtonClick"
+            android:scaleType="fitXY"
+            android:src="@drawable/chat_white_team"
+            app:layout_constraintBottom_toTopOf="@id/tv_chat_team"
+            app:layout_constraintEnd_toStartOf="@id/ibt_chat_tmmr"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_chat_team"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="팀채널"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toBottomOf="@id/ibt_chat_team"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/ibt_chat_team"
+            app:layout_constraintEnd_toEndOf="@id/ibt_chat_team"
+            />
+
+
+        <ImageButton
+            android:id="@+id/ibt_chat_tmmr"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="5dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:onClick="onButtonClick"
+            android:scaleType="fitXY"
+            android:src="@drawable/chat_white_tmmr"
+            app:layout_constraintBottom_toTopOf="@id/tv_chat_tmmr"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ibt_chat_team"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_chat_tmmr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TMMR"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toBottomOf="@id/ibt_chat_tmmr"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/ibt_chat_tmmr"
+            app:layout_constraintEnd_toEndOf="@id/ibt_chat_tmmr"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <TextView
         android:id="@+id/chookLevel"
         android:layout_width="wrap_content"

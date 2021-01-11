@@ -112,7 +112,7 @@ public class MapActivity extends AppCompatActivity {
     private Integer dogu_int;
     private String dogu_string;
     TextView distance1, clickLocation;
-    int doguint , junmunint = 0;
+    int doguint , junmunint, chatint = 0;
     public String dogu_addText;
     private SwitchCompat dogu_sw;
     private RadioButton globe_rb_dms;
@@ -725,6 +725,9 @@ public class MapActivity extends AppCompatActivity {
         } else if (view.getId() == R.id.ibt_camera ) {
             switchAll(view);
         } else if (view.getId() == R.id.ibt_chat ) {
+            switchChat();
+            switchAll(view);
+        } else if (view.getId() == R.id.ibt_chat_team ) {
             switchAll(view);
         } else if (view.getId() == R.id.ibt_junmun ) {
             switchJunmun();
@@ -749,25 +752,55 @@ public class MapActivity extends AppCompatActivity {
         if ( doguint%2 == 0) {
             findViewById(R.id.doguselect).setVisibility(View.VISIBLE);
             doguint = doguint+1;
+            //
+            findViewById(R.id.junmunselect).setVisibility(View.INVISIBLE);
+            junmunint = 0;
+            //
+            findViewById(R.id.chatselect).setVisibility(View.INVISIBLE);
+            chatint = 0;
         } else  if ( doguint%2 == 1 ) {
             findViewById(R.id.doguselect).setVisibility(View.INVISIBLE);
             doguint = doguint+1;
         }
     }
 
-    //=============전문 선택
+    //============= 전문 선택
     public void switchJunmun() {
         if ( junmunint%2 == 0) {
             findViewById(R.id.junmunselect).setVisibility(View.VISIBLE);
             junmunint = junmunint+1;
+            //
+            findViewById(R.id.doguselect).setVisibility(View.INVISIBLE);
+            doguint = 0;
+            //
+            findViewById(R.id.chatselect).setVisibility(View.INVISIBLE);
+            chatint = 0;
         } else  if ( junmunint%2 == 1 ) {
             findViewById(R.id.junmunselect).setVisibility(View.INVISIBLE);
             junmunint = junmunint+1;
         }
     }
 
+    //============== 채팅 선택
+    public void switchChat() {
+        if ( chatint%2 == 0) {
+            findViewById(R.id.chatselect).setVisibility(View.VISIBLE);
+            chatint = chatint+1;
+            //
+            findViewById(R.id.doguselect).setVisibility(View.INVISIBLE);
+            doguint = 0;
+            //
+            findViewById(R.id.junmunselect).setVisibility(View.INVISIBLE);
+            junmunint = 0;
+        } else  if ( chatint%2 == 1 ) {
+            findViewById(R.id.chatselect).setVisibility(View.INVISIBLE);
+            chatint = chatint+1;
+        }
+    }
+
+    //=============== switchAll
     public void switchAll(View view) {
-         if (view.getId() == R.id.ibt_dogu || view.getId() == R.id.ibt_junmun) {
+         if (view.getId() == R.id.ibt_dogu || view.getId() == R.id.ibt_junmun || view.getId() == R.id.ibt_chat) {
             fr = new FragmentZ();
             fm.popBackStack();
              fragmentBoolean = 0;
@@ -782,7 +815,7 @@ public class MapActivity extends AppCompatActivity {
                 fr = new VideoMainFragment();
             } else if (view.getId() ==R.id.ibt_camera) {
                 fr = new CameraMainFragment();
-            } else if (view.getId() ==R.id.ibt_chat) {
+            } else if (view.getId() ==R.id.ibt_chat_team) {
                 fr = new ChatMainFragment();
             } else if (view.getId() ==R.id.ibt_junmun_team ) {
                 fr = new JunmunReceiveFragment();
@@ -798,6 +831,10 @@ public class MapActivity extends AppCompatActivity {
              if ( junmunint%2 == 1 ) {
                  findViewById(R.id.junmunselect).setVisibility(View.INVISIBLE);
                  junmunint = junmunint + 1;
+             }
+             if ( chatint%2 == 1 ) {
+                 findViewById(R.id.chatselect).setVisibility(View.INVISIBLE);
+                 chatint = chatint + 1;
              }
             fragmentBoolean = 1;
         } else {
