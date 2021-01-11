@@ -155,9 +155,11 @@ public class GlobeFragment extends Fragment {
                     grid.setFontColor(Color.BLACK);
                     map.getOverlays().add(1, grid);
                 } else  if (!globe_checkBox.isChecked()){
+                    //ArrayIndexOutOfBoundsException 을 try catch로 잡아냄
                     try {
                         map.getOverlays().remove(1);
-                    } finally {
+                    } catch(IndexOutOfBoundsException e) {
+                        System.out.println(e);
                     }
                 }
             }

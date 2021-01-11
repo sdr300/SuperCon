@@ -24,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
-                android:id="@+id/btn_back"
+                android:id="@+id/btn_back_super"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -52,90 +52,90 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-        <ImageView
-            android:id="@+id/tpwrite_iv_line"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:src="@drawable/transline_black"
-            android:layout_margin="5dp"
-            app:layout_constraintBottom_toTopOf="@+id/tpwrite_iv_eclipse"
-            app:layout_constraintEnd_toStartOf="@+id/tpwrite_iv_square"
+<!--  ToggleButtonGroupTableLayout 작성 후 이용-->
+        <superconn.pds.sw.superconn.etc.ToggleButtonGroupTableLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:id="@+id/tpwrite_rg2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-        <ImageView
-            android:id="@+id/tpwrite_iv_square"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:src="@drawable/transsquare_black"
-            android:layout_margin="5dp"
-            app:layout_constraintBottom_toTopOf="@+id/tpwrite_iv_star"
-            app:layout_constraintEnd_toStartOf="@+id/tpwrite_iv_triangle"
-            app:layout_constraintStart_toEndOf="@+id/tpwrite_iv_line"
-            app:layout_constraintTop_toBottomOf='@id/linearLayout' />
-
-        <ImageView
-            android:id="@+id/tpwrite_iv_triangle"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:src="@drawable/transtriangle_black"
-            android:layout_margin="5dp"
-            app:layout_constraintBottom_toTopOf="@+id/tpwrite_iv_multiline"
-            app:layout_constraintEnd_toStartOf="@+id/tpwrite_iv_circle"
-            app:layout_constraintStart_toEndOf="@+id/tpwrite_iv_square"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-        <ImageView
-            android:id="@+id/tpwrite_iv_circle"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:src="@drawable/transcircle_black"
-            android:layout_margin="5dp"
-            app:layout_constraintBottom_toTopOf="@+id/tpwrite_iv_text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tpwrite_iv_triangle"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+            app:layout_constraintTop_toBottomOf="@id/linearLayout"
+            app:layout_constraintBottom_toTopOf="@id/tpwrite_rg2">
 
-        <ImageView
-            android:id="@+id/tpwrite_iv_eclipse"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:src="@drawable/transellipse_black"
-            android:layout_margin="5dp"
-            app:layout_constraintEnd_toStartOf="@+id/tpwrite_iv_star"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tpwrite_iv_line" />
+            <TableRow>
 
-        <ImageView
-            android:id="@+id/tpwrite_iv_star"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:src="@drawable/transstar_black"
-            android:layout_margin="5dp"
-            app:layout_constraintEnd_toStartOf="@+id/tpwrite_iv_multiline"
-            app:layout_constraintStart_toEndOf="@+id/tpwrite_iv_eclipse"
-            app:layout_constraintTop_toBottomOf="@+id/tpwrite_iv_square" />
+                <RadioButton
+                    android:id="@+id/tpwrite_rb_line"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:button="@color/trans"
+                    android:background="@drawable/custom_tp_line"
+                    />
+                <RadioButton
+                    android:id="@+id/tpwrite_rb_square"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:button="@color/trans"
+                    android:background="@drawable/custom_tp_square"
+                    />
+                <RadioButton
+                    android:id="@+id/tpwrite_rb_triangle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:button="@color/trans"
+                    android:background="@drawable/custom_tp_triangle"
+                    />
+                <RadioButton
+                    android:id="@+id/tpwrite_rb_circle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:button="@color/trans"
+                    android:background="@drawable/custom_tp_circle"
+                    />
+            </TableRow>
+            <TableRow>
+                <RadioButton
+                    android:id="@+id/tpwrite_rb_eclipse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:button="@color/trans"
+                    android:background="@drawable/custom_tp_eclipse"
+                    />
+                <RadioButton
+                    android:id="@+id/tpwrite_rb_star"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:button="@color/trans"
+                    android:background="@drawable/custom_tp_star"
+                    />
+                <RadioButton
+                    android:id="@+id/tpwrite_rb_multiline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:button="@color/trans"
+                    android:background="@drawable/custom_tp_multiline"
+                    />
+                <RadioButton
+                    android:id="@+id/tpwrite_rb_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:button="@color/trans"
+                    android:background="@drawable/custom_tp_text"
+                    />
+            </TableRow>
 
-        <ImageView
-            android:id="@+id/tpwrite_iv_multiline"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:src="@drawable/transmultiline_black"
-            android:layout_margin="5dp"
-            app:layout_constraintEnd_toStartOf="@+id/tpwrite_iv_text"
-            app:layout_constraintStart_toEndOf="@+id/tpwrite_iv_star"
-            app:layout_constraintTop_toBottomOf="@+id/tpwrite_iv_triangle" />
+        </superconn.pds.sw.superconn.etc.ToggleButtonGroupTableLayout>
 
-        <ImageView
-            android:id="@+id/tpwrite_iv_text"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:src="@drawable/transtext_balck"
-            android:layout_margin="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tpwrite_iv_multiline"
-            app:layout_constraintTop_toBottomOf="@+id/tpwrite_iv_circle" />
+
+
 
         <TextView
             android:id="@+id/tpwrite_tv_color"
@@ -145,14 +145,14 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tpwrite_iv_eclipse"
+            app:layout_constraintTop_toBottomOf="@+id/tpwrite_rg2"
             app:layout_constraintEnd_toStartOf="@id/tpwrite_sp_color_rl"
             app:layout_constraintBottom_toTopOf="@id/tpwrite_tv_line"/>
 
         <RelativeLayout
             android:id="@+id/tpwrite_sp_color_rl"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:orientation="horizontal"
             android:background="@drawable/videospinnerborder"
             app:layout_constraintTop_toTopOf="@+id/tpwrite_tv_color"
@@ -197,7 +197,7 @@
         <RelativeLayout
             android:id="@+id/tpwrite_sp_line_rl"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:background="@drawable/videospinnerborder"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="@id/tpwrite_tv_line"
@@ -238,17 +238,17 @@
             android:textColor="@color/white"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btn_back_under"
+            app:layout_constraintEnd_toStartOf="@+id/btn_back_under_super"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/btn_back_under"
+            android:id="@+id/btn_back_under_super"
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_marginBottom="1dp"
             android:background="@drawable/bg_custom_button4"
             android:onClick="onButtonClick"
-            android:text="닫기"
+            android:text="뒤로"
             android:textColor="@color/white"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"

@@ -4,12 +4,14 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListPopupWindow;
 import android.widget.PopupWindow;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import java.lang.reflect.Field;
@@ -34,6 +36,9 @@ public class TransparencyWriteFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        View view = inflater.inflate(R.layout.fragment_transparency_write, container, false);
+        mBinding = FragmentTransparencyWriteBinding.inflate(inflater, container, false);
+
 
         // 스피너에 보여줄 문자열과 이미지 목록을 작성합니다.
         spinnerColorNames = new String[]{"yellow", "black", "green", "red"};
@@ -49,7 +54,7 @@ public class TransparencyWriteFragment extends Fragment {
                 R.drawable.transdottedline
         };
 
-        View view = inflater.inflate(R.layout.fragment_transparency_write, container, false);
+
 
         final Spinner tpwrite_sp_color = view.findViewById(R.id.tpwrite_sp_color);
         final Spinner tpwrite_sp_line = view.findViewById(R.id.tpwrite_sp_line);
@@ -97,5 +102,7 @@ public class TransparencyWriteFragment extends Fragment {
 
         return view;
     }
+
+
     
 }
