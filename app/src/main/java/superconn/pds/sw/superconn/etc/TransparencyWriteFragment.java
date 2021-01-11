@@ -8,7 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ListPopupWindow;
+import android.widget.PopupWindow;
 import android.widget.Spinner;
+
+import java.lang.reflect.Field;
 
 import superconn.pds.sw.superconn.R;
 import superconn.pds.sw.superconn.databinding.FragmentTransparencyWriteBinding;
@@ -82,8 +86,16 @@ public class TransparencyWriteFragment extends Fragment {
 
             }
         });
-
+        try {
+            Field popup = Spinner.class.getDeclaredField("mPopup");
+            popup.setAccessible(true);
+            ListPopupWindow window = (ListPopupWindow) popup.get(tpwrite_sp_color);
+            window.setModal(false);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
 
         return view;
     }
+    
 }

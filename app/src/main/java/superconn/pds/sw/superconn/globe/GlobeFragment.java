@@ -57,8 +57,7 @@ public class GlobeFragment extends Fragment {
         globe_rb_dms = view.findViewById(R.id.globe_rb_dms);
         globe_btn_save = view.findViewById(R.id.globe_btn_save);
 
-        globe_checkBox = view.findViewById(R.id.globe_checkBox);
-
+        //좌표계 라디오 버튼 설정 저장(SharedPreferences)
         globe_rb_mgrs.setChecked(Update("GLOBE_MGRS"));
         globe_rb_utm.setChecked(Update("GLOBE_UTM"));
         globe_rb_dms.setChecked(Update("GLOBE_DMS"));
@@ -82,6 +81,19 @@ public class GlobeFragment extends Fragment {
             }
         });
 
+        //그리고 체크 박스 버튼 설정 저장(SharedPreferences)
+        globe_checkBox = view.findViewById(R.id.globe_checkBox);
+
+        globe_checkBox.setChecked(Update("GLOBE_GRID"));
+
+        globe_checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean grid_isChecked) {
+                SaveIntoSharedPrefs("GLOBE_GRID", grid_isChecked);
+            }
+        });
+
+        //
         globe_String = ((MapActivity)getActivity()).dms(latitude, longitude);
 
         if(globe_rb_mgrs.isChecked()){
@@ -143,7 +155,10 @@ public class GlobeFragment extends Fragment {
                     grid.setFontColor(Color.BLACK);
                     map.getOverlays().add(1, grid);
                 } else  if (!globe_checkBox.isChecked()){
-                    map.getOverlays().remove(1);
+                    try {
+                        map.getOverlays().remove(1);
+                    } finally {
+                    }
                 }
             }
         });

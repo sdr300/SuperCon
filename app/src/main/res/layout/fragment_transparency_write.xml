@@ -141,13 +141,13 @@
             android:id="@+id/tpwrite_tv_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:text="색상 : "
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tpwrite_iv_eclipse"
-            app:layout_constraintEnd_toStartOf="@id/tpwrite_sp_color_rl"/>
+            app:layout_constraintEnd_toStartOf="@id/tpwrite_sp_color_rl"
+            app:layout_constraintBottom_toTopOf="@id/tpwrite_tv_line"/>
 
         <RelativeLayout
             android:id="@+id/tpwrite_sp_color_rl"
@@ -186,10 +186,10 @@
             android:id="@+id/tpwrite_tv_line"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:text="선종류 : "
             android:textColor="@color/white"
             android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/trancyparency_write_btn_create"
             app:layout_constraintEnd_toEndOf="@+id/tpwrite_tv_color"
             app:layout_constraintStart_toStartOf="@+id/tpwrite_tv_color"
             app:layout_constraintTop_toBottomOf="@+id/tpwrite_tv_color" />

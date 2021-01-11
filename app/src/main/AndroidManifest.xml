@@ -20,6 +20,7 @@
         android:theme="@style/AppTheme">
         <activity android:name="superconn.pds.sw.superconn.MapActivity"
             android:screenOrientation="landscape">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

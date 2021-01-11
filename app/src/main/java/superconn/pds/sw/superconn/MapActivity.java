@@ -19,8 +19,11 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowInsets;
 import android.view.WindowManager;
+import android.widget.ListPopupWindow;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,6 +57,7 @@ import org.osmdroid.views.overlay.compass.CompassOverlay;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -124,17 +128,19 @@ public class MapActivity extends AppCompatActivity {
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));
 
         //풀화면
-        View decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_IMMERSIVE|
-                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE|
-                        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION|
-                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|
-                        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|
-                        View.SYSTEM_UI_FLAG_FULLSCREEN);
-        int uiOptions = getWindow().getDecorView().getSystemUiVisibility();
-        int newUiOptions = uiOptions;
-        getWindow().getDecorView().setSystemUiVisibility(newUiOptions);
+//        View decorView = getWindow().getDecorView();
+//        decorView.setSystemUiVisibility(
+//                View.SYSTEM_UI_FLAG_IMMERSIVE|
+//                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE|
+//                        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION|
+//                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|
+//                        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|
+//                        View.SYSTEM_UI_FLAG_FULLSCREEN);
+//        int uiOptions = getWindow().getDecorView().getSystemUiVisibility();
+//        int newUiOptions = uiOptions;
+//        getWindow().getDecorView().setSystemUiVisibility(newUiOptions);
+
+
 
         //
         map = findViewById(R.id.mapView);
@@ -488,6 +494,8 @@ public class MapActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
+
+        //
         LIFFReceiver = new LIFFReceiver();
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(Intent.ACTION_POWER_CONNECTED);
