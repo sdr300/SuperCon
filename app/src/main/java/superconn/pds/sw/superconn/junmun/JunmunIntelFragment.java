@@ -18,11 +18,19 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 
 import superconn.pds.sw.superconn.R;
+import superconn.pds.sw.superconn.databinding.FragmentJunmunIntelBinding;
+import superconn.pds.sw.superconn.etc.CustomSpinnerAdapter;
 
 public class JunmunIntelFragment extends Fragment {
 
+    private FragmentJunmunIntelBinding mBinding;
     ArrayList<String> arrayList_type1, arrayList_type2_unit, arrayList_type2_equipment, arrayList_type2_emergency, arrayList_type3_count, arrayList_type3_property;
     ArrayAdapter<String> arrayAdapter_type3, arrayAdapter_type1, arrayAdapter_type2;
+
+    String[] spinner_type1,spinner_type2_unit, spinner_type2_equip, spinner_type2_emergency, spinner_type3_property, spinner_type3_count;
+    int[] im_type1,im_type2_unit, im_type2_equip, im_type2_emergency, im_type3_property, im_type3_count;
+    int unit_idx, equip_idx, emergency_idx, property_idx;
+
 
     public JunmunIntelFragment() {
         // Required empty public constructor
@@ -35,10 +43,44 @@ public class JunmunIntelFragment extends Fragment {
 
         //============ dependant spinner - type1 ===========//
 
+        mBinding = FragmentJunmunIntelBinding.inflate(inflater, container, false);
         Spinner junmun_intel_sp_type1 = view.findViewById(R.id.junmun_intel_sp_type1);
         final Spinner junmun_intel_sp_type2 = view.findViewById(R.id.junmun_intel_sp_type2);
         final Spinner junmun_intel_sp_type3 = view.findViewById(R.id.junmun_intel_sp_type3);
 
+        // 이미지 삽입
+        spinner_type1 = new String[] {"부대", "장비", "비상관리"};
+
+        spinner_type2_unit =  new String[] {"미지정","조", "분대","반", "소대","중대", "대대"};
+        im_type2_unit = new int[]{
+                R.drawable.spinnerunit0,
+                R.drawable.spinnerunit1,
+                R.drawable.spinnerunit2,
+                R.drawable.spinnerunit3,
+                R.drawable.spinnerunit4,
+                R.drawable.spinnerunit5,
+                R.drawable.spinnerunit6
+        };
+
+        spinner_type3_property =  new String[] {"미식별(적)","보병", "포병","기갑", "공병","항공", "수색/정찰"};
+        im_type3_property  = new int[]{
+                R.drawable.spinnerproperty0,
+                R.drawable.spinnerproperty1,
+                R.drawable.spinnerproperty2,
+                R.drawable.spinnerproperty3,
+                R.drawable.spinnerproperty4,
+                R.drawable.spinnerproperty5,
+                R.drawable.spinnerproperty6
+        };
+
+        
+
+        CustomSpinnerAdapter customSpinnerAdapterUnit = new CustomSpinnerAdapter(getActivity().getApplicationContext(), )
+
+
+
+
+        //기존 스피너
         arrayList_type1 = new ArrayList<>();
         arrayList_type1.add("부대");
         arrayList_type1.add("장비");

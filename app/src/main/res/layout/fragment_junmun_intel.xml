@@ -259,7 +259,7 @@
 
             <RelativeLayout
                 android:id="@+id/junmun_intel_sp_type1_rl"
-                android:layout_width="140dp"
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:background="@drawable/videospinnerborder"
@@ -314,7 +314,7 @@
 
             <RelativeLayout
                 android:id="@+id/junmun_intel_sp_type2_rl"
-                android:layout_width="140dp"
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:background="@drawable/videospinnerborder"
@@ -369,7 +369,7 @@
 
             <RelativeLayout
                 android:id="@+id/junmun_intel_sp_type3_rl"
-                android:layout_width="140dp"
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:background="@drawable/videospinnerborder"
