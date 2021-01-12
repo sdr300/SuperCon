@@ -72,6 +72,7 @@ import superconn.pds.sw.superconn.DataBase.Buho;
 import superconn.pds.sw.superconn.DataBase.RoomDatabaseClass;
 import superconn.pds.sw.superconn.ICOPS.DemoMainView;
 import superconn.pds.sw.superconn.camera.CameraMainFragment;
+import superconn.pds.sw.superconn.camera.CameraSensorFragment;
 import superconn.pds.sw.superconn.chat.ChatMainFragment;
 import superconn.pds.sw.superconn.chook.ChookFragment;
 import superconn.pds.sw.superconn.comm.LIFFReceiver;
@@ -112,7 +113,7 @@ public class MapActivity extends AppCompatActivity {
     private Integer dogu_int, dogu_number;
     private String dogu_string, dogu_string_number;
     TextView distance1, distanceNumber, clickLocation;
-    int doguint , junmunint, chatint = 0;
+    int doguint , cameraint, chatint, junmunint, sensorint = 0;
     public String dogu_addText;
     private SwitchCompat dogu_sw;
     private RadioButton globe_rb_dms;
@@ -494,8 +495,6 @@ public class MapActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     private final String LIFF_IDENTIFICATION_SEND = "LIFF.COMM.RS232.IDENTIFICATION.SEND";
@@ -702,6 +701,12 @@ public class MapActivity extends AppCompatActivity {
             FragmentTransaction fragmentTransaction = fm.beginTransaction();
             fragmentTransaction.replace(R.id.fragment_frame, fr);
             fragmentTransaction.commit();
+            if (sensorint ==1) {
+                sensorfr = new FragmentZ();
+                fragmentTransaction.replace(R.id.fragment_frame_full, sensorfr);
+                fragmentTransaction.commit();
+                sensorint =0;
+            }
         } else if (view.getId() == R.id.btn_back_super){
             super.onBackPressed();
         } else if (view.getId() == R.id.btn_back_under){
@@ -710,7 +715,10 @@ public class MapActivity extends AppCompatActivity {
             fragmentBoolean = 0;
             FragmentTransaction fragmentTransaction = fm.beginTransaction();
             fragmentTransaction.replace(R.id.fragment_frame, fr);
-            fragmentTransaction.commit();
+                sensorfr = new FragmentZ();
+                fragmentTransaction.replace(R.id.fragment_frame_full, sensorfr);
+                fragmentTransaction.commit();
+                sensorint =0;
         } else if (view.getId() == R.id.btn_back_under_super){
             super.onBackPressed();
  //======================== MapActivity ibt 버튼 ====================================
@@ -735,14 +743,17 @@ public class MapActivity extends AppCompatActivity {
             switchAll(view);
         } else if (view.getId() == R.id.ibt_camera ) {
             switchAll(view);
-        } else if (view.getId() == R.id.ibt_chat ) {
-            switchChat();
+            switchCamera();
+        } else if (view.getId() == R.id.ibt_camera_sensor ) {
             switchAll(view);
+        } else if (view.getId() == R.id.ibt_chat ) {
+            switchAll(view);
+            switchChat();
         } else if (view.getId() == R.id.ibt_chat_team ) {
             switchAll(view);
         } else if (view.getId() == R.id.ibt_junmun ) {
-            switchJunmun();
             switchAll(view);
+            switchJunmun();
         } else if (view.getId() == R.id.ibt_junmun_team) {
             switchAll(view);
         } else if (view.getId() == R.id.ibt_waikie ) {
@@ -754,9 +765,8 @@ public class MapActivity extends AppCompatActivity {
 
     //========================switchFragment(power)===============
     //getSupportFragmentManager().findFragmentById(R.id.fragment_frame)==null
-    Fragment fr;
+    Fragment fr, sensorfr;
     FragmentManager fm = getSupportFragmentManager();
-
 
     //=============측정도구 선택
     public void switchDogu() {
@@ -764,31 +774,37 @@ public class MapActivity extends AppCompatActivity {
             findViewById(R.id.doguselect).setVisibility(View.VISIBLE);
             doguint = doguint+1;
             //
-            findViewById(R.id.junmunselect).setVisibility(View.INVISIBLE);
-            junmunint = 0;
+            findViewById(R.id.cameraselect).setVisibility(View.INVISIBLE);
+            cameraint = 0;
             //
             findViewById(R.id.chatselect).setVisibility(View.INVISIBLE);
             chatint = 0;
+            //
+            findViewById(R.id.junmunselect).setVisibility(View.INVISIBLE);
+            junmunint = 0;
         } else  if ( doguint%2 == 1 ) {
             findViewById(R.id.doguselect).setVisibility(View.INVISIBLE);
             doguint = doguint+1;
         }
     }
 
-    //============= 전문 선택
-    public void switchJunmun() {
-        if ( junmunint%2 == 0) {
-            findViewById(R.id.junmunselect).setVisibility(View.VISIBLE);
-            junmunint = junmunint+1;
+    //============= 카메라(정지 영상) 선택
+    public void switchCamera() {
+        if ( cameraint%2 == 0) {
+            findViewById(R.id.cameraselect).setVisibility(View.VISIBLE);
+            cameraint = cameraint+1;
             //
             findViewById(R.id.doguselect).setVisibility(View.INVISIBLE);
             doguint = 0;
             //
             findViewById(R.id.chatselect).setVisibility(View.INVISIBLE);
             chatint = 0;
-        } else  if ( junmunint%2 == 1 ) {
+            //
             findViewById(R.id.junmunselect).setVisibility(View.INVISIBLE);
-            junmunint = junmunint+1;
+            junmunint = 0;
+        } else  if ( cameraint%2 == 1 ) {
+            findViewById(R.id.cameraselect).setVisibility(View.INVISIBLE);
+            cameraint = cameraint+1;
         }
     }
 
@@ -801,6 +817,9 @@ public class MapActivity extends AppCompatActivity {
             findViewById(R.id.doguselect).setVisibility(View.INVISIBLE);
             doguint = 0;
             //
+            findViewById(R.id.cameraselect).setVisibility(View.INVISIBLE);
+            cameraint = 0;
+            //
             findViewById(R.id.junmunselect).setVisibility(View.INVISIBLE);
             junmunint = 0;
         } else  if ( chatint%2 == 1 ) {
@@ -809,13 +828,40 @@ public class MapActivity extends AppCompatActivity {
         }
     }
 
+    //============= 전문 선택
+    public void switchJunmun() {
+        if ( junmunint%2 == 0) {
+            findViewById(R.id.junmunselect).setVisibility(View.VISIBLE);
+            junmunint = junmunint+1;
+            //
+            findViewById(R.id.doguselect).setVisibility(View.INVISIBLE);
+            doguint = 0;
+            //
+            findViewById(R.id.cameraselect).setVisibility(View.INVISIBLE);
+            cameraint = 0;
+            //
+            findViewById(R.id.chatselect).setVisibility(View.INVISIBLE);
+            chatint = 0;
+        } else  if ( junmunint%2 == 1 ) {
+            findViewById(R.id.junmunselect).setVisibility(View.INVISIBLE);
+            junmunint = junmunint+1;
+        }
+    }
+
     //=============== switchAll
     public void switchAll(View view) {
-         if (view.getId() == R.id.ibt_dogu || view.getId() == R.id.ibt_junmun || view.getId() == R.id.ibt_chat) {
+         if (view.getId() == R.id.ibt_dogu || view.getId() == R.id.ibt_junmun || view.getId() == R.id.ibt_chat || view.getId() == R.id.ibt_camera) {
             fr = new FragmentZ();
             fm.popBackStack();
-             fragmentBoolean = 0;
-        } else if (fragmentBoolean == 0) {
+            fragmentBoolean = 0;
+            if(sensorint == 1){
+                sensorfr = new FragmentZ();
+                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_frame_full, sensorfr);
+                fragmentTransaction.commit();
+                sensorint = 0;
+            }
+        } else if (fragmentBoolean == 0 && sensorint ==0) {
             if (view.getId() ==R.id.ibt_chook) {
                 fr = new ChookFragment();
             } else if (view.getId() ==R.id.ibt_globe) {
@@ -824,8 +870,13 @@ public class MapActivity extends AppCompatActivity {
                 fr = new FragmentDogu();
             } else if (view.getId() ==R.id.ibt_video) {
                 fr = new VideoMainFragment();
-            } else if (view.getId() ==R.id.ibt_camera) {
-                fr = new CameraMainFragment();
+            } else if (view.getId() ==R.id.ibt_camera_sensor) {
+                sensorfr = new CameraSensorFragment();
+                sensorint= sensorint+1;
+                fm.popBackStack();
+                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_frame_full, sensorfr);
+                fragmentTransaction.commit();
             } else if (view.getId() ==R.id.ibt_chat_team) {
                 fr = new ChatMainFragment();
             } else if (view.getId() ==R.id.ibt_junmun_team ) {
@@ -839,23 +890,57 @@ public class MapActivity extends AppCompatActivity {
                  findViewById(R.id.doguselect).setVisibility(View.INVISIBLE);
                  doguint = doguint+1;
              }
-             if ( junmunint%2 == 1 ) {
-                 findViewById(R.id.junmunselect).setVisibility(View.INVISIBLE);
-                 junmunint = junmunint + 1;
+             if ( cameraint%2 == 1 ) {
+                 findViewById(R.id.cameraselect).setVisibility(View.INVISIBLE);
+                 cameraint = cameraint + 1;
              }
              if ( chatint%2 == 1 ) {
                  findViewById(R.id.chatselect).setVisibility(View.INVISIBLE);
                  chatint = chatint + 1;
              }
+             if ( junmunint%2 == 1 ) {
+                 findViewById(R.id.junmunselect).setVisibility(View.INVISIBLE);
+                 junmunint = junmunint + 1;
+             }
             fragmentBoolean = 1;
-        } else {
+        } else if (fragmentBoolean == 1 && sensorint == 0) {
             fr = new FragmentZ() ;
             fm.popBackStack();
             fragmentBoolean = 0;
-        }
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_frame, fr);
-        fragmentTransaction.commit();
+             sensorfr = new FragmentZ();
+             FragmentTransaction fragmentTransaction = fm.beginTransaction();
+             fragmentTransaction.replace(R.id.fragment_frame_full, sensorfr);
+             fragmentTransaction.commit();
+             Log.d("1,0", "1,0");
+        } else if (fragmentBoolean == 0 && sensorint == 1) {
+             sensorfr = new FragmentZ();
+             fm.popBackStack();
+             FragmentTransaction fragmentTransaction = fm.beginTransaction();
+             fragmentTransaction.replace(R.id.fragment_frame_full, sensorfr);
+             fragmentTransaction.commit();
+             sensorint= 0;
+             Log.d("0.1", "0.1");
+         } else if  (fragmentBoolean == 1 && sensorint == 1) {
+             sensorfr = new FragmentZ();
+             fm.popBackStack();
+             FragmentTransaction fragmentTransaction = fm.beginTransaction();
+             fragmentTransaction.replace(R.id.fragment_frame_full, sensorfr);
+             fragmentTransaction.commit();
+             fragmentBoolean =0;
+             sensorint= 0;
+             fr = new FragmentZ();
+             Log.d("1,1", "1,1");
+         } else {
+             fr = new FragmentZ();
+             sensorfr = new FragmentZ();
+         }
+             FragmentTransaction fragmentTransaction = fm.beginTransaction();
+             fragmentTransaction.replace(R.id.fragment_frame, fr);
+             fragmentTransaction.commit();
+
+        Log.d("fragmentBoolean",fragmentBoolean+"");
+        Log.d("sensorint",sensorint+"");
+        Log.d("cameraint",cameraint+"");
     }
 
     //========================================뒤로 버튼 관리

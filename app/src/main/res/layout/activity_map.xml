@@ -26,14 +26,13 @@
         android:id="@+id/doguselect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         android:background="#444444"
         android:textColor="@android:color/white"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.425"
+        app:layout_constraintHorizontal_bias="0.44"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
          >
 
@@ -69,73 +68,63 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/junmunselect"
+        android:id="@+id/cameraselect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         android:background="#444444"
         android:textColor="@android:color/white"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.845"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.613"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
         >
 
         <ImageButton
-            android:id="@+id/ibt_junmun_team"
-            android:layout_width="40dp"
+            android:id="@+id/ibt_camera_sensor"
+            android:layout_width="35dp"
             android:layout_height="40dp"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:onClick="onButtonClick"
+            android:scaleType="fitXY"
+            android:src="@drawable/camera_sensor_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ibt_camera_app"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/ibt_camera_app"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
             android:layout_marginEnd="10dp"
             android:background="?android:attr/selectableItemBackgroundBorderless"
             android:onClick="onButtonClick"
             android:scaleType="fitXY"
-            android:src="@drawable/mail_white_team"
-            app:layout_constraintBottom_toTopOf="@id/tv_junmun_team"
-            app:layout_constraintEnd_toStartOf="@id/ibt_junmun_tmmr"
-            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/camera_app_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ibt_camera_gallery"
+            app:layout_constraintStart_toEndOf="@id/ibt_camera_sensor"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_junmun_team"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="팀채널"
-            android:textColor="#FFFFFF"
-            app:layout_constraintTop_toBottomOf="@id/ibt_junmun_team"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/ibt_junmun_team"
-            app:layout_constraintEnd_toEndOf="@id/ibt_junmun_team"
-            />
-
-
         <ImageButton
-            android:id="@+id/ibt_junmun_tmmr"
+            android:id="@+id/ibt_camera_gallery"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="7dp"
             android:background="?android:attr/selectableItemBackgroundBorderless"
             android:onClick="onButtonClick"
             android:scaleType="fitXY"
-            android:src="@drawable/mail_white_tmmr"
-            app:layout_constraintBottom_toTopOf="@id/tv_junmun_tmmr"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ibt_junmun_team"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_junmun_tmmr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TMMR"
-            android:textColor="#FFFFFF"
-            app:layout_constraintTop_toBottomOf="@id/ibt_junmun_tmmr"
+            android:src="@drawable/camera_gallery_white"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/ibt_junmun_tmmr"
-            app:layout_constraintEnd_toEndOf="@id/ibt_junmun_tmmr"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ibt_camera_app"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -143,14 +132,13 @@
         android:id="@+id/chatselect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         android:background="#444444"
         android:textColor="@android:color/white"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.73"
+        app:layout_constraintHorizontal_bias="0.744"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
         >
 
@@ -206,6 +194,76 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/ibt_chat_tmmr"
             app:layout_constraintEnd_toEndOf="@id/ibt_chat_tmmr"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/junmunselect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="#444444"
+        android:textColor="@android:color/white"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.843"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        >
+
+        <ImageButton
+            android:id="@+id/ibt_junmun_team"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:onClick="onButtonClick"
+            android:scaleType="fitXY"
+            android:src="@drawable/mail_white_team"
+            app:layout_constraintBottom_toTopOf="@id/tv_junmun_team"
+            app:layout_constraintEnd_toStartOf="@id/ibt_junmun_tmmr"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_junmun_team"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="팀채널"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toBottomOf="@id/ibt_junmun_team"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/ibt_junmun_team"
+            app:layout_constraintEnd_toEndOf="@id/ibt_junmun_team"
+            />
+
+
+        <ImageButton
+            android:id="@+id/ibt_junmun_tmmr"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="5dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:onClick="onButtonClick"
+            android:scaleType="fitXY"
+            android:src="@drawable/mail_white_tmmr"
+            app:layout_constraintBottom_toTopOf="@id/tv_junmun_tmmr"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ibt_junmun_team"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_junmun_tmmr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TMMR"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toBottomOf="@id/ibt_junmun_tmmr"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/ibt_junmun_tmmr"
+            app:layout_constraintEnd_toEndOf="@id/ibt_junmun_tmmr"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -444,6 +502,8 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+
     <FrameLayout
         android:id="@+id/fragment_frame"
         android:layout_width="0dp"
@@ -456,5 +516,16 @@
 
     </FrameLayout>
 
+    <FrameLayout
+        android:id="@+id/fragment_frame_full"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
