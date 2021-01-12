@@ -109,9 +109,9 @@ public class MapActivity extends AppCompatActivity {
     public  static RoomDatabaseClass roomDatabaseClass;
     private int fragmentBoolean = 0;
     private long backKeyPressedTime = 0; // 마지막으로 뒤로가기 버튼을 눌렀던 시간 저장
-    private Integer dogu_int;
-    private String dogu_string;
-    TextView distance1, clickLocation;
+    private Integer dogu_int, dogu_number;
+    private String dogu_string, dogu_string_number;
+    TextView distance1, distanceNumber, clickLocation;
     int doguint , junmunint, chatint = 0;
     public String dogu_addText;
     private SwitchCompat dogu_sw;
@@ -140,8 +140,6 @@ public class MapActivity extends AppCompatActivity {
 //        int newUiOptions = uiOptions;
 //        getWindow().getDecorView().setSystemUiVisibility(newUiOptions);
 
-
-
         //
         map = findViewById(R.id.mapView);
         map.setTileSource(TileSourceFactory.MAPNIK);
@@ -169,7 +167,6 @@ public class MapActivity extends AppCompatActivity {
         TextView addressText;
         addressText =  findViewById(R.id.addressText);
         addressText.setText("현재위치 좌표계: 경위도(DMS)\n"+dms(maplatitude, maplongitude));
-
 
         //콤파스(compass) 필요하면 복구
 //        CompassOverlay compassOverlay = new CompassOverlay(this, map);
@@ -233,53 +230,61 @@ public class MapActivity extends AppCompatActivity {
                 double dlongitude = Double.parseDouble(String.format("%.6f",p.getLongitude()));
                 Toast.makeText(getBaseContext(),"선택 좌표 위치:" +"\n"+dlatitude + "\n"+ dlongitude, Toast.LENGTH_LONG).show();
 
-
+                //거리환 거리 조절
                 distance1 = (TextView) findViewById(R.id.distance1);
                 dogu_string = distance1.getText().toString();
                 dogu_int = (Integer.parseInt(dogu_string))/50;
+
+                //거리환 갯수 조절
+                distanceNumber = (TextView) findViewById(R.id.distanceNumber);
+                dogu_string_number = distanceNumber.getText().toString();
+                dogu_number = Integer.parseInt(dogu_string_number);
+
+                //
                 int i=0;
                 drawMarker(p);
                 CompassOverlay compassOverlay = new CompassOverlay(MapActivity.this, map);
                 compassOverlay.enableCompass();
+                compassOverlay.disableCompass();
                 map.getOverlays().add(1, compassOverlay);
 
                 // ======================== 거리환 십자 직선
                 List<GeoPoint> geoPoint250lat = new ArrayList<>();
 
-                geoPoint250lat.add(new GeoPoint(p.getLatitude() - 0.002245*dogu_int*4, p.getLongitude()));
-                geoPoint250lat.add(new GeoPoint(p.getLatitude() + 0.002245*dogu_int*4, p.getLongitude()));
+                geoPoint250lat.add(new GeoPoint(p.getLatitude() - 0.002245*dogu_int*dogu_number, p.getLongitude()));
+                geoPoint250lat.add(new GeoPoint(p.getLatitude() + 0.002245*dogu_int*dogu_number, p.getLongitude()));
 
                 final Polyline line250lat = new Polyline();
 
                 line250lat.setPoints(geoPoint250lat);
                 line250lat.setColor(Color.TRANSPARENT);
-                line250lat.setWidth(6);
+                line250lat.setWidth(40);
 
                 map.getOverlayManager().add(line250lat);
 
                 List<GeoPoint> geoPoint250lon = new ArrayList<>();
 
-                geoPoint250lon.add(new GeoPoint(p.getLatitude() , p.getLongitude()- 0.00283*dogu_int*4));
-                geoPoint250lon.add(new GeoPoint(p.getLatitude() , p.getLongitude()+ 0.00283*dogu_int*4));
+                geoPoint250lon.add(new GeoPoint(p.getLatitude() , p.getLongitude()- 0.00283*dogu_int*dogu_number));
+                geoPoint250lon.add(new GeoPoint(p.getLatitude() , p.getLongitude()+ 0.00283*dogu_int*dogu_number));
 
                 final Polyline line250lon = new Polyline();
                 line250lon.setPoints(geoPoint250lon);
                 line250lon.setColor(Color.TRANSPARENT);
-                line250lon.setWidth(6);
+                line250lon.setWidth(40);
 
                 map.getOverlayManager().add(line250lon);
 
                 //거리환 원그리기 (4개)
-                final Marker[] dmarkers = new Marker[5];
-                GeoPoint[] dGpoints = new GeoPoint[5];
-                final Polygon[] dpolygons = new Polygon[5];
-                for ( i=0; i<5; i++){
+                final Marker[] dmarkers = new Marker[dogu_number+1];
+                GeoPoint[] dGpoints = new GeoPoint[dogu_number+1];
+                final Polygon[] dpolygons = new Polygon[dogu_number+1];
+                for ( i=0; i<dogu_number+1; i++){
                     dpolygons[i] = new Polygon(map);
                     dpolygons[i].setPoints(Polygon.pointsAsCircle(p, 250.0*dogu_int*(i)));
                     dpolygons[i].setFillColor(Color.TRANSPARENT);
-                    dpolygons[i].setStrokeColor(Color.BLACK);
-                    dpolygons[i].setStrokeWidth(5);
-                    if (i<4) {
+                    dpolygons[i].setStrokeColor(Color.RED);
+                    dpolygons[i].setStrokeWidth(dogu_number+1);
+                    if (i<dogu_number) {
                         dpolygons[i].setOnClickListener(new Polygon.OnClickListener() {
                             @Override
                             public boolean onClick(Polygon polygon, MapView mapView, GeoPoint eventPos) {
@@ -291,12 +296,17 @@ public class MapActivity extends AppCompatActivity {
                             @Override
                             public boolean onClick(Polygon polygon, MapView mapView, GeoPoint eventPos) {
                                 int i =0;
-                                for (i=0; i<5 ; i++) {
-                                    dmarkers[i].remove(map);
-                                    mapView.getOverlays().remove(dpolygons[i]);
+                                for (i=0; i<dogu_number+1 ; i++) {
+                                    try {
+                                        dmarkers[i].remove(map);
+                                        mapView.getOverlays().remove(dpolygons[i]);
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                                 mapView.getOverlays().remove(line250lat);
                                 mapView.getOverlays().remove(line250lon);
+                                map.setTileSource(TileSourceFactory.MAPNIK);
                                 return false;
                             }
                         });
@@ -306,9 +316,10 @@ public class MapActivity extends AppCompatActivity {
 
                 //===========================거리환 숫자 표기(단위)
                 if(dogu_int>0) {
-                    for (i = 0; i < 5; i++) {
+                    for (i = 0; i < dogu_number+1; i++) {
                         dGpoints[i] = new GeoPoint(p.getLatitude() + 0.002245 * dogu_int * (i), p.getLongitude());
                         dmarkers[i] = new Marker(map);
+                        dmarkers[i].setTextLabelFontSize(48);
                         dmarkers[i].setTextIcon(50 * dogu_int * (i) + "");
                         dmarkers[i].setPosition(dGpoints[i]);
                         dmarkers[i].setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
@@ -327,12 +338,12 @@ public class MapActivity extends AppCompatActivity {
                     @Override
                     public boolean onClick(Polygon polygon, MapView mapView, GeoPoint eventPos) {
                         int i=0;
-                        for ( i=0; i<5; i++) {
+                        for ( i=0; i<dogu_number+1; i++) {
                             dpolygons[i].setOnClickListener(new Polygon.OnClickListener() {
                                 @Override
                                 public boolean onClick(Polygon polygon, MapView mapView, GeoPoint eventPos) {
                                     int i = 0;
-                                    for (i = 0; i < 5; i++) {
+                                    for (i = 0; i < dogu_number+1; i++) {
                                         dmarkers[i].remove(map);
                                         mapView.getOverlays().remove(dpolygons[i]);
                                     }

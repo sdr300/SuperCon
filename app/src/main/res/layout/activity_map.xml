@@ -253,7 +253,7 @@
         android:layout_height="wrap_content"
         android:background="#B2FFFFFF"
         android:clickable="false"
-        android:text="M"
+        android:text="M / 거리환 개수 : "
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@id/distance1"
         app:layout_constraintBottom_toTopOf="@id/addressText" />
@@ -269,6 +269,17 @@
         app:layout_constraintBottom_toTopOf="@id/addressText"
         app:layout_constraintEnd_toStartOf="@id/distance1"
         app:layout_constraintStart_toStartOf="@+id/addressText" />
+
+    <TextView
+        android:id="@+id/distanceNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#B2FFFFFF"
+        android:clickable="false"
+        android:text="0"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@id/distanceUnit"
+        app:layout_constraintBottom_toTopOf="@id/addressText" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

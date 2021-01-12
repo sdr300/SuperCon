@@ -31,10 +31,10 @@ public class FragmentDogu extends Fragment {
     private SwitchCompat dogu_sw;
     private RadioGroup dogu_rg;
     private RadioButton dogu_rb_auto, dogu_rb_manual;
-    private Spinner dogu_sp;
+    private Spinner dogu_sp, dogu_sp_number;
     private Button dogu_btn_save;
-    private Integer dogu_int;
-    private String dogu_string;
+    private Integer dogu_int, dogu_number;
+    private String dogu_string, dogu_string_number;
     private TextView dogu_tv_setcoordinates;
 
     ArrayList<String> arrayList;
@@ -52,6 +52,7 @@ public class FragmentDogu extends Fragment {
                              Bundle savedInstanceState) {
 
         dogu_int = 0;
+        dogu_number = 0;
         gpsTracker = new GpsTracker(getActivity());
 
         final double latitude = gpsTracker.getLatitude();
@@ -66,6 +67,7 @@ public class FragmentDogu extends Fragment {
         dogu_rb_auto = view.findViewById(R.id.dogu_rb_auto);
         dogu_rb_manual = view.findViewById(R.id.dogu_rb_manual);
         dogu_sp = view.findViewById(R.id.dogu_sp);
+        dogu_sp_number = view.findViewById(R.id.dogu_sp_number);
         dogu_tv_setcoordinates = view.findViewById(R.id.dogu_tv_setcoordinates);
         dogu_tv_setcoordinates.setText("위도: "+latitude +"\n"+"경도: "+ longitude);
 
@@ -77,17 +79,15 @@ public class FragmentDogu extends Fragment {
                if(isChecked){
                    dogu_string = dogu_sp.getSelectedItem().toString();
                    dogu_int = Integer.parseInt(dogu_string);
+
+                   dogu_string_number = dogu_sp_number.getSelectedItem().toString();
+                   dogu_number = Integer.parseInt(dogu_string_number);
                } else {
                    dogu_int = 0;
+                   dogu_number=0;
                }
             }
         });
-
-        arrayList = new ArrayList<>();
-        arrayList.add("250");
-        arrayList.add("500");
-        arrayList.add("750");
-        arrayList.add("1000");
 
         final ArrayAdapter arrayAdapter = ArrayAdapter.createFromResource(getActivity().getApplicationContext(), R.array.unit, android.R.layout.simple_spinner_dropdown_item);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -95,28 +95,57 @@ public class FragmentDogu extends Fragment {
         dogu_sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (dogu_int != 0){
+
                     dogu_string = dogu_sp.getSelectedItem().toString();
                     dogu_int = Integer.parseInt(dogu_string);
-                }
+
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                if (dogu_int !=0){
+
                     dogu_string = dogu_sp.getSelectedItem().toString();
                     dogu_int = Integer.parseInt(dogu_string);
-                }
+
             }
         });
 
+        final ArrayAdapter arrayAdapterNumber = ArrayAdapter.createFromResource(getActivity().getApplicationContext(), R.array.number, android.R.layout.simple_spinner_dropdown_item);
+        arrayAdapterNumber.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dogu_sp_number.setAdapter(arrayAdapterNumber);
+        dogu_sp_number.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                    dogu_string_number = dogu_sp_number.getSelectedItem().toString();
+                    dogu_number = Integer.parseInt(dogu_string_number);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+                    dogu_string_number = dogu_sp_number.getSelectedItem().toString();
+                    dogu_number = Integer.parseInt(dogu_string_number);
+
+            }
+        });
+
+
         final TextView distance1 = getActivity().findViewById(R.id.distance1);
+        final TextView distanceNumber = getActivity().findViewById(R.id.distanceNumber);
 
         dogu_btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (dogu_sw.isChecked()) {
+                    distance1.setText(dogu_int + "");
+                    distanceNumber.setText(dogu_number + "");
+                } else {
+                    distance1.setText(0 + "");
+                    distanceNumber.setText(0 + "");
+                }
                 saveData();
-                distance1.setText(dogu_int+"");
             }
         });
 

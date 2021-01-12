@@ -30,9 +30,7 @@ public class TmmrFragment extends Fragment {
         mBinding.tmmrEtIp1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                if (s.length() == 2) {
-                    mBinding.tmmrEtIp2.requestFocus();
-                }
+
             }
 
             @Override
@@ -42,15 +40,15 @@ public class TmmrFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                if (s.length() == 3) {
+                    mBinding.tmmrEtIp2.requestFocus();
+                }
             }
         });
         mBinding.tmmrEtIp2.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                if (s.length() == 2) {
-                    mBinding.tmmrEtIp3.requestFocus();
-                }
+
             }
 
             @Override
@@ -60,52 +58,52 @@ public class TmmrFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                if (s.length() == 3) {
+                    mBinding.tmmrEtIp3.requestFocus();
+                }
             }
         });
         mBinding.tmmrEtIp3.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                if (s.length() == 2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() == 3) {
                     mBinding.tmmrEtIp4.requestFocus();
                 }
             }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
         });
-        mBinding.tmmrEtIp4.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                if (s.length() == 2) {
-                    mBinding.tmmrEtSubnet1.requestFocus();
-                }
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+//        mBinding.tmmrEtIp4.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//                if (s.length() == 2) {
+//                    mBinding.tmmrEtSubnet1.requestFocus();
+//                }
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//            }
+//        });
 
         mBinding.tmmrEtSubnet1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                if (s.length() == 2) {
-                    mBinding.tmmrEtSubnet2.requestFocus();
-                }
+
             }
 
             @Override
@@ -115,15 +113,15 @@ public class TmmrFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                if (s.length() == 3) {
+                    mBinding.tmmrEtSubnet2.requestFocus();
+                }
             }
         });
         mBinding.tmmrEtSubnet2.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                if (s.length() == 2) {
-                    mBinding.tmmrEtSubnet3.requestFocus();
-                }
+
             }
 
             @Override
@@ -133,52 +131,53 @@ public class TmmrFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                if (s.length() == 3) {
+                    mBinding.tmmrEtSubnet3.requestFocus();
+                }
             }
         });
         mBinding.tmmrEtSubnet3.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                if (s.length() == 2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() == 3) {
                     mBinding.tmmrEtSubnet4.requestFocus();
                 }
             }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
         });
-        mBinding.tmmrEtSubnet4.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                if (s.length() == 2) {
-                    mBinding.tmmrEtGate1.requestFocus();
-                }
-            }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+//        mBinding.tmmrEtSubnet4.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//                if (s.length() == 2) {
+//                    mBinding.tmmrEtGate1.requestFocus();
+//                }
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//            }
+//        });
 
         mBinding.tmmrEtGate1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                if (s.length() == 2) {
-                    mBinding.tmmrEtGate2.requestFocus();
-                }
+
             }
 
             @Override
@@ -188,15 +187,15 @@ public class TmmrFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                if (s.length() == 3) {
+                    mBinding.tmmrEtGate2.requestFocus();
+                }
             }
         });
         mBinding.tmmrEtGate2.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                if (s.length() == 2) {
-                    mBinding.tmmrEtGate3.requestFocus();
-                }
+
             }
 
             @Override
@@ -206,15 +205,15 @@ public class TmmrFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                if (s.length() == 3) {
+                    mBinding.tmmrEtGate3.requestFocus();
+                }
             }
         });
         mBinding.tmmrEtGate3.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                if (s.length() == 2) {
-                    mBinding.tmmrEtGate4.requestFocus();
-                }
+
             }
 
             @Override
@@ -224,7 +223,9 @@ public class TmmrFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                if (s.length() == 3) {
+                    mBinding.tmmrEtGate4.requestFocus();
+                }
             }
         });
 

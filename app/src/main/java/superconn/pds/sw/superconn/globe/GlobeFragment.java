@@ -17,10 +17,12 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.gridlines.LatLonGridlineOverlay2;
 
 import java.util.Collection;
+import java.util.Map;
 
 import superconn.pds.sw.superconn.GpsTracker;
 import superconn.pds.sw.superconn.MapActivity;
@@ -162,6 +164,7 @@ public class GlobeFragment extends Fragment {
                         System.out.println(e);
                     }
                 }
+                map.setTileSource(TileSourceFactory.MAPNIK);
             }
         });
 

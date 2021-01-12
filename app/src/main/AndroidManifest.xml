@@ -17,7 +17,8 @@
         android:label="SuperConn"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        >
         <activity android:name="superconn.pds.sw.superconn.MapActivity"
             android:screenOrientation="landscape">
 
