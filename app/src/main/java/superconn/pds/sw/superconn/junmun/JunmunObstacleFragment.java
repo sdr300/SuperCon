@@ -18,11 +18,15 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 
 import superconn.pds.sw.superconn.R;
+import superconn.pds.sw.superconn.etc.CustomSpinnerAdapter;
 
 public class JunmunObstacleFragment extends Fragment {
 
     ArrayList<String> arrayList_obstacle, arrayList_obstacle_wire, arrayList_obstacle_tank, arrayList_obstacle_mine, arrayList_obstacle_etc;
     ArrayAdapter<String> arrayAdapter_obstacle, arrayAdapter_obstacle_detail;
+
+    String[] spinner_obstacle, spinner_obstacle_wire, spinner_obstacle_tank, spinner_obstacle_mine, spinner_obstacle_etc;
+    int[] im_obstacle, im_obstacle_wire, im_obstacle_tank, im_obstacle_mine, im_obstacle_etc;
 
     public JunmunObstacleFragment() {
         // Required empty public constructor
@@ -47,41 +51,47 @@ public class JunmunObstacleFragment extends Fragment {
         arrayAdapter_obstaclePia.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         junmun_obstacle_sp_obstaclePia.setAdapter(arrayAdapter_obstaclePia);
 
-        //============ dependant spinner - obstacle ===========//
-
         Spinner junmun_obstacle_sp_obstacleType = view.findViewById(R.id.junmun_obstacle_sp_obstacleType);
         final Spinner junmun_obstacle_sp_obstacleDetail = view.findViewById(R.id.junmun_obstacle_sp_obstacleDetail);
 
-        arrayList_obstacle = new ArrayList<>();
-        arrayList_obstacle.add("철조망");
-        arrayList_obstacle.add("대전차 장애물");
-        arrayList_obstacle.add("지뢰지대");
-        arrayList_obstacle.add("기타");
+        //spinner adapter
 
-        arrayAdapter_obstacle = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, arrayList_obstacle);
+        spinner_obstacle = new String[]{"철조망", "대전차 장애물", "지뢰지대", "기타"};
+        im_obstacle = new int[]{
+                R.drawable.none,
+                R.drawable.none,
+                R.drawable.none,
+                R.drawable.none
+        };
+
+        spinner_obstacle_wire = new String[]{"철조망"};
+        im_obstacle_wire = new int[]{
+                R.drawable.spinnerobstaclewire0
+        };
+
+        spinner_obstacle_tank = new String[]{"대전차 방벽", "대전차장애물(고정식)", "대전차장애물(이동식)"};
+        im_obstacle_tank = new int[]{
+                R.drawable.spinnerobstacletank0,
+                R.drawable.spinnerobstacletank1,
+                R.drawable.spinnerobstacletank2
+        };
+
+        spinner_obstacle_mine = new String[]{"지뢰지역"};
+        im_obstacle_mine = new int[]{
+                R.drawable.spinnerobstaclemine0
+        };
+
+        spinner_obstacle_etc = new String[]{"부비트랩", "목책"};
+        im_obstacle_etc = new int[]{
+                R.drawable.spinnerobstacleetc0,
+                R.drawable.spinnerobstacleetc1
+        };
+
+        //============ dependant spinner - obstacle ===========//
+
+        arrayAdapter_obstacle = new CustomSpinnerAdapter(getActivity().getApplicationContext(), spinner_obstacle, im_obstacle);
 
         junmun_obstacle_sp_obstacleType.setAdapter(arrayAdapter_obstacle);
-
-        //============ dependant spinner - detail ===========//
-
-        arrayList_obstacle_wire = new ArrayList<>();
-        arrayList_obstacle_wire.add("철조망");
-        arrayList_obstacle_wire.add("가시형 철조망");
-        arrayList_obstacle_wire.add("면도칼형 철조망");
-        arrayList_obstacle_wire.add("미식별");
-
-        arrayList_obstacle_tank = new ArrayList<>();
-        arrayList_obstacle_tank.add("대전차 방벽");
-        arrayList_obstacle_tank.add("대전차장애물(고정식)");
-        arrayList_obstacle_tank.add("대전차장애물(이동식)");
-
-        arrayList_obstacle_mine = new ArrayList<>();
-        arrayList_obstacle_mine.add("지뢰지역");
-
-        arrayList_obstacle_etc = new ArrayList<>();
-        arrayList_obstacle_etc.add("부비트랩");
-        arrayList_obstacle_etc.add("목책");
-        arrayList_obstacle_etc.add("미식별");
 
         //==== spinner 장착 =====//
 
@@ -89,16 +99,16 @@ public class JunmunObstacleFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
-                    arrayAdapter_obstacle_detail = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, arrayList_obstacle_wire);
+                    arrayAdapter_obstacle_detail  = new CustomSpinnerAdapter(getActivity().getApplicationContext(), spinner_obstacle_wire, im_obstacle_wire);
                 }
                 if (position == 1) {
-                    arrayAdapter_obstacle_detail = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, arrayList_obstacle_tank);
+                    arrayAdapter_obstacle_detail  = new CustomSpinnerAdapter(getActivity().getApplicationContext(), spinner_obstacle_tank, im_obstacle_tank);
                 }
                 if (position == 2) {
-                    arrayAdapter_obstacle_detail = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, arrayList_obstacle_mine);
+                    arrayAdapter_obstacle_detail  = new CustomSpinnerAdapter(getActivity().getApplicationContext(), spinner_obstacle_mine, im_obstacle_mine);
                 }
                 if (position == 3) {
-                    arrayAdapter_obstacle_detail = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, arrayList_obstacle_etc);
+                    arrayAdapter_obstacle_detail  = new CustomSpinnerAdapter(getActivity().getApplicationContext(), spinner_obstacle_etc, im_obstacle_etc);
                 }
 
                 junmun_obstacle_sp_obstacleDetail.setAdapter(arrayAdapter_obstacle_detail);

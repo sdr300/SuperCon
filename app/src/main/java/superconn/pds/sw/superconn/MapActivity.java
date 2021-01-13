@@ -247,7 +247,7 @@ public class MapActivity extends AppCompatActivity {
                 CompassOverlay compassOverlay = new CompassOverlay(MapActivity.this, map);
                 compassOverlay.enableCompass();
                 compassOverlay.disableCompass();
-                map.getOverlays().add(1, compassOverlay);
+                map.getOverlays().add(2, compassOverlay);
 
                 // ======================== 거리환 십자 직선
                 List<GeoPoint> geoPoint250lat = new ArrayList<>();
@@ -1119,18 +1119,6 @@ public class MapActivity extends AppCompatActivity {
 
     //gps로 가져온 degree를 dms로 변환
 
-    public String utm(double lat, double lon) {
-        CoordDMS dms = new CoordDMS();
-        dms.convertFromDeg(lon,lat);
-
-        CoordUTM utm ;
-        coordMgrs mgrs ;
-        mgrs = CoordinateManager.dmsToMgrs(dms);
-        utm = CoordinateManager.mgrsToUtm(mgrs.getMGRS());
-        String utmStr = utm.degToUtm(lat,lon);
-        return utmStr;
-    }
-
     public String mgrs(double lat, double lon) {
         CoordDMS dms = new CoordDMS();
         dms.convertFromDeg(lon, lat);
@@ -1144,6 +1132,20 @@ public class MapActivity extends AppCompatActivity {
 
         return  str.toString();
     }
+
+    public String utm(double lat, double lon) {
+        CoordDMS dms = new CoordDMS();
+        dms.convertFromDeg(lon,lat);
+
+        CoordUTM utm ;
+        coordMgrs mgrs ;
+        mgrs = CoordinateManager.dmsToMgrs(dms);
+        utm = CoordinateManager.mgrsToUtm(mgrs.getMGRS());
+        String utmStr = utm.degToUtm(lat,lon);
+        return utmStr;
+    }
+
+
 
     public String dms(double lat, double lon) {
         int latd, lond;

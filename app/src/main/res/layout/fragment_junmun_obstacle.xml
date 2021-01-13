@@ -80,7 +80,7 @@
             <RelativeLayout
                 android:id="@+id/junmun_obstacle_sp_priority_rl"
                 android:layout_width="120dp"
-                android:layout_height="25dp"
+                android:layout_height="35dp"
                 android:orientation="horizontal"
                 android:background="@drawable/videospinnerborder"
                 app:layout_constraintBottom_toTopOf="@id/divider1"
@@ -114,7 +114,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_centerInParent="true"
-                android:layout_marginTop="2dp"
                 android:background="#fff"
                 app:layout_constraintBottom_toTopOf="@id/junmun_obstacle_et_time"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -220,8 +219,8 @@
 
             <RelativeLayout
                 android:id="@+id/junmun_obstacle_sp_obstaclePia_rl"
-                android:layout_width="140dp"
-                android:layout_height="25dp"
+                android:layout_width="240dp"
+                android:layout_height="35dp"
                 android:orientation="horizontal"
                 android:background="@drawable/videospinnerborder"
                 app:layout_constraintBottom_toTopOf="@id/divider4"
@@ -255,7 +254,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_centerInParent="true"
-                android:layout_marginTop="5dp"
                 android:background="#fff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -277,8 +275,8 @@
 
             <RelativeLayout
                 android:id="@+id/junmun_obstacle_sp_obstacleType_rl"
-                android:layout_width="140dp"
-                android:layout_height="25dp"
+                android:layout_width="240dp"
+                android:layout_height="35dp"
                 android:orientation="horizontal"
                 android:background="@drawable/videospinnerborder"
                 app:layout_constraintBottom_toTopOf="@id/divider5"
@@ -311,7 +309,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_centerInParent="true"
-                android:layout_marginTop="5dp"
                 android:background="#fff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -324,7 +321,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginBottom="3dp"
                 android:text="세부 장애물 : "
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/junmun_obstacle_sp_obstacleDetail_rl"
@@ -335,8 +331,8 @@
 
             <RelativeLayout
                 android:id="@+id/junmun_obstacle_sp_obstacleDetail_rl"
-                android:layout_width="140dp"
-                android:layout_height="25dp"
+                android:layout_width="240dp"
+                android:layout_height="35dp"
                 android:orientation="horizontal"
                 android:background="@drawable/videospinnerborder"
                 app:layout_constraintBottom_toBottomOf="parent"

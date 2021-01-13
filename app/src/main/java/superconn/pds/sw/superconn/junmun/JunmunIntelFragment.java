@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -24,13 +25,12 @@ import superconn.pds.sw.superconn.etc.CustomSpinnerAdapter;
 public class JunmunIntelFragment extends Fragment {
 
     private FragmentJunmunIntelBinding mBinding;
-    ArrayList<String> arrayList_type1, arrayList_type2_unit, arrayList_type2_equipment, arrayList_type2_emergency, arrayList_type3_count, arrayList_type3_property;
+    ArrayList<String> arrayList_type1,arrayList_type2, arrayList_type3, arrayList_type2_unit, arrayList_type2_equipment, arrayList_type2_emergency, arrayList_type3_count, arrayList_type3_property;
     ArrayAdapter<String> arrayAdapter_type3, arrayAdapter_type1, arrayAdapter_type2;
 
     String[] spinner_type1,spinner_type2_unit, spinner_type2_equip, spinner_type2_emergency, spinner_type3_property, spinner_type3_count;
     int[] im_type1,im_type2_unit, im_type2_equip, im_type2_emergency, im_type3_property, im_type3_count;
     int unit_idx, equip_idx, emergency_idx, property_idx;
-
 
     public JunmunIntelFragment() {
         // Required empty public constructor
@@ -47,11 +47,17 @@ public class JunmunIntelFragment extends Fragment {
         Spinner junmun_intel_sp_type1 = view.findViewById(R.id.junmun_intel_sp_type1);
         final Spinner junmun_intel_sp_type2 = view.findViewById(R.id.junmun_intel_sp_type2);
         final Spinner junmun_intel_sp_type3 = view.findViewById(R.id.junmun_intel_sp_type3);
+        final TextView junmun_intel_tv_quantity2 = view.findViewById(R.id. junmun_intel_tv_quantity2);
 
         // 이미지 삽입
         spinner_type1 = new String[] {"부대", "장비", "비상관리"};
+        im_type1 = new int[]{
+                R.drawable.none,
+                R.drawable.none,
+                R.drawable.none
+        };
 
-        spinner_type2_unit =  new String[] {"미지정","조", "분대","반", "소대","중대", "대대"};
+        spinner_type2_unit =  new String[] {"미지정", "조", "분대", "반", "소대", "중대", "대대"};
         im_type2_unit = new int[]{
                 R.drawable.spinnerunit0,
                 R.drawable.spinnerunit1,
@@ -73,79 +79,58 @@ public class JunmunIntelFragment extends Fragment {
                 R.drawable.spinnerproperty6
         };
 
-        
+        spinner_type2_equip =  new String[] {"장갑차량","다목적차량", "공병차량","민간차량", "고정익항공기","회전익항공기"};
+        im_type2_equip = new int[]{
+                R.drawable.spinnerequip0,
+                R.drawable.spinnerequip1,
+                R.drawable.spinnerequip2,
+                R.drawable.spinnerequip3,
+                R.drawable.spinnerequip4,
+                R.drawable.spinnerequip5
+        };
 
-        CustomSpinnerAdapter customSpinnerAdapterUnit = new CustomSpinnerAdapter(getActivity().getApplicationContext(), )
+        spinner_type2_emergency =  new String[] {"화재"};
+        im_type2_emergency = new int[]{
+                R.drawable.spinneremergency0
+        };
 
+        spinner_type3_count =  new String[] {"1","2","3","4","5"};
+        im_type3_count = new int[]{
+                R.drawable.none,
+                R.drawable.none,
+                R.drawable.none,
+                R.drawable.none,
+                R.drawable.none
+        };
 
+        arrayAdapter_type1  =  new CustomSpinnerAdapter(getActivity().getApplicationContext(), spinner_type1, im_type1);
 
-
-        //기존 스피너
-        arrayList_type1 = new ArrayList<>();
-        arrayList_type1.add("부대");
-        arrayList_type1.add("장비");
-        arrayList_type1.add("비상관리");
-
-        arrayAdapter_type1 = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, arrayList_type1);
+        final TextView junmun_intel_tv_quantity = view.findViewById(R.id.junmun_intel_tv_quantity);
 
         junmun_intel_sp_type1.setAdapter(arrayAdapter_type1);
 
-        //============ dependant spinner - type2,3 ===========//
-
-        arrayList_type2_unit = new ArrayList<>();
-        arrayList_type2_unit.add("미지정");
-        arrayList_type2_unit.add("조");
-        arrayList_type2_unit.add("분대");
-        arrayList_type2_unit.add("반");
-        arrayList_type2_unit.add("소대");
-        arrayList_type2_unit.add("중대");
-        arrayList_type2_unit.add("대대");
-
-        arrayList_type2_equipment = new ArrayList<>();
-        arrayList_type2_equipment.add("장갑차량");
-        arrayList_type2_equipment.add("다목적차량");
-        arrayList_type2_equipment.add("공병차량");
-        arrayList_type2_equipment.add("민간차량");
-        arrayList_type2_equipment.add("고정익항공기");
-        arrayList_type2_equipment.add("회전익항공기");
-
-        arrayList_type2_emergency = new ArrayList<>();
-        arrayList_type2_emergency.add("화재");
-
-        arrayList_type3_property = new ArrayList<>();
-        arrayList_type3_property.add("미식별(적)");
-        arrayList_type3_property.add("보병");
-        arrayList_type3_property.add("포병");
-        arrayList_type3_property.add("기갑");
-        arrayList_type3_property.add("공병");
-        arrayList_type3_property.add("항공");
-        arrayList_type3_property.add("수색/정찰");
-        arrayList_type3_property.add("미식별(아군)");
-
-        arrayList_type3_count= new ArrayList<>();
-        arrayList_type3_count.add("1");
-        arrayList_type3_count.add("2");
-        arrayList_type3_count.add("3");
-        arrayList_type3_count.add("4");
-        arrayList_type3_count.add("5");
-
-
-        //==== spinner 장착 =====//
+        //==== spinner 장착(커스텀 이후) =====//
 
         junmun_intel_sp_type1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
-                    arrayAdapter_type2  = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, arrayList_type2_unit);
-                    arrayAdapter_type3  = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, arrayList_type3_property);
+                    arrayAdapter_type2  = new CustomSpinnerAdapter(getActivity().getApplicationContext(), spinner_type2_unit, im_type2_unit);
+                    arrayAdapter_type3  = new CustomSpinnerAdapter(getActivity().getApplicationContext(), spinner_type3_property, im_type3_property);
+                    junmun_intel_tv_quantity.setText("개체 성질 : ");
+                    junmun_intel_tv_quantity2.setText("");
                 }
                 if (position == 1) {
-                    arrayAdapter_type2  = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, arrayList_type2_equipment);
-                    arrayAdapter_type3  = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, arrayList_type3_count);
+                    arrayAdapter_type2  = new CustomSpinnerAdapter(getActivity().getApplicationContext(), spinner_type2_equip, im_type2_equip);
+                    arrayAdapter_type3  = new CustomSpinnerAdapter(getActivity().getApplicationContext(), spinner_type3_count, im_type3_count);
+                    junmun_intel_tv_quantity.setText("개체 수량 : ");
+                    junmun_intel_tv_quantity2.setText("문");
                 }
                 if (position == 2) {
-                    arrayAdapter_type2  = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, arrayList_type2_emergency);
-                    arrayAdapter_type3  = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, arrayList_type3_count);
+                    arrayAdapter_type2  = new CustomSpinnerAdapter(getActivity().getApplicationContext(), spinner_type2_emergency, im_type2_emergency);
+                    arrayAdapter_type3  = new CustomSpinnerAdapter(getActivity().getApplicationContext(), spinner_type3_count, im_type3_count);
+                    junmun_intel_tv_quantity.setText("개체 수량 : ");
+                    junmun_intel_tv_quantity2.setText("문");
                 }
 
                 junmun_intel_sp_type2.setAdapter(arrayAdapter_type2);
@@ -207,9 +192,6 @@ public class JunmunIntelFragment extends Fragment {
         });
 
         return view;
-
-
-
 
     }
 }
