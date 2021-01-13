@@ -169,7 +169,7 @@ public class GlobeFragment extends Fragment {
 
                 if (globe_checkBox.isChecked()) {
                     try {
-                        map.getOverlays().remove(1);
+                        map.getOverlays().remove(grid);
                     } catch(IndexOutOfBoundsException e) {
                         System.out.println(e);
                     }
@@ -177,11 +177,11 @@ public class GlobeFragment extends Fragment {
                     grid.setMultiplier(2.0f);
                     grid.setBackgroundColor(Color.TRANSPARENT);
                     grid.setFontColor(Color.BLACK);
-                    map.getOverlays().add(1, grid);
+                    map.getOverlays().add(3, grid);
                 } else  if (!globe_checkBox.isChecked()){
                     //ArrayIndexOutOfBoundsException 을 try catch로 잡아냄
                     try {
-                        map.getOverlays().remove(1);
+                        map.getOverlays().remove(grid);
                     } catch(IndexOutOfBoundsException e) {
                         System.out.println(e);
                     }

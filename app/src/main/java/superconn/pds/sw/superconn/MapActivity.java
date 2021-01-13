@@ -36,6 +36,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.room.Room;
 
+import org.metalev.multitouch.controller.MultiTouchController;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.events.DelayedMapListener;
 import org.osmdroid.events.MapEventsReceiver;
@@ -149,6 +150,7 @@ public class MapActivity extends AppCompatActivity {
         map.getController().setZoom(16.0);
         map.setMultiTouchControls(true);
 
+
         requestPermissionsIfNecessary(new String[]{
                 Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.ACCESS_WIFI_STATE, Manifest.permission.INTERNET
         });
@@ -243,11 +245,11 @@ public class MapActivity extends AppCompatActivity {
 
                 //
                 int i=0;
-                drawMarker(p);
+//                drawMarker(p);
                 CompassOverlay compassOverlay = new CompassOverlay(MapActivity.this, map);
                 compassOverlay.enableCompass();
                 compassOverlay.disableCompass();
-                map.getOverlays().add(2, compassOverlay);
+                map.getOverlays().add(compassOverlay);
 
                 // ======================== 거리환 십자 직선
                 List<GeoPoint> geoPoint250lat = new ArrayList<>();
@@ -275,7 +277,7 @@ public class MapActivity extends AppCompatActivity {
 
                 map.getOverlayManager().add(line250lon);
 
-                //거리환 원그리기 (4개)
+                //거리환 원그리기
                 final Marker[] dmarkers = new Marker[dogu_number+1];
                 GeoPoint[] dGpoints = new GeoPoint[dogu_number+1];
                 final Polygon[] dpolygons = new Polygon[dogu_number+1];
@@ -357,6 +359,7 @@ public class MapActivity extends AppCompatActivity {
                         return false;
                     }
                 });
+               
                 map.invalidate();
                 return false;
             }
@@ -372,8 +375,8 @@ public class MapActivity extends AppCompatActivity {
         map.invalidate();
 
         //아래 두줄은 풀스크린용(상단바 제거, 상단바가 필요하면 주석처리)
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         //플래그먼트 매니저
         fragmentManager = getSupportFragmentManager();
@@ -1178,7 +1181,7 @@ public class MapActivity extends AppCompatActivity {
     public void drawMarker(GeoPoint p){
         Marker m = new Marker(map);
         m.setPosition(p);
-        m.setVisible(false);
+        m.setVisible(true);
         m.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker, MapView mapView) {
@@ -1188,7 +1191,7 @@ public class MapActivity extends AppCompatActivity {
         //must set the icon to null last
         m.setIcon(null);
         map.getOverlays().add(m);
-        markers.add(m);
+        markers.add( m);
     }
 
     Marker coordMarker;

@@ -13,4 +13,5 @@
     <color name="passcolor">#03B152</color>
     <color name="failcolor">#FF0000</color>
     <color name="transparent">#00000000</color>
+    <color name="halftransprent">#8AFFFFFF</color>
 </resources>
