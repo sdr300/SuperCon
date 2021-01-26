@@ -62,6 +62,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.jar.JarFile;
 
 import icops.framework.common.BasicReturn;
@@ -74,6 +75,7 @@ import superconn.pds.sw.superconn.DataBase.RoomDatabaseClass;
 import superconn.pds.sw.superconn.ICOPS.DemoMainView;
 import superconn.pds.sw.superconn.camera.CameraMainFragment;
 import superconn.pds.sw.superconn.camera.CameraSensorFragment;
+import superconn.pds.sw.superconn.camera.CaptureActivity;
 import superconn.pds.sw.superconn.chat.ChatMainFragment;
 import superconn.pds.sw.superconn.chook.ChookFragment;
 import superconn.pds.sw.superconn.comm.LIFFReceiver;
@@ -434,7 +436,7 @@ public class MapActivity extends AppCompatActivity {
             @Override
             public boolean onScroll(ScrollEvent event) {
                 mMainView.clearSymbol();
-                icopsTest(map);
+//                icopsTest(map);
                 return false;
             }
 
@@ -498,7 +500,26 @@ public class MapActivity extends AppCompatActivity {
 
             }
         });
+        requestRights();
     }
+
+    private static final int        PERMISSION_STORAGE_REQUEST = 0xBAce;
+    private AtomicBoolean m_isStoragePermissionGrant = new AtomicBoolean(false);
+
+    private void requestRights()
+    {
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED )
+        {
+            //Log(LogLevel.Info,"Asking for permission to write access EXTERNAL_STORAGE");
+            String[] permission = new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+            ActivityCompat.requestPermissions(this,permission,PERMISSION_STORAGE_REQUEST) ;
+        }
+        else {
+            //Log(LogLevel.Info,"Permission to write EXTERNAL_STORAGE already granted");
+            m_isStoragePermissionGrant.set(true);
+        }
+    }
+
 
     private final String LIFF_IDENTIFICATION_SEND = "LIFF.COMM.RS232.IDENTIFICATION.SEND";
     private final String LIFF_IDENTIFICATION_RECEIVER = "LIFF.COMM.RS232.IDENTIFICATION.RECEIVER";
@@ -874,12 +895,15 @@ public class MapActivity extends AppCompatActivity {
             } else if (view.getId() ==R.id.ibt_video) {
                 fr = new VideoMainFragment();
             } else if (view.getId() ==R.id.ibt_camera_sensor) {
-                sensorfr = new CameraSensorFragment();
+                Intent intent = new Intent(this, CaptureActivity.class);
+                intent.putExtra("data", "Test Popup");
+                startActivityForResult(intent, 1);
+               /* sensorfr = new CameraSensorFragment();
                 sensorint= sensorint+1;
                 fm.popBackStack();
                 FragmentTransaction fragmentTransaction = fm.beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_frame_full, sensorfr);
-                fragmentTransaction.commit();
+                fragmentTransaction.commit();*/
             } else if (view.getId() ==R.id.ibt_chat_team) {
                 fr = new ChatMainFragment();
             } else if (view.getId() ==R.id.ibt_junmun_team ) {

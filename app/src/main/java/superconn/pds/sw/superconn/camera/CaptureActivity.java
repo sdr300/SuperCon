@@ -1,25 +1,24 @@
 package superconn.pds.sw.superconn.camera;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import superconn.pds.sw.superconn.R;
+
 import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-
 import android.os.Environment;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.view.Window;
 import android.widget.TextView;
 
 import java.io.File;
@@ -30,21 +29,20 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import superconn.pds.sw.superconn.MapActivity;
-import superconn.pds.sw.superconn.R;
-
-/**
- * created 2020-12-21
- */
-public class CameraMainFragment extends Fragment implements LogTarget, SurfaceHolder.Callback{
+public class CaptureActivity extends Activity implements LogTarget, SurfaceHolder.Callback {
 
     private static final int        PERMISSION_STORAGE_REQUEST = 0xBAce;
     private TextView m_LogView;
     private PylonGrab               m_PylonGrab;
     public static final String      LOG_TAG ="Grab";
-    private MapActivity mainActivity;
+    SurfaceHolder previewHolder;
 
-    private void LogImpl(LogLevel logLevel, String logText) {
+    /** Log function implementation.
+     *  Is invoked by Log() and called in context of UI thread.
+     *  @param logLevel Severity of the log message.
+     *  @param logText Text to log.
+     **/
+    private void LogImpl(LogTarget.LogLevel logLevel, String logText) {
         if( m_LogView != null && logLevel != LogLevel.Trace) {
             if(m_LogView.getLineCount() > 1000 ) {
                 int charsToRemove = m_LogView.getText().length() / 2;
@@ -68,6 +66,11 @@ public class CameraMainFragment extends Fragment implements LogTarget, SurfaceHo
 
         }
     }
+    /** Override of LogTarget Log() function.
+     *  @param logLevel Severity of the log message.
+     *  @param logText Text to log.
+     *  Can be called from non-UI threads and will invoke logging in UI thread.
+     **/
     @Override
     public void Log(LogTarget.LogLevel logLevel, String logText) {
         class LogTask implements Runnable {
@@ -84,45 +87,23 @@ public class CameraMainFragment extends Fragment implements LogTarget, SurfaceHo
             }
 
         }
-        //mainActivity.this.runOnUiThread( new LogTask( logLevel, logText) );
-    }
-    SurfaceHolder previewHolder;
-    public CameraMainFragment() {
-        // Required empty public constructor
-    }
+        CaptureActivity.this.runOnUiThread( new LogTask( logLevel, logText) );
 
+    }
+    testView svCameraPreview;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_camera_main, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.activity_capture);
 
-        Button camera_btn_delete = view.findViewById(R.id.camera_btn_delete);
-        camera_btn_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MapActivity.fragmentManager.beginTransaction().replace(R.id.fragment_frame, new CameraDeleteFragment(), null).addToBackStack(null).commit();
-            }
-        });
+        requestRights();
 
-        Button camera_btn_capture = view.findViewById(R.id.camera_btn_capture);
-        camera_btn_capture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    capture(v);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
         m_RootPathPictures = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
-        // Create a member for easy access to UI elements.
-        //m_LogView = findViewById(R.id.logView);
-        //m_LogView.setMovementMethod(new ScrollingMovementMethod() );
 
-        SurfaceView svCameraPreview = (SurfaceView) view.findViewById(R.id.surfaceView);
-
+        svCameraPreview = (testView) findViewById(R.id.surfaceView);
+        Context con = this;
+        svCameraPreview.setContext(con);
         this.previewHolder = svCameraPreview.getHolder();
         this.previewHolder.addCallback(this);
         svCameraPreview.setZOrderOnTop(true);
@@ -134,7 +115,7 @@ public class CameraMainFragment extends Fragment implements LogTarget, SurfaceHo
             new Thread( new Runnable() {
                 @Override
                 public void run() {
-                    m_PylonGrab = new PylonGrab(CameraMainFragment.this);
+                    m_PylonGrab = new PylonGrab(CaptureActivity.this);
 
                     if(m_PylonGrab != null){
                         m_PylonGrab.setHolder(previewHolder);
@@ -149,9 +130,39 @@ public class CameraMainFragment extends Fragment implements LogTarget, SurfaceHo
             Log(LogLevel.Error, e.getMessage() );
         }
 
-        return view;
+    }
+    private AtomicBoolean m_isCameraValid = new AtomicBoolean(false);
+    private AtomicBoolean m_isStoragePermissionGrant = new AtomicBoolean(false);
+    private AtomicBoolean m_isOnDestroyCalled = new AtomicBoolean(false);
+
+    public void onButtonClick(View view) {
     }
 
+    private void requestRights()
+    {
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED )
+        {
+            Log(LogLevel.Info,"Asking for permission to write access EXTERNAL_STORAGE");
+            String[] permission = new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+            ActivityCompat.requestPermissions(this,permission,PERMISSION_STORAGE_REQUEST) ;
+        }
+        else {
+            Log(LogLevel.Info,"Permission to write EXTERNAL_STORAGE already granted");
+            m_isStoragePermissionGrant.set(true);
+            tryChangeEnableUIState(true);
+        }
+    }
+
+    synchronized void tryChangeEnableUIState(boolean newUIState)
+    {
+        boolean tmpState = newUIState;
+
+        if( !m_isCameraValid.get() || !m_isStoragePermissionGrant.get() || m_isOnDestroyCalled.get())
+        {
+            tmpState = false;
+        }
+
+    }
 
 
     @Override
@@ -172,6 +183,8 @@ public class CameraMainFragment extends Fragment implements LogTarget, SurfaceHo
     }
 
     public void capture(View view) throws IOException {
+        // Disable the UI ...
+        tryChangeEnableUIState(false);
 
         // Start an additional thread to keep the UI responsive.
         Thread sampleThread = new Thread( new SaveSingleImageRunnable());
@@ -189,13 +202,33 @@ public class CameraMainFragment extends Fragment implements LogTarget, SurfaceHo
         outputStream.flush();
         outputStream.close();
     }
-
     private Bitmap.CompressFormat   m_CurrentCompressFormat = Bitmap.CompressFormat.JPEG;
     private String m_RootPathPictures = null;
+
+    public void zoomIn(View view) {
+        m_PylonGrab.setZoom(true);
+    }
+
+    public void zoomOut(View view) {
+        m_PylonGrab.setZoom(false);
+    }
+    float scalingFactor = 1.0f;
+    public void zoom(View view) {
+        if(scalingFactor == 1.0f){
+            scalingFactor = 2.0f;
+        }else{
+            scalingFactor = 1.0f;
+        }
+        svCameraPreview.setScaleX(scalingFactor);
+        svCameraPreview.setScaleY(scalingFactor);
+
+    }
+
     private class SaveSingleImageRunnable implements Runnable
     {
         @Override
-        public void run() {
+        public void run()
+        {
             Bitmap grabImage = null;
 
             // Execute the sample code.
@@ -206,7 +239,7 @@ public class CameraMainFragment extends Fragment implements LogTarget, SurfaceHo
                     String timeStamp = new SimpleDateFormat("_yyyyMMdd_HHmmss", Locale.ENGLISH).format(Calendar.getInstance().getTime());
                     String fullFilePath = m_RootPathPictures + File.separator + "PylonImgSingle" + timeStamp;
 
-                    saveImage(fullFilePath, m_CurrentCompressFormat, grabImage);
+                    saveImage(fullFilePath , m_CurrentCompressFormat, grabImage);
                 } else {
                     Log(LogLevel.Error, "Error: No bitmap from grab");
                 }
@@ -214,8 +247,31 @@ public class CameraMainFragment extends Fragment implements LogTarget, SurfaceHo
                 Log(LogLevel.Error, "Exception while handling onClick SaveImage: " + e.getMessage());
             }
 
+            // Display the result.
+            if( !m_isOnDestroyCalled.get()) {
+                CaptureActivity.this.runOnUiThread(new UpdateUIAfterSampleRunRunnable(grabImage));
+            }
         }
     }
 
+    private class UpdateUIAfterSampleRunRunnable implements Runnable
+    {
+        Bitmap m_ResultImage;
+        public UpdateUIAfterSampleRunRunnable(Bitmap resultImage){
+            m_ResultImage = resultImage;
+        }
 
+        @Override
+        public void run()
+        {
+           /* // Display the result, if set
+            if(m_ResultImage != null) {
+                ImageView imageView = findViewById(R.id.imageView);
+                imageView.setImageBitmap(m_ResultImage);
+            }
+
+            // Enable the UI again
+            tryChangeEnableUIState(true);*/
+        }
+    }
 }
